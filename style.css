@@ -1,87 +1,112 @@
 body {
   margin: 0;
-  padding: 0;
-  background: url('bliss-wallpaper.jpg') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Georgia', serif;
+  font-family: "Tahoma", sans-serif;
+  overflow: hidden;
   color: white;
+}
+
+.wallpaper {
+  background-image: url('bliss-wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  z-index: -1;
 }
 
-.welcome-text {
-  font-size: 2rem;
+.title {
+  position: absolute;
+  top: 30px;
+  width: 100%;
   text-align: center;
-  margin-top: 50px;
-  animation: type 3s steps(30, end);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid white;
-  width: 0;
-}
-
-@keyframes type {
-  from { width: 0 }
-  to { width: 20ch }
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px black;
 }
 
 .desktop {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 20px;
-  padding: 100px 20px 0 20px;
+  position: absolute;
+  top: 100px;
+  left: 40px;
 }
 
-.folder {
+.icon {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  font-size: 1rem;
+  animation: bounceIn 0.6s ease;
+}
+
+.icon img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+}
+
+.icon span {
   color: white;
-  transition: transform 0.2s ease;
+  text-shadow: 1px 1px black;
+  font-size: 14px;
 }
 
-.folder:hover {
+.icon:hover {
   transform: scale(1.1);
+  transition: 0.2s;
 }
 
-.popup {
-  position: absolute;
-  top: 20%;
-  left: 25%;
-  width: 50%;
-  height: 300px;
+.window {
   background: white;
   color: black;
-  border: 2px solid #000;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+  border: 2px solid #000080;
+  width: 400px;
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  z-index: 10;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+  animation: slideIn 0.4s ease-out;
+}
+
+.window-header {
+  background: #000080;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
   display: flex;
-  flex-direction: column;
-  animation: slideIn 0.3s ease-out;
+  justify-content: space-between;
+}
+
+.window-content {
+  padding: 10px;
+  max-height: 300px;
+  overflow: auto;
 }
 
 @keyframes slideIn {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.popup-header {
-  background: navy;
-  color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.popup-content {
-  padding: 20px;
-  overflow-y: auto;
-  background: #f0f0f0;
-  flex: 1;
-}
-
-.hidden {
-  display: none;
+@keyframes bounceIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
