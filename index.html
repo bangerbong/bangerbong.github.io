@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Windows XP Style Portfolio</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wallpaper"></div>
+<div id="desktop">
+  <div id="welcome-text">welcome to my portfolio.</div>
 
-  <h1 class="title" id="title"></h1>
-
-  <div class="desktop">
-    <div class="icon" onclick="openWindow('posters')">
-      <img src="folder.png" alt="Posters" />
-      <span>Posters</span>
-    </div>
-    <div class="icon" onclick="openWindow('branding')">
-      <img src="folder.png" alt="Branding" />
-      <span>Branding</span>
-    </div>
-    <div class="icon" onclick="openWindow('videos')">
-      <img src="folder.png" alt="Videos" />
-      <span>Videos</span>
-    </div>
-    <div class="icon" onclick="openWindow('photos')">
-      <img src="folder.png" alt="Photos" />
-      <span>Photos</span>
-    </div>
-    <div class="icon" onclick="openWindow('about')">
-      <img src="folder.png" alt="About" />
-      <span>About Me</span>
-    </div>
-    <div class="icon" onclick="openWindow('resume')">
-      <img src="folder.png" alt="Resume" />
-      <span>Resume</span>
-    </div>
+  <!-- Folder icons -->
+  <div class="icon" data-window="posters" style="top: 60px; left: 50px;">
+    <img src="folder.png" alt="Posters" />
+    <div>Posters</div>
+  </div>
+  <div class="icon" data-window="branding" style="top: 150px; left: 180px;">
+    <img src="folder.png" alt="Branding" />
+    <div>Branding</div>
+  </div>
+  <div class="icon" data-window="videos" style="top: 100px; left: 320px;">
+    <img src="folder.png" alt="Videos" />
+    <div>Videos</div>
+  </div>
+  <div class="icon" data-window="photos" style="top: 220px; left: 270px;">
+    <img src="folder.png" alt="Photos" />
+    <div>Photos</div>
+  </div>
+  <div class="icon" data-window="about" style="top: 300px; left: 80px;">
+    <img src="folder.png" alt="About Me" />
+    <div>About Me</div>
+  </div>
+  <div class="icon" data-window="resume" style="top: 350px; left: 220px;">
+    <img src="folder.png" alt="Resume" />
+    <div>Resume</div>
+  </div>
+  <div class="icon" data-window="minesweeper" style="top: 450px; left: 140px;">
+    <img src="minesweeper-icon.png" alt="Minesweeper" />
+    <div>Minesweeper</div>
+  </div>
+  <div class="icon" data-window="contact" style="top: 400px; left: 350px;">
+    <img src="mobile-icon.png" alt="Contact" />
+    <div>Contact</div>
   </div>
 
   <div id="windows-container"></div>
 
-  <script src="script.js"></script>
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <div id="start-button">Start</div>
+    <div id="clock"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
