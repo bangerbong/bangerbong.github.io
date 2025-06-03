@@ -2,46 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bangerbong Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div id="desktop">
-    <h1>Bangerbong Portfolio</h1>
-    <div class="icon-container">
-      <div class="icon" data-folder="posters">
-        <img src="assets/icons/folder.png" alt="Posters Folder" />
-        <span>Posters</span>
-      </div>
-      <div class="icon" data-folder="branding">
-        <img src="assets/icons/folder.png" alt="Branding Folder" />
-        <span>Branding</span>
-      </div>
-      <div class="icon" data-folder="videos">
-        <img src="assets/icons/folder.png" alt="Videos Folder" />
-        <span>Videos</span>
-      </div>
-      <div class="icon" data-folder="photos">
-        <img src="assets/icons/folder.png" alt="Photos Folder" />
-        <span>Photos</span>
-      </div>
-      <div class="icon" data-folder="about">
-        <img src="assets/icons/folder.png" alt="About Me" />
-        <span>About Me</span>
-      </div>
-    </div>
+  <div class="welcome-text" id="welcomeText">welcome to my portfolio.</div>
+
+  <div class="desktop">
+    <div class="folder" data-folder="Posters">📁<span>Posters</span></div>
+    <div class="folder" data-folder="Branding">📁<span>Branding</span></div>
+    <div class="folder" data-folder="Videos">📁<span>Videos</span></div>
+    <div class="folder" data-folder="Photos">📁<span>Photos</span></div>
+    <div class="folder" data-folder="About">📁<span>About Me</span></div>
+    <div class="folder" data-folder="Resume">📁<span>Resume</span></div>
   </div>
 
-  <!-- Windows-style popup window -->
-  <div id="window-popup" class="hidden">
-    <div class="window-header">
-      <span id="window-title"></span>
-      <button id="close-window">X</button>
+  <div class="popup hidden" id="popupWindow">
+    <div class="popup-header">
+      <span id="popupTitle">Window</span>
+      <button id="closeBtn">✕</button>
     </div>
-    <div class="window-content" id="window-content">
-      <!-- Folder content will load here -->
-    </div>
+    <div class="popup-content" id="popupContent">Your content will appear here.</div>
   </div>
 
   <script src="script.js"></script>
