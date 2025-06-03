@@ -1,7 +1,9 @@
 body {
   margin: 0;
-  font-family: 'Tahoma', sans-serif;
+  font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif; /* Common UI fonts */
   color: black;
+  overflow: hidden; /* Prevent scrollbars from wallpaper/desktop */
+  user-select: none; /* Prevent text selection on desktop elements */
 }
 
 #wallpaper {
@@ -21,98 +23,349 @@ body {
   transform: translateX(-50%);
   font-size: 24px;
   font-family: 'Lucida Console', monospace;
-  color: black;
-  background: rgba(255, 255, 255, 0.6);
+  color: white; /* Better visibility on Bliss wallpaper */
+  text-shadow: 1px 1px 2px black; /* Add shadow for readability */
+  background: rgba(0, 0, 0, 0.3); /* Subtle background */
   padding: 5px 15px;
   border-radius: 5px;
-  border: 1px solid #aaa;
+  /* border: 1px solid #aaa; */ /* Optional */
 }
 
 .icon {
   position: absolute;
   text-align: center;
-  width: 80px;
+  width: 90px; /* Slightly wider for text */
   cursor: pointer;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  padding: 5px;
+  border-radius: 3px;
 }
+.icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  /* border: 1px dotted rgba(255, 255, 255, 0.7); */
+}
+.icon:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 
 .icon img {
   width: 48px;
   height: 48px;
 }
+.icon p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  word-wrap: break-word;
+}
 
+/* --- Windows --- */
 .window {
   position: absolute;
   top: 100px;
   left: 100px;
-  width: 300px;
-  background: #c0c0c0;
-  border: 2px solid #000;
-  display: none;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.4s ease-in-out;
+  min-width: 200px; /* Minimum reasonable width */
+  min-height: 150px; /* Minimum reasonable height */
+  background: #ECE9D8; /* XP window background color */
+  border-top: 1px solid #FFFFFF;
+  border-left: 1px solid #FFFFFF;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  display: none; /* Initial state */
+  padding: 2px; /* Padding to show the #ECE9D8 frame */
+  box-sizing: border-box;
 }
 
+/* Window Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
+  from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+.window.is-opening {
+  display: block !important;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+.window.is-closing {
+  animation: fadeOut 0.15s ease-in forwards;
+  /* display: block !important; /* No, keep it visible during fade-out */
+  pointer-events: none; /* Prevent interaction while closing */
+}
+
 
 .title-bar {
-  background: linear-gradient(to right, #000080, #1a4eb7);
   color: white;
-  padding: 4px 8px;
+  padding: 3px 5px;
   font-weight: bold;
+  font-size: 13px;
   cursor: move;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 24px; /* Typical XP title bar height */
+  box-sizing: border-box;
+  margin-bottom: 2px; /* Space between title-bar and content border */
 }
+.title-bar.active-window-title {
+  background: linear-gradient(to right, #0053E9, #006EFF, #0053E9); /* XP Active Blue */
+}
+.title-bar:not(.active-window-title) {
+  background: linear-gradient(to right, #7F9DB9, #B0C4DE, #7F9DB9); /* XP Inactive Grey/Blue */
+  color: #DDD;
+}
+
+.title-bar-buttons {
+    display: flex;
+}
+
+.title-bar-button {
+  background-color: #D34328; /* XP Close Red */
+  border: 1px solid white;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  color: white;
+  font-family: "Marlett", "Webdings", sans-serif; /* Marlett for symbols, Webdings as fallback */
+  font-size: 10px; /* Adjusted for Marlett symbols */
+  width: 19px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 2px;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+  padding-bottom: 1px; /* Align symbol better */
+  box-sizing: border-box;
+}
+.title-bar-button:hover {
+  filter: brightness(1.2);
+}
+.title-bar-button:active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: white;
+  border-bottom-color: white;
+  filter: brightness(0.9);
+}
+.title-bar:not(.active-window-title) .title-bar-button {
+    background-color: #A0A0A0; /* Greyed out for inactive */
+    border-color: #C0C0C0;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+    color: #505050;
+}
+
 
 .window-content {
   padding: 10px;
   background: white;
+  height: calc(100% - 28px); /* Adjust based on title-bar height and padding */
+  box-sizing: border-box;
+  overflow: auto; /* Add scrollbars if content overflows */
+  border: 1px solid #808080; /* Inset-like border */
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-bottom-color: #FFFFFF;
+  border-right-color: #FFFFFF;
 }
 
+
+/* --- Taskbar --- */
 #taskbar {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   height: 30px;
-  background: #000080;
+  background: linear-gradient(to bottom, #3b77ea 0%, #245edc 100%); /* XP Blue Gradient */
+  border-top: 1px solid #4c87ed;
   color: white;
   display: flex;
-  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  font-size: 12px;
+  font-family: 'Tahoma', sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 20000; /* Above windows */
+}
+
+#start-button {
+  background: linear-gradient(to bottom, #7bde53 0%, #58c038 40%, #38a81a 100%);
+  border: 1px solid #3c9a1f;
+  border-top-right-radius: 8px; /* XP Start button curve */
+  border-bottom-right-radius: 8px;
+  color: white;
+  padding: 0 20px 0 15px; /* More padding for the text */
+  height: calc(100% - 4px); /* Fit within taskbar with small margin */
+  margin: 2px 0 2px 2px; /* Align with taskbar content area */
+  display: flex;
   align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-style: italic;
   font-size: 14px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+#start-button:hover {
+  background: linear-gradient(to bottom, #8ff36a 0%, #6ad84a 40%, #49bd2b 100%);
+}
+#start-button:active {
+  background: linear-gradient(to top, #7bde53 0%, #58c038 40%, #38a81a 100%);
+  border-style: inset; /* Pressed look */
+}
+
+#taskbar-items {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-left: 5px;
+    flex-grow: 1; /* Takes up available space */
+    overflow: hidden; /* Prevent too many items from breaking layout */
+}
+
+.taskbar-item {
+    background: linear-gradient(to bottom, #5c8ee9 0%, #3e72d8 100%);
+    border: 1px outset #3866b0;
+    padding: 0 10px;
+    height: calc(100% - 6px);
+    margin: 3px 2px 3px 0;
+    display: flex;
+    align-items: center;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 3px;
+    box-shadow: 1px 1px 0px rgba(255,255,255,0.2) inset, -1px -1px 0px rgba(0,0,0,0.1) inset;
+    cursor: pointer;
+    font-size: 11px;
+}
+.taskbar-item.active, .taskbar-item:active {
+    background: linear-gradient(to top, #5c8ee9 0%, #3e72d8 100%); /* Pressed look */
+    border-style: inset;
+    font-weight: bold;
+    padding-top: 2px; /* Shift text down slightly for pressed feel */
+}
+.taskbar-item:hover {
+    filter: brightness(1.1);
+}
+
+#clock-container {
   padding: 0 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #1c4a8e;
+  margin-right: 2px;
+  background: rgba(0,0,0,0.1); /* Subtle shade for notification area */
+}
+#clock {
+    font-size: 11px;
+}
+
+
+/* --- Minesweeper --- */
+#mine-controls {
+  margin-bottom: 10px;
+  text-align: center;
+}
+#mine-controls button { /* Smiley button */
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  background: #c0c0c0;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #7b7b7b;
+  border-bottom: 2px solid #7b7b7b;
+  cursor: pointer;
+}
+#mine-controls button:active {
+  border-top-color: #7b7b7b;
+  border-left-color: #7b7b7b;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
 }
 
 #mine-grid {
   display: grid;
-  grid-template-columns: repeat(9, 25px);
-  gap: 2px;
-  margin-top: 10px;
+  /* grid-template-columns: repeat(9, 25px); Will be set by JS */
+  gap: 1px; /* Smaller gap for tighter cells */
+  border: 3px inset #808080; /* Sunken border around the grid */
+  background: #c0c0c0; /* Background for the grid container */
+  width: fit-content; /* Size to content */
+  margin: 0 auto; /* Center grid */
 }
 
 .cell {
-  width: 25px;
-  height: 25px;
-  background: #aaa;
-  border: 1px solid #666;
+  width: 24px; /* Slightly less to account for borders inside grid */
+  height: 24px;
+  background: #bdbdbd; /* Classic grey */
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #7b7b7b;
+  border-bottom: 2px solid #7b7b7b;
   text-align: center;
-  line-height: 25px;
+  line-height: 20px; /* Adjust for border */
   font-weight: bold;
   cursor: pointer;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  user-select: none;
+  box-sizing: border-box;
 }
 
 .cell.revealed {
-  background: #ddd;
+  background: #bdbdbd; /* Or #d0d0d0 */
+  border: 1px solid #7b7b7b;
+  line-height: 22px; /* Adjust for thinner border */
+}
+.cell.mine-hit { /* When a mine is clicked */
+    background-color: red !important;
+    color: white;
+}
+/* Number colors */
+.cell[data-mines="1"] { color: blue; }
+.cell[data-mines="2"] { color: green; }
+.cell[data-mines="3"] { color: red; }
+.cell[data-mines="4"] { color: navy; }
+.cell[data-mines="5"] { color: maroon; }
+.cell[data-mines="6"] { color: teal; }
+.cell[data-mines="7"] { color: black; }
+.cell[data-mines="8"] { color: dimgray; }
+
+
+/* --- My Computer Drives --- */
+.drive {
+  padding: 8px 10px;
+  background: #f0f0f0;
+  margin: 5px 0;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+.drive:hover {
+  background: #e0e0e0;
+  border-color: #999;
+}
+.drive-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 }
 
-.drive {
-  padding: 5px;
-  background: #eee;
-  margin: 5px;
-  cursor: pointer;
-  border: 1px solid #999;
+/* Specific App Content */
+#paintCanvas {
+  cursor: crosshair;
 }
 
