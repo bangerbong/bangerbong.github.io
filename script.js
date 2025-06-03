@@ -1,5 +1,3 @@
-// script.js
-
 const icons = document.querySelectorAll('.icon');
 const windows = document.querySelectorAll('.window');
 const clock = document.getElementById('clock');
@@ -49,21 +47,31 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// Folder navigation from My Computer
+document.querySelectorAll('.drive').forEach(drive => {
+  drive.addEventListener('click', () => {
+    const win = document.getElementById(drive.dataset.window);
+    if (win) win.style.display = 'block';
+  });
+});
+
 // Paint App
 const canvas = document.getElementById('paintCanvas');
-const ctx = canvas.getContext('2d');
-let painting = false;
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let painting = false;
 
-canvas.addEventListener('mousedown', () => painting = true);
-canvas.addEventListener('mouseup', () => painting = false);
-canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mousedown', () => painting = true);
+  canvas.addEventListener('mouseup', () => painting = false);
+  canvas.addEventListener('mousemove', draw);
 
-function draw(e) {
-  if (!painting) return;
-  ctx.fillStyle = 'black';
-  ctx.beginPath();
-  ctx.arc(e.offsetX, e.offsetY, 2, 0, Math.PI * 2);
-  ctx.fill();
+  function draw(e) {
+    if (!painting) return;
+    ctx.fillStyle = 'black';
+    ctx.beginPath();
+    ctx.arc(e.offsetX, e.offsetY, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
 // Minesweeper
@@ -73,6 +81,7 @@ const mineCount = 10;
 let cells = [];
 
 function createGrid() {
+  if (!grid) return;
   grid.innerHTML = '';
   cells = [];
   for (let i = 0; i < size * size; i++) {
@@ -80,6 +89,10 @@ function createGrid() {
     cell.classList.add('cell');
     cell.dataset.index = i;
     cell.addEventListener('click', () => revealCell(i));
+    cell.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      flagCell(i);
+    });
     grid.appendChild(cell);
     cells.push({el: cell, mine: false, revealed: false, flagged: false});
   }
@@ -99,7 +112,7 @@ function placeMines() {
 
 function revealCell(index) {
   const cell = cells[index];
-  if (cell.revealed) return;
+  if (cell.revealed || cell.flagged) return;
   cell.revealed = true;
   cell.el.classList.add('revealed');
   if (cell.mine) {
@@ -114,6 +127,13 @@ function revealCell(index) {
   } else {
     adjacent.forEach(revealCell);
   }
+}
+
+function flagCell(index) {
+  const cell = cells[index];
+  if (cell.revealed) return;
+  cell.flagged = !cell.flagged;
+  cell.el.textContent = cell.flagged ? '🚩' : '';
 }
 
 function getAdjacent(index) {
