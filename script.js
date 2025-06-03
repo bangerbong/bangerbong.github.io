@@ -1,61 +1,18 @@
-const icons = document.querySelectorAll('.icon');
-const windowPopup = document.getElementById('window-popup');
-const windowTitle = document.getElementById('window-title');
-const windowContent = document.getElementById('window-content');
-const closeBtn = document.getElementById('close-window');
+const folders = document.querySelectorAll('.folder');
+const popup = document.getElementById('popupWindow');
+const popupTitle = document.getElementById('popupTitle');
+const popupContent = document.getElementById('popupContent');
+const closeBtn = document.getElementById('closeBtn');
 
-// Your folder contents - Add your image filenames here!
-const folderContents = {
-  posters: [
-    'assets/posters/poster1.jpg',
-    'assets/posters/poster2.jpg',
-    'assets/posters/poster3.jpg'
-  ],
-  branding: [
-    'assets/branding/brand1.jpg',
-    'assets/branding/brand2.jpg'
-  ],
-  videos: [
-    'assets/videos/thumb1.jpg',
-    'assets/videos/thumb2.jpg'
-  ],
-  photos: [
-    'assets/photos/photo1.jpg',
-    'assets/photos/photo2.jpg',
-    'assets/photos/photo3.jpg'
-  ],
-  about: []
-};
-
-icons.forEach(icon => {
-  icon.addEventListener('click', () => {
-    const folder = icon.getAttribute('data-folder');
-    openWindow(folder);
+folders.forEach(folder => {
+  folder.addEventListener('click', () => {
+    const folderName = folder.getAttribute('data-folder');
+    popupTitle.innerText = folderName;
+    popupContent.innerHTML = `<p>Content for ${folderName} will go here.</p>`;
+    popup.classList.remove('hidden');
   });
 });
 
 closeBtn.addEventListener('click', () => {
-  windowPopup.classList.add('hidden');
-  windowContent.innerHTML = '';
+  popup.classList.add('hidden');
 });
-
-function openWindow(folder) {
-  windowTitle.textContent = folder.charAt(0).toUpperCase() + folder.slice(1);
-  windowContent.innerHTML = '';
-
-  if (folder === 'about') {
-    windowContent.innerHTML = `
-      <p>Hello! I’m Bangerbong, a designer and visual artist.</p>
-      <p>Here you’ll find my posters, branding, videos, photos, and more.</p>
-      <p>Contact me at: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-    `;
-  } else {
-    folderContents[folder].forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      windowContent.appendChild(img);
-    });
-  }
-
-  windowPopup.classList.remove('hidden');
-}
