@@ -1,110 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>XP Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <div id="desktop">
-    <!-- Desktop Icons -->
-    <div class="icon" data-window="notepad">
-      <img src="icons/notepad.png" />
-      <p>About Me</p>
-    </div>
-    <div class="icon" data-window="mycomputer">
-      <img src="icons/folder.png" />
-      <p>My Computer</p>
-    </div>
-    <div class="icon" data-window="media">
-      <img src="icons/media.png" />
-      <p>Music</p>
-    </div>
-    <div class="icon" data-window="paint">
-      <img src="icons/paint.png" />
-      <p>Paint</p>
-    </div>
-    <div class="icon" data-window="sticky">
-      <img src="icons/sticky.png" />
-      <p>Skills</p>
-    </div>
-    <div class="icon" data-window="minesweeper">
-      <img src="icons/minesweeper.png" />
-      <p>Minesweeper</p>
-    </div>
-
-    <!-- Notepad Window -->
-    <div class="window" id="notepad">
-      <div class="title-bar">notepad.exe</div>
-      <div class="content">
-        <p>Hello! I'm a multidisciplinary designer...</p>
-        <img src="images/about.png" style="max-width: 100px" />
-      </div>
-    </div>
-
-    <!-- My Computer Window -->
-    <div class="window" id="mycomputer">
-      <div class="title-bar">My Computer</div>
-      <div class="content">
-        <ul>
-          <li>C:/Posters</li>
-          <li>C:/Photos</li>
-          <li>C:/Videos</li>
-          <li>C:/Resume</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Media Player Window -->
-    <div class="window" id="media">
-      <div class="title-bar">Windows Media Player</div>
-      <div class="content">
-        <audio controls autoplay loop>
-          <source src="media/loop.mp3" type="audio/mp3" />
-        </audio>
-      </div>
-    </div>
-
-    <!-- Paint App -->
-    <div class="window" id="paint">
-      <div class="title-bar">paint.exe</div>
-      <div class="content">
-        <canvas id="paintCanvas" width="300" height="200"></canvas>
-      </div>
-    </div>
-
-    <!-- Sticky Note -->
-    <div class="window" id="sticky">
-      <div class="title-bar">Sticky Note</div>
-      <div class="content">
-        <ul>
-          <li>Photoshop</li>
-          <li>Figma</li>
-          <li>After Effects</li>
-          <li>TouchDesigner</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Minesweeper -->
-    <div class="window" id="minesweeper">
-      <div class="title-bar">Minesweeper</div>
-      <div class="content">
-        <div id="mine-grid"></div>
-      </div>
-    </div>
-  </div>
+  <img src="bliss-wallpaper.jpg" alt="XP Wallpaper" id="wallpaper"/>
 
   <div id="taskbar">
-    <button class="start">Start</button>
-    <div id="clock"></div>
+    <div id="start-button">Start</div>
+    <div id="clock">00:00:00</div>
   </div>
+
+  <h1 id="title">welcome to my portfolio.</h1>
+
+  <div class="icon" style="top: 120px; left: 60px;" data-window="aboutWindow">
+    <img src="folder.png" />
+    <p>About Me</p>
+  </div>
+
+  <div class="icon" style="top: 220px; left: 160px;" data-window="posterWindow">
+    <img src="folder.png" />
+    <p>Posters</p>
+  </div>
+
+  <div class="icon" style="top: 320px; left: 80px;" data-window="brandingWindow">
+    <img src="folder.png" />
+    <p>Branding</p>
+  </div>
+
+  <div class="icon" style="top: 200px; left: 260px;" data-window="photoWindow">
+    <img src="folder.png" />
+    <p>Photos</p>
+  </div>
+
+  <div class="icon" style="top: 300px; left: 240px;" data-window="videoWindow">
+    <img src="folder.png" />
+    <p>Videos</p>
+  </div>
+
+  <div class="icon" style="top: 150px; left: 300px;" data-window="resumeWindow">
+    <img src="folder.png" />
+    <p>Resume</p>
+  </div>
+
+  <div class="icon" style="top: 400px; left: 60px;" data-window="computerWindow">
+    <img src="folder.png" />
+    <p>My Computer</p>
+  </div>
+
+  <div class="icon" style="top: 450px; left: 180px;" data-window="paintWindow">
+    <img src="folder.png" />
+    <p>Paint</p>
+  </div>
+
+  <div class="icon" style="top: 480px; left: 300px;" data-window="wmpWindow">
+    <img src="folder.png" />
+    <p>Media Player</p>
+  </div>
+
+  <div class="icon" style="top: 500px; left: 400px;" data-window="contactWindow">
+    <img src="folder.png" />
+    <p>Contact</p>
+  </div>
+
+  <div class="icon" style="top: 500px; left: 500px;" data-window="minesweeperWindow">
+    <img src="minesweeper-icon.png" />
+    <p>Minesweeper</p>
+  </div>
+
+  <!-- Example window -->
+  <div class="window" id="aboutWindow">
+    <div class="title-bar">Notepad - About Me</div>
+    <div class="window-content">
+      <p>Hey, I'm [Your Name]! I'm a designer who loves posters, branding, and visuals that make you look twice.</p>
+      <img src="your-photo.jpg" alt="Me" width="100"/>
+    </div>
+  </div>
+
+  <div class="window" id="computerWindow">
+    <div class="title-bar">My Computer</div>
+    <div class="window-content">
+      <div class="drive" data-window="posterWindow">C:/Posters</div>
+      <div class="drive" data-window="brandingWindow">C:/Branding</div>
+      <div class="drive" data-window="photoWindow">D:/Photos</div>
+    </div>
+  </div>
+
+  <div class="window" id="paintWindow">
+    <div class="title-bar">Paint</div>
+    <div class="window-content">
+      <canvas id="paintCanvas" width="300" height="200"></canvas>
+    </div>
+  </div>
+
+  <div class="window" id="wmpWindow">
+    <div class="title-bar">Windows Media Player</div>
+    <div class="window-content">
+      <audio controls autoplay loop>
+        <source src="intro.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+  </div>
+
+  <div class="window" id="minesweeperWindow">
+    <div class="title-bar">Minesweeper</div>
+    <div class="window-content">
+      <div id="mine-controls">
+        <button onclick="createGrid()">😊</button>
+      </div>
+      <div id="mine-grid"></div>
+    </div>
+  </div>
+
+  <div class="window" id="contactWindow">
+    <div class="title-bar">Contact</div>
+    <div class="window-content">
+      <img src="contact.png" alt="Contact Info" />
+    </div>
+  </div>
+
+  <!-- Add more windows as needed -->
 
   <script src="script.js"></script>
 </body>
-
 </html>
