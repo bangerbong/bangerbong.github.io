@@ -1,58 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Windows XP Style Portfolio</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XP Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 </head>
 <body>
-<div id="desktop">
-  <div id="welcome-text">welcome to my portfolio.</div>
+  <div id="desktop">
+    <h1 id="welcome">Welcome to my portfolio.</h1>
 
-  <!-- Folder icons -->
-  <div class="icon" data-window="posters" style="top: 60px; left: 50px;">
-    <img src="folder.png" alt="Posters" />
-    <div>Posters</div>
-  </div>
-  <div class="icon" data-window="branding" style="top: 150px; left: 180px;">
-    <img src="folder.png" alt="Branding" />
-    <div>Branding</div>
-  </div>
-  <div class="icon" data-window="videos" style="top: 100px; left: 320px;">
-    <img src="folder.png" alt="Videos" />
-    <div>Videos</div>
-  </div>
-  <div class="icon" data-window="photos" style="top: 220px; left: 270px;">
-    <img src="folder.png" alt="Photos" />
-    <div>Photos</div>
-  </div>
-  <div class="icon" data-window="about" style="top: 300px; left: 80px;">
-    <img src="folder.png" alt="About Me" />
-    <div>About Me</div>
-  </div>
-  <div class="icon" data-window="resume" style="top: 350px; left: 220px;">
-    <img src="folder.png" alt="Resume" />
-    <div>Resume</div>
-  </div>
-  <div class="icon" data-window="minesweeper" style="top: 450px; left: 140px;">
-    <img src="minesweeper-icon.png" alt="Minesweeper" />
-    <div>Minesweeper</div>
-  </div>
-  <div class="icon" data-window="contact" style="top: 400px; left: 350px;">
-    <img src="mobile-icon.png" alt="Contact" />
-    <div>Contact</div>
+    <!-- Desktop Icons -->
+    <div class="icon" data-app="notepad"><img src="assets/icons/notepad.png" /><span>Notepad</span></div>
+    <div class="icon" data-app="mycomputer"><img src="assets/icons/computer.png" /><span>My Computer</span></div>
+    <div class="icon" data-app="wmp"><img src="assets/icons/media.png" /><span>Media Player</span></div>
+    <div class="icon" data-app="paint"><img src="assets/icons/paint.png" /><span>Paint</span></div>
+    <div class="icon" data-app="contact"><img src="assets/icons/mobile.png" /><span>Contact</span></div>
+    <div class="icon" data-app="minesweeper"><img src="assets/icons/minesweeper.png" /><span>Minesweeper</span></div>
+
+    <!-- Sticky Note -->
+    <div id="sticky-note">
+      <h4>Tools:</h4>
+      <ul>
+        <li>Photoshop</li>
+        <li>Figma</li>
+        <li>After Effects</li>
+        <li>TouchDesigner</li>
+      </ul>
+    </div>
+
+    <!-- Windows -->
+    <div id="notepad" class="window"><div class="title-bar">Notepad <button class="close">X</button></div><div class="content"><img src="content/about-image.jpg" alt="About" /><p>Hello! I'm a designer who loves combining modern design with nostalgic vibes. Explore my work through the folders on this desktop!</p></div></div>
+
+    <div id="mycomputer" class="window"><div class="title-bar">My Computer <button class="close">X</button></div><div class="content"><ul><li><strong>C:/Posters</strong></li><li><strong>D:/Videos</strong></li><li><strong>E:/Branding</strong></li><li><strong>F:/Photos</strong></li></ul></div></div>
+
+    <div id="wmp" class="window"><div class="title-bar">Windows Media Player <button class="close">X</button></div><div class="content"><audio controls autoplay loop><source src="content/jingle.mp3" type="audio/mpeg" />Your browser does not support the audio element.</audio></div></div>
+
+    <div id="paint" class="window"><div class="title-bar">Paint <button class="close">X</button></div><div class="content"><canvas id="paintCanvas" width="300" height="200"></canvas></div></div>
+
+    <div id="contact" class="window"><div class="title-bar">Contact <button class="close">X</button></div><div class="content"><img src="content/contact.jpg" alt="Contact Info" /></div></div>
+
+    <div id="minesweeper" class="window minesweeper"><div class="title-bar">Minesweeper <button class="close">X</button></div><div class="content"><div id="mine-grid"></div><p id="status"></p></div></div>
+
+    <div id="taskbar"><div id="start-button">Start</div><div id="clock"></div></div>
   </div>
 
-  <div id="windows-container"></div>
-
-  <!-- Taskbar -->
-  <div id="taskbar">
-    <div id="start-button">Start</div>
-    <div id="clock"></div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
