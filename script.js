@@ -1,18 +1,33 @@
-const folders = document.querySelectorAll('.folder');
-const popup = document.getElementById('popupWindow');
-const popupTitle = document.getElementById('popupTitle');
-const popupContent = document.getElementById('popupContent');
-const closeBtn = document.getElementById('closeBtn');
+// Typewriter effect
+const text = "welcome to my portfolio.";
+let index = 0;
+function typeWriter() {
+  if (index < text.length) {
+    document.getElementById("title").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, 80);
+  }
+}
+typeWriter();
 
-folders.forEach(folder => {
-  folder.addEventListener('click', () => {
-    const folderName = folder.getAttribute('data-folder');
-    popupTitle.innerText = folderName;
-    popupContent.innerHTML = `<p>Content for ${folderName} will go here.</p>`;
-    popup.classList.remove('hidden');
-  });
-});
+// Open windows with content
+function openWindow(name) {
+  const existing = document.getElementById(`window-${name}`);
+  if (existing) return;
 
-closeBtn.addEventListener('click', () => {
-  popup.classList.add('hidden');
-});
+  const win = document.createElement("div");
+  win.className = "window";
+  win.id = `window-${name}`;
+
+  win.innerHTML = `
+    <div class="window-header">
+      <span>${name.toUpperCase()}</span>
+      <button onclick="document.getElementById('window-${name}').remove()">✖</button>
+    </div>
+    <div class="window-content">
+      <p>This is where your ${name} content goes.</p>
+    </div>
+  `;
+
+  document.getElementById("windows-container").appendChild(win);
+}
