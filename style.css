@@ -1,0 +1,104 @@
+body {
+  background: #3a6ea5; /* Windows XP blue */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#desktop {
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.icon-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.icon {
+  width: 100px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+  user-select: none;
+}
+
+#window-popup {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 900px;
+  height: 70vh;
+  background: #c3d9ff; /* light XP window */
+  color: black;
+  border: 2px solid #000080;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+.window-header {
+  background: #0a246a; /* darker blue XP title bar */
+  color: white;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.window-header button {
+  background: #ff5050;
+  border: none;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  border-radius: 3px;
+}
+
+.window-content {
+  padding: 10px;
+  overflow-y: auto;
+  background: white;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-content: flex-start;
+}
+
+.window-content img {
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: contain;
+  border: 1px solid #888;
+  padding: 3px;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.window-content img:hover {
+  transform: scale(1.1);
+}
