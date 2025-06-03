@@ -1,51 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XP Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div id="desktop">
-    <h1 id="welcome">Welcome to my portfolio.</h1>
-
     <!-- Desktop Icons -->
-    <div class="icon" data-app="notepad"><img src="assets/icons/notepad.png" /><span>Notepad</span></div>
-    <div class="icon" data-app="mycomputer"><img src="assets/icons/computer.png" /><span>My Computer</span></div>
-    <div class="icon" data-app="wmp"><img src="assets/icons/media.png" /><span>Media Player</span></div>
-    <div class="icon" data-app="paint"><img src="assets/icons/paint.png" /><span>Paint</span></div>
-    <div class="icon" data-app="contact"><img src="assets/icons/mobile.png" /><span>Contact</span></div>
-    <div class="icon" data-app="minesweeper"><img src="assets/icons/minesweeper.png" /><span>Minesweeper</span></div>
-
-    <!-- Sticky Note -->
-    <div id="sticky-note">
-      <h4>Tools:</h4>
-      <ul>
-        <li>Photoshop</li>
-        <li>Figma</li>
-        <li>After Effects</li>
-        <li>TouchDesigner</li>
-      </ul>
+    <div class="icon" data-window="notepad">
+      <img src="icons/notepad.png" />
+      <p>About Me</p>
+    </div>
+    <div class="icon" data-window="mycomputer">
+      <img src="icons/folder.png" />
+      <p>My Computer</p>
+    </div>
+    <div class="icon" data-window="media">
+      <img src="icons/media.png" />
+      <p>Music</p>
+    </div>
+    <div class="icon" data-window="paint">
+      <img src="icons/paint.png" />
+      <p>Paint</p>
+    </div>
+    <div class="icon" data-window="sticky">
+      <img src="icons/sticky.png" />
+      <p>Skills</p>
+    </div>
+    <div class="icon" data-window="minesweeper">
+      <img src="icons/minesweeper.png" />
+      <p>Minesweeper</p>
     </div>
 
-    <!-- Windows -->
-    <div id="notepad" class="window"><div class="title-bar">Notepad <button class="close">X</button></div><div class="content"><img src="content/about-image.jpg" alt="About" /><p>Hello! I'm a designer who loves combining modern design with nostalgic vibes. Explore my work through the folders on this desktop!</p></div></div>
+    <!-- Notepad Window -->
+    <div class="window" id="notepad">
+      <div class="title-bar">notepad.exe</div>
+      <div class="content">
+        <p>Hello! I'm a multidisciplinary designer...</p>
+        <img src="images/about.png" style="max-width: 100px" />
+      </div>
+    </div>
 
-    <div id="mycomputer" class="window"><div class="title-bar">My Computer <button class="close">X</button></div><div class="content"><ul><li><strong>C:/Posters</strong></li><li><strong>D:/Videos</strong></li><li><strong>E:/Branding</strong></li><li><strong>F:/Photos</strong></li></ul></div></div>
+    <!-- My Computer Window -->
+    <div class="window" id="mycomputer">
+      <div class="title-bar">My Computer</div>
+      <div class="content">
+        <ul>
+          <li>C:/Posters</li>
+          <li>C:/Photos</li>
+          <li>C:/Videos</li>
+          <li>C:/Resume</li>
+        </ul>
+      </div>
+    </div>
 
-    <div id="wmp" class="window"><div class="title-bar">Windows Media Player <button class="close">X</button></div><div class="content"><audio controls autoplay loop><source src="content/jingle.mp3" type="audio/mpeg" />Your browser does not support the audio element.</audio></div></div>
+    <!-- Media Player Window -->
+    <div class="window" id="media">
+      <div class="title-bar">Windows Media Player</div>
+      <div class="content">
+        <audio controls autoplay loop>
+          <source src="media/loop.mp3" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
 
-    <div id="paint" class="window"><div class="title-bar">Paint <button class="close">X</button></div><div class="content"><canvas id="paintCanvas" width="300" height="200"></canvas></div></div>
+    <!-- Paint App -->
+    <div class="window" id="paint">
+      <div class="title-bar">paint.exe</div>
+      <div class="content">
+        <canvas id="paintCanvas" width="300" height="200"></canvas>
+      </div>
+    </div>
 
-    <div id="contact" class="window"><div class="title-bar">Contact <button class="close">X</button></div><div class="content"><img src="content/contact.jpg" alt="Contact Info" /></div></div>
+    <!-- Sticky Note -->
+    <div class="window" id="sticky">
+      <div class="title-bar">Sticky Note</div>
+      <div class="content">
+        <ul>
+          <li>Photoshop</li>
+          <li>Figma</li>
+          <li>After Effects</li>
+          <li>TouchDesigner</li>
+        </ul>
+      </div>
+    </div>
 
-    <div id="minesweeper" class="window minesweeper"><div class="title-bar">Minesweeper <button class="close">X</button></div><div class="content"><div id="mine-grid"></div><p id="status"></p></div></div>
+    <!-- Minesweeper -->
+    <div class="window" id="minesweeper">
+      <div class="title-bar">Minesweeper</div>
+      <div class="content">
+        <div id="mine-grid"></div>
+      </div>
+    </div>
+  </div>
 
-    <div id="taskbar"><div id="start-button">Start</div><div id="clock"></div></div>
+  <div id="taskbar">
+    <button class="start">Start</button>
+    <div id="clock"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
