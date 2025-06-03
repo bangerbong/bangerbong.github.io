@@ -1,104 +1,87 @@
 body {
-  background: #3a6ea5; /* Windows XP blue */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
   margin: 0;
+  padding: 0;
+  background: url('bliss-wallpaper.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Georgia', serif;
+  color: white;
   height: 100vh;
   overflow: hidden;
 }
 
-#desktop {
-  padding: 20px;
-}
-
-h1 {
-  margin-bottom: 30px;
-}
-
-.icon-container {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.icon {
-  width: 100px;
-  cursor: pointer;
+.welcome-text {
+  font-size: 2rem;
   text-align: center;
-  color: white;
+  margin-top: 50px;
+  animation: type 3s steps(30, end);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+  width: 0;
 }
 
-.icon img {
-  width: 64px;
-  height: 64px;
-  user-select: none;
+@keyframes type {
+  from { width: 0 }
+  to { width: 20ch }
 }
 
-#window-popup {
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 900px;
-  height: 70vh;
-  background: #c3d9ff; /* light XP window */
-  color: black;
-  border: 2px solid #000080;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+.desktop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 100px 20px 0 20px;
+}
+
+.folder {
   display: flex;
   flex-direction: column;
-  z-index: 999;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.folder:hover {
+  transform: scale(1.1);
+}
+
+.popup {
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  width: 50%;
+  height: 300px;
+  background: white;
+  color: black;
+  border: 2px solid #000;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.popup-header {
+  background: navy;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-content {
+  padding: 20px;
+  overflow-y: auto;
+  background: #f0f0f0;
+  flex: 1;
 }
 
 .hidden {
   display: none;
-}
-
-.window-header {
-  background: #0a246a; /* darker blue XP title bar */
-  color: white;
-  padding: 8px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-}
-
-.window-header button {
-  background: #ff5050;
-  border: none;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-  border-radius: 3px;
-}
-
-.window-content {
-  padding: 10px;
-  overflow-y: auto;
-  background: white;
-  flex-grow: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  align-content: flex-start;
-}
-
-.window-content img {
-  max-width: 150px;
-  max-height: 150px;
-  object-fit: contain;
-  border: 1px solid #888;
-  padding: 3px;
-  background: #f0f0f0;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.window-content img:hover {
-  transform: scale(1.1);
 }
