@@ -16,55 +16,123 @@ body {
   object-fit: cover;
 }
 
-#title {
+/* Desktop Title using Press Start 2P */
+#desktop-title-container {
   position: absolute;
-  top: 25px; /* Adjusted position */
+  top: 10vh;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 22px; /* Adjusted size */
-  font-family: 'Tahoma', sans-serif; /* XP-like font */
-  color: black; /* Black text */
-  background: #ECE9D8; /* XP standard background */
-  padding: 6px 18px; /* Adjusted padding */
-  border: 1px solid #ACA899; /* XP-style border */
-  box-shadow: 1px 1px 0px #FFFFFF inset, 1px 1px 0px #7F7F7F; /* Subtle XP bevel */
-  border-radius: 0; /* XP titles weren't typically rounded */
-  z-index: 5; /* Above icons */
+  text-align: center;
+  z-index: 5;
+  width: 90%;
+  pointer-events: none;
+}
+.desktop-title-line1 {
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px 0px #000000;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+.desktop-title-line2 {
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  font-size: 48px;
+  font-weight: normal;
+  color: white;
+  text-shadow: 3px 3px 0px #000000;
+  line-height: 1.1;
 }
 
 .icon {
   position: absolute;
   text-align: center;
   width: 90px;
-  cursor: pointer;
+  cursor: default; /* Default cursor, will be 'move' during drag */
   color: white;
   text-shadow: 1px 1px 1px black;
   padding: 5px;
   border-radius: 3px;
+  z-index: 10; /* Base z-index for icons */
 }
 .icon:hover {
-  background: rgba(80, 120, 220, 0.4); /* XP selection blue, translucent */
-  /* border: 1px dotted rgba(255, 255, 255, 0.7); */
+  background: rgba(80, 120, 220, 0.4);
 }
-.icon:active {
+.icon:active { /* Style for when dblclick happens */
   background: rgba(60, 100, 200, 0.5);
 }
-
 .icon img {
   width: 48px;
   height: 48px;
+  pointer-events: none; /* Image itself shouldn't capture mouse events for dragging */
 }
 .icon p {
   margin: 4px 0 0 0;
   font-size: 12px;
-  word-wrap: break-word; /* Helps with long text in icons */
-  word-break: break-all; /* Force break for very long words */
+  word-wrap: break-word;
+  word-break: break-all;
+  pointer-events: none; /* Text shouldn't capture mouse events */
 }
+
+.is-dragging {
+    opacity: 0.8;
+    cursor: move !important; /* Force move cursor during drag */
+    /* outline: 2px dashed rgba(255,255,255,0.6); */
+}
+
+
+/* --- Sticky Note --- */
+#sticky-note {
+  position: absolute;
+  top: 15%; /* Adjust initial position */
+  left: 70%; /* Adjust initial position */
+  width: 220px;
+  min-height: 180px;
+  background: #FFFFA0;
+  padding: 10px 15px 15px 15px;
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  transform: rotate(2deg);
+  font-family: 'Kalam', 'Comic Sans MS', cursive;
+  z-index: 11; /* Slightly above icons by default */
+  border: 1px solid #E6E68A;
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: default; /* Will be 'move' during drag */
+}
+#sticky-note:hover:not(.is-dragging) { /* Don't apply hover if currently dragging */
+  transform: rotate(0deg) scale(1.02);
+  z-index: 12;
+  box-shadow: 7px 7px 10px rgba(33,33,33,.7);
+}
+.sticky-note-header {
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed #D0D070;
+  text-align: center;
+}
+#sticky-note ul {
+  list-style-type: none;
+  padding-left: 5px;
+  margin: 0;
+}
+#sticky-note li {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+#sticky-note li::before {
+  content: "▹ ";
+  color: #777;
+}
+
 
 /* --- Windows --- */
 .window {
   position: absolute;
-  /* top: 100px; left: 100px; Will be set by inline styles or JS */
   min-width: 200px;
   min-height: 150px;
   background: #ECE9D8;
@@ -76,284 +144,163 @@ body {
   display: none;
   padding: 2px;
   box-sizing: border-box;
+  z-index: 100; /* Base for windows, active window gets higher */
+  max-width: 98vw;
+  max-height: calc(95vh - 30px); /* 30px for taskbar */
 }
-
-/* Window Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes fadeOut {
-  from { opacity: 1; transform: scale(1); }
-  to { opacity: 0; transform: scale(0.95); }
-}
-
-.window.is-opening {
-  display: block !important;
-  animation: fadeIn 0.2s ease-out forwards;
-}
-.window.is-closing {
-  animation: fadeOut 0.15s ease-in forwards;
-  pointer-events: none;
-}
-
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.95); } }
+.window.is-opening { display: block !important; animation: fadeIn 0.2s ease-out forwards; }
+.window.is-closing { animation: fadeOut 0.15s ease-in forwards; pointer-events: none; }
 .title-bar {
-  color: white;
-  padding: 3px 5px;
-  font-weight: bold;
-  font-size: 13px;
-  cursor: move;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 24px;
-  box-sizing: border-box;
-  margin-bottom: 2px;
+  color: white; padding: 3px 5px; font-weight: bold; font-size: 13px; cursor: move;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 24px; box-sizing: border-box; margin-bottom: 2px;
 }
-.title-bar.active-window-title {
-  background: linear-gradient(to right, #0A246A, #1759CE, #0A246A); /* XP Active Blue Stronger */
-}
-.title-bar:not(.active-window-title) {
-  background: linear-gradient(to right, #7F9DB9, #B0C4DE, #7F9DB9); /* XP Inactive Grey/Blue */
-  color: #DDD;
-}
-
-.title-bar-buttons {
-    display: flex;
-}
+.title-bar.active-window-title { background: linear-gradient(to right, #0A246A, #1759CE, #0A246A); }
+.title-bar:not(.active-window-title) { background: linear-gradient(to right, #7F9DB9, #B0C4DE, #7F9DB9); color: #DDD; }
+.title-bar-buttons { display: flex; }
 .title-bar-button {
-  background-color: #D34328;
-  border: 1px solid white;
-  border-right-color: #404040;
-  border-bottom-color: #404040;
-  color: white;
-  font-family: "Marlett", "Webdings", sans-serif;
-  font-size: 10px;
-  width: 19px;
-  height: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 2px;
-  box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-  padding-bottom: 1px;
-  box-sizing: border-box;
+  background-color: #D34328; border: 1px solid white; border-right-color: #404040; border-bottom-color: #404040;
+  color: white; font-family: "Marlett", "Webdings", sans-serif; font-size: 10px;
+  width: 19px; height: 17px; display: flex; justify-content: center; align-items: center;
+  cursor: pointer; margin-left: 2px; box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+  padding-bottom: 1px; box-sizing: border-box;
 }
 .title-bar-button:hover { filter: brightness(1.2); }
 .title-bar-button:active {
-  border-top-color: #404040;
-  border-left-color: #404040;
-  border-right-color: white;
-  border-bottom-color: white;
-  filter: brightness(0.9);
+  border-top-color: #404040; border-left-color: #404040;
+  border-right-color: white; border-bottom-color: white; filter: brightness(0.9);
 }
 .title-bar:not(.active-window-title) .title-bar-button {
-    background-color: #A0A0A0;
-    border-color: #C0C0C0;
-    border-right-color: #606060;
-    border-bottom-color: #606060;
-    color: #505050;
+  background-color: #A0A0A0; border-color: #C0C0C0;
+  border-right-color: #606060; border-bottom-color: #606060; color: #505050;
 }
-
 .window-content {
-  padding: 10px;
-  background: white;
-  height: calc(100% - 28px); /* Default for fixed height windows */
-  box-sizing: border-box;
-  overflow: auto;
-  border: 1px solid #808080;
-  border-top-color: #404040;
-  border-left-color: #404040;
-  border-bottom-color: #FFFFFF;
-  border-right-color: #FFFFFF;
+  padding: 10px; background: white; height: calc(100% - 28px);
+  box-sizing: border-box; overflow: auto; border: 1px solid #808080;
+  border-top-color: #404040; border-left-color: #404040;
+  border-bottom-color: #FFFFFF; border-right-color: #FFFFFF;
 }
-
-/* --- Specific for windows with auto height (like Minesweeper) --- */
-.window.window-auto-height {
-    width: auto; /* Let content define width */
-    height: auto; /* Let content define height */
-}
-.window.window-auto-height > .window-content {
-    height: auto; /* Content defines height */
-    /* overflow: visible; /* Usually good, but check if scrollbars are needed for small content */
-}
+.window.window-auto-height { width: auto; height: auto; }
+.window.window-auto-height > .window-content { height: auto; }
 
 /* --- Taskbar --- */
 #taskbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30px;
+  position: fixed; bottom: 0; left: 0; width: 100%; height: 30px;
   background: linear-gradient(to bottom, #3b77ea 0%, #245edc 100%);
-  border-top: 1px solid #4c87ed;
-  color: white;
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  font-family: 'Tahoma', sans-serif;
-  padding: 0;
-  box-sizing: border-box;
-  z-index: 20000;
+  border-top: 1px solid #4c87ed; color: white; display: flex;
+  align-items: center; font-size: 12px; font-family: 'Tahoma', sans-serif;
+  padding: 0; box-sizing: border-box; z-index: 20000;
 }
-
 #start-button {
   background: linear-gradient(to bottom, #7bde53 0%, #58c038 40%, #38a81a 100%);
-  border: 1px solid #3c9a1f;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  color: white;
-  padding: 0 20px 0 15px;
-  height: calc(100% - 4px);
-  margin: 2px 0 2px 2px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 14px;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  border: 1px solid #3c9a1f; border-top-right-radius: 8px; border-bottom-right-radius: 8px;
+  color: white; padding: 0 20px 0 15px; height: calc(100% - 4px); margin: 2px 0 2px 2px;
+  display: flex; align-items: center; cursor: pointer; font-weight: bold;
+  font-style: italic; font-size: 14px; box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
   text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 #start-button:hover { background: linear-gradient(to bottom, #8ff36a 0%, #6ad84a 40%, #49bd2b 100%); }
-#start-button:active {
-  background: linear-gradient(to top, #7bde53 0%, #58c038 40%, #38a81a 100%);
-  border-style: inset;
-}
-
+#start-button:active { background: linear-gradient(to top, #7bde53 0%, #58c038 40%, #38a81a 100%); border-style: inset; }
 #taskbar-items {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    margin-left: 5px;
-    flex-grow: 1;
-    overflow: hidden;
-    min-width: 0; /* Allows flex items to shrink properly */
+  display: flex; height: 100%; align-items: center; margin-left: 5px;
+  flex-grow: 1; overflow: hidden; min-width: 0;
 }
 .taskbar-item {
-    background: linear-gradient(to bottom, #5c8ee9 0%, #3e72d8 100%);
-    border: 1px outset #3866b0;
-    padding: 0 10px;
-    height: calc(100% - 6px);
-    margin: 3px 2px 3px 0;
-    display: flex;
-    align-items: center;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-radius: 3px;
-    box-shadow: 1px 1px 0px rgba(255,255,255,0.2) inset, -1px -1px 0px rgba(0,0,0,0.1) inset;
-    cursor: pointer;
-    font-size: 11px;
-    color: white; /* Ensure text is visible */
+  background: linear-gradient(to bottom, #5c8ee9 0%, #3e72d8 100%);
+  border: 1px outset #3866b0; padding: 0 10px; height: calc(100% - 6px);
+  margin: 3px 2px 3px 0; display: flex; align-items: center; max-width: 150px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 3px;
+  box-shadow: 1px 1px 0px rgba(255,255,255,0.2) inset, -1px -1px 0px rgba(0,0,0,0.1) inset;
+  cursor: pointer; font-size: 11px; color: white;
 }
 .taskbar-item.active, .taskbar-item:active {
-    background: linear-gradient(to top, #5c8ee9 0%, #3e72d8 100%);
-    border-style: inset;
-    font-weight: bold;
-    padding-top: 2px;
+  background: linear-gradient(to top, #5c8ee9 0%, #3e72d8 100%);
+  border-style: inset; font-weight: bold; padding-top: 2px;
 }
 .taskbar-item:hover { filter: brightness(1.1); }
-
 #clock-container {
-  padding: 0 10px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  border-left: 1px solid #1c4a8e;
-  margin-right: 2px;
-  background: rgba(0,0,0,0.1);
+  padding: 0 10px; height: 100%; display: flex; align-items: center;
+  border-left: 1px solid #1c4a8e; margin-right: 2px; background: rgba(0,0,0,0.1);
 }
 #clock { font-size: 11px; }
 
 /* --- Minesweeper --- */
-#mine-controls {
-  margin-bottom: 10px;
-  text-align: center;
-}
+#mine-controls { margin-bottom: 10px; text-align: center; }
 #mine-controls button {
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  background: #c0c0c0;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #7b7b7b;
-  border-bottom: 2px solid #7b7b7b;
-  cursor: pointer;
-  display: flex; /* For centering emoji */
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto; /* Center button if it's the only element */
+  width: 30px; height: 30px; font-size: 18px; background: #c0c0c0;
+  border-top: 2px solid #fff; border-left: 2px solid #fff;
+  border-right: 2px solid #7b7b7b; border-bottom: 2px solid #7b7b7b;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto;
 }
 #mine-controls button:active {
-  border-top-color: #7b7b7b;
-  border-left-color: #7b7b7b;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
+  border-top-color: #7b7b7b; border-left-color: #7b7b7b;
+  border-right-color: #fff; border-bottom-color: #fff;
 }
-
 #mine-grid {
-  display: grid; /* grid-template-columns will be set by JS */
-  gap: 1px;
-  border: 3px inset #808080;
-  background: #c0c0c0;
-  width: fit-content; /* Crucial for proper grid sizing */
-  padding: 2px;
-  margin: 10px auto; /* Center grid and add some top margin */
+  display: grid; gap: 1px; border: 3px inset #808080; background: #c0c0c0;
+  width: fit-content; padding: 2px; margin: 10px auto;
 }
-
 .cell {
-  width: 24px;
-  height: 24px;
-  background: #bdbdbd;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #7b7b7b;
-  border-bottom: 2px solid #7b7b7b;
-  display: flex; /* Use flex for centering content */
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  user-select: none;
-  box-sizing: border-box;
+  width: 24px; height: 24px; background: #bdbdbd;
+  border-top: 2px solid #fff; border-left: 2px solid #fff;
+  border-right: 2px solid #7b7b7b; border-bottom: 2px solid #7b7b7b;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; cursor: pointer; font-size: 14px;
+  font-family: 'Arial', sans-serif; user-select: none; box-sizing: border-box;
 }
-.cell.revealed {
-  background: #d1d1d1; /* Slightly lighter for revealed non-mine */
-  border: 1px solid #7b7b7b;
-}
-.cell.mine-hit {
-    background-color: red !important;
-    color: white;
-}
-.cell[data-mines="1"] { color: blue; }
-.cell[data-mines="2"] { color: green; }
-.cell[data-mines="3"] { color: red; }
-.cell[data-mines="4"] { color: navy; }
-.cell[data-mines="5"] { color: maroon; }
-.cell[data-mines="6"] { color: teal; }
-.cell[data-mines="7"] { color: black; }
-.cell[data-mines="8"] { color: dimgray; }
+.cell.revealed { background: #d1d1d1; border: 1px solid #7b7b7b; }
+.cell.mine-hit { background-color: red !important; color: white; }
+.cell[data-mines="1"] { color: blue; } .cell[data-mines="2"] { color: green; }
+.cell[data-mines="3"] { color: red; } .cell[data-mines="4"] { color: navy; }
+.cell[data-mines="5"] { color: maroon; } .cell[data-mines="6"] { color: teal; }
+.cell[data-mines="7"] { color: black; } .cell[data-mines="8"] { color: dimgray; }
 
 /* --- My Computer Drives --- */
 .drive {
-  padding: 8px 10px;
-  background: #f0f0f0;
-  margin: 5px 0;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  font-size: 13px;
+  padding: 8px 10px; background: #f0f0f0; margin: 5px 0; cursor: pointer;
+  border: 1px solid #ccc; border-radius: 3px; display: flex;
+  align-items: center; font-size: 13px;
 }
 .drive:hover { background: #e0e0e0; border-color: #999;}
 .drive-icon { width: 20px; height: 20px; margin-right: 8px;}
-
-/* Specific App Content */
 #paintCanvas { cursor: crosshair; }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) { /* Tablets and large phones */
+  .icon { width: 75px; }
+  .icon img { width: 40px; height: 40px; }
+  .icon p { font-size: 11px; }
+  #desktop-title-container { top: 8vh; }
+  .desktop-title-line1 { font-size: 18px; margin-bottom: 10px; }
+  .desktop-title-line2 { font-size: 40px; }
+  .title-bar { font-size: 12px; height: 22px; }
+  .title-bar-button { width: 17px; height: 15px; font-size: 9px; }
+  .window-content { padding: 8px; height: calc(100% - 26px); }
+  #taskbar-items { overflow-x: auto; }
+  .taskbar-item { max-width: 120px; flex-shrink: 0; }
+  #sticky-note { width: 180px; font-size: 13px; left: auto; right: 5%; transform: rotate(1deg);}
+  .sticky-note-header { font-size: 14px; }
+  #sticky-note li { font-size: 12px; }
+}
+@media (max-width: 480px) { /* Mobile phones */
+  .icon { width: 60px; padding: 3px; }
+  .icon img { width: 32px; height: 32px; }
+  .icon p { font-size: 9px; margin-top: 2px; }
+  #desktop-title-container { top: 5vh; }
+  .desktop-title-line1 { font-size: 14px; margin-bottom: 8px; text-shadow: 1px 1px 0px #000; }
+  .desktop-title-line2 { font-size: 28px; text-shadow: 2px 2px 0px #000; }
+  .title-bar { font-size: 11px; height: 20px; padding: 2px 4px; }
+  .title-bar-button { width: 15px; height: 14px; font-size: 8px; margin-left: 1px;}
+  .window-content { padding: 5px; height: calc(100% - 24px); }
+  #start-button { font-size: 12px; padding: 0 8px; }
+  .taskbar-item { font-size: 10px; padding: 0 8px; max-width: 90px;}
+  #clock { font-size: 10px; }
+  #clock-container { padding: 0 5px; }
+  #sticky-note {
+    width: 90vw; top: auto; bottom: 35px; /* Position above taskbar */
+    left: 50%; transform: translateX(-50%) rotate(0deg);
+    max-height: 150px; overflow-y: auto;
+  }
+}
