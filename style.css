@@ -1,239 +1,144 @@
-/* Reset */
-* {
-  box-sizing: border-box;
-  user-select: none;
-}
-
-body, html {
+/* style.css */
+body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  overflow: hidden;
-  font-family: 'MS Sans Serif', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('bliss-wallpaper.jpg') no-repeat center center fixed;
+  font-family: 'Press Start 2P', monospace;
+  background: url('assets/bliss-wallpaper.jpg') no-repeat center center fixed;
   background-size: cover;
   color: black;
 }
 
-#desktop {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/* Welcome text in center top */
-#welcome-text {
-  position: absolute;
-  top: 10px;
-  width: 100%;
+#welcome {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 16px;
+  margin-top: 20px;
   color: black;
-  font-family: 'Press Start 2P', cursive, 'MS Sans Serif', monospace;
-  text-transform: lowercase;
-  letter-spacing: 0.1em;
   text-shadow: 1px 1px white;
 }
 
-/* Icons */
+#desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
 .icon {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-  cursor: pointer;
+  width: 64px;
+  margin: 10px;
   text-align: center;
-  font-size: 14px;
-  font-family: 'MS Sans Serif', Tahoma, Geneva, Verdana, sans-serif;
-  color: black;
+  position: absolute;
+  cursor: pointer;
   user-select: none;
-  transition: transform 0.2s ease;
 }
 
 .icon img {
-  width: 72px;
-  height: 72px;
+  width: 48px;
+  height: 48px;
+}
+
+.icon span {
   display: block;
-  margin: 0 auto;
-}
-
-.icon div {
+  font-size: 10px;
   margin-top: 4px;
-  text-shadow: 1px 1px white;
 }
 
-/* Icon hover effect */
-.icon:hover {
-  filter: drop-shadow(0 0 4px #00aaff);
-  transform: scale(1.1);
-}
-
-/* Windows */
 .window {
+  width: 300px;
+  height: auto;
   position: absolute;
-  width: 320px;
+  top: 100px;
+  left: 100px;
   background: #c0c0c0;
-  border: 2px solid #000;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-  font-family: 'MS Sans Serif', monospace, Arial, sans-serif;
-  user-select: text;
+  border: 2px outset #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: none;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Window header */
-.window-header {
-  background: linear-gradient(to bottom, #0a64ad, #005499);
+.title-bar {
+  background: linear-gradient(#000080, #000060);
   color: white;
-  padding: 5px 10px;
-  font-weight: bold;
-  font-size: 14px;
+  padding: 4px 8px;
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   cursor: move;
-  border-bottom: 2px solid #002e6f;
-}
-
-/* Title text */
-.title-text {
-  user-select: none;
-}
-
-/* Close button */
-.window-header button {
-  background: #ff5555;
-  border: 1px solid #990000;
-  color: white;
   font-weight: bold;
-  width: 24px;
-  height: 20px;
-  cursor: pointer;
-  font-family: monospace;
 }
 
-.window-header button:hover {
-  background: #ff2222;
-}
-
-/* Window content */
-.window-content {
-  background: #e0e0e0;
+.window .content {
   padding: 10px;
-  flex-grow: 1;
-  overflow: auto;
-  font-size: 14px;
+  background: white;
+  font-size: 12px;
 }
 
-/* Minesweeper grid */
-.minesweeper-grid {
-  border: 2px inset #fff;
-  background: #c0c0c0;
-  border-collapse: collapse;
-  margin: 0 auto;
-}
-
-.minesweeper-grid td {
-  width: 28px;
-  height: 28px;
-  border: 2px outset #fff;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  font-weight: bold;
-  font-family: 'MS Sans Serif', monospace;
-  user-select: none;
-  background: #c0c0c0;
-  color: black;
-  font-size: 18px;
-  line-height: 1;
-  padding: 0;
-}
-
-.minesweeper-grid td.revealed {
-  border: 2px inset #fff;
-  background: #e0e0e0;
-  cursor: default;
-  color: black;
-}
-
-.minesweeper-grid td.flagged {
-  color: red;
-}
-
-.minesweeper-grid td.mine {
-  background: #f00;
-  color: black;
-}
-
-.minesweeper-grid td:hover:not(.revealed) {
-  filter: brightness(90%);
-}
-
-/* Taskbar */
 #taskbar {
   position: fixed;
   bottom: 0;
-  left: 0;
-  height: 40px;
   width: 100%;
-  background: linear-gradient(to bottom, #c0c0c0, #808080);
-  border-top: 2px solid #fff;
-  display: flex;
-  align-items: center;
-  font-family: 'MS Sans Serif', monospace;
-  font-weight: bold;
-  font-size: 14px;
-  user-select: none;
-  color: black;
-  box-shadow: inset 0 1px 0 #fff;
-  z-index: 2000;
-  padding: 0 10px;
-}
-
-/* Start button */
-#start-button {
-  width: 60px;
   height: 30px;
-  background: linear-gradient(to bottom, #0a64ad, #005499);
-  border: 2px solid #003366;
-  color: white;
+  background: linear-gradient(#d4d0c8, #a0a0a0);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  text-shadow: 1px 1px 2px black;
-  user-select: none;
-  font-family: 'MS Sans Serif', monospace;
-}
-
-/* Clock */
-#clock {
-  margin-left: auto;
-  font-family: 'MS Sans Serif', monospace;
+  padding: 0 10px;
+  font-size: 12px;
   font-weight: bold;
-  color: black;
-  text-shadow: 1px 1px white;
 }
 
-/* Contact window content */
-#contact-content img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+#start-button {
+  background: #ececec;
+  padding: 4px 8px;
+  border: 2px outset #fff;
+  cursor: pointer;
 }
 
-/* Scrollbar style */
-.window-content::-webkit-scrollbar {
-  width: 8px;
+#clock {
+  padding: 0 5px;
 }
-.window-content::-webkit-scrollbar-track {
+
+#sticky-note {
+  position: absolute;
+  right: 10px;
+  bottom: 50px;
+  background: yellow;
+  padding: 10px;
+  border: 2px solid black;
+  font-size: 10px;
+}
+
+canvas#paintCanvas {
+  border: 1px solid #000;
+  background: white;
+}
+
+#mine-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 20px);
+  grid-template-rows: repeat(9, 20px);
+  gap: 1px;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  background: #c0c0c0;
+  border: 2px inset #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cell.revealed {
   background: #e0e0e0;
+  border: 1px solid #999;
+  pointer-events: none;
 }
-.window-content::-webkit-scrollbar-thumb {
-  background: #aaa;
-  border-radius: 4px;
+
+.cell.flagged {
+  background: red;
+  color: white;
 }
+
