@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>XP Portfolio</title>
+  <title>XP Portfolio - Rugved Shinde</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -25,88 +25,91 @@
     <div class="desktop-title-line2">portfolio.</div>
   </div>
 
-  <!-- Desktop Icons - Percentage Based Positioning -->
-  <!-- Row 1 -->
-  <div class="icon" style="top: 10%; left: 5%;" data-window="aboutWindow">
-    <img src="notepad.png" alt="About Me Icon"/> <p>About Me</p>
-  </div>
-  <div class="icon" style="top: 10%; left: 15%;" data-window="resumeWindow">
-    <img src="folder.png" alt="Resume Icon"/> <p>Resume</p>
-  </div>
-  <div class="icon" style="top: 10%; left: 25%;" data-window="computerWindow">
-    <img src="folder.png" alt="My Computer Icon"/> <p>My Computer</p>
-  </div>
-  <div class="icon" style="top: 10%; left: 35%;" data-window="contactWindow">
-    <img src="folder.png" alt="Contact Icon"/> <p>Contact</p>
-  </div>
+  <!-- Desktop Icons Container -->
+  <div id="desktop-icons-container">
+      <!-- Row 1 -->
+      <div class="icon" data-window="aboutWindow"> <!-- REMOVED INLINE STYLE -->
+        <img src="notepad.png" alt="About Me Icon"/> <p>About Me</p>
+      </div>
+      <div class="icon" data-window="resumeWindow">
+        <img src="folder.png" alt="Resume Icon"/> <p>Resume</p>
+      </div>
+      <div class="icon" data-window="computerWindow">
+        <img src="mycomp.png" alt="My Computer Icon"/> <p>My Computer</p>
+      </div>
+      <div class="icon" data-window="contactWindow">
+        <img src="folder.png" alt="Contact Icon"/> <p>Contact</p>
+      </div>
 
-  <!-- Row 2 -->
-  <div class="icon" style="top: 25%; left: 5%;" data-window="posterWindow">
-    <img src="folder.png" alt="Posters Icon"/> <p>Posters</p>
-  </div>
-  <div class="icon" style="top: 25%; left: 15%;" data-window="photoWindow">
-    <img src="folder.png" alt="Photos Icon"/> <p>Photos</p>
-  </div>
-  <div class="icon" style="top: 25%; left: 25%;" data-window="paintWindow">
-    <img src="paint.png" alt="Paint Icon"/> <p>Paint</p>
-  </div>
-  <div class="icon" style="top: 25%; left: 35%;" data-window="minesweeperWindow">
-    <img src="minesweeper-icon.png" alt="Minesweeper Icon"/> <p>Minesweeper</p>
-  </div>
+      <!-- Row 2 -->
+      <div class="icon" data-window="posterWindow">
+        <img src="folder.png" alt="Posters Icon"/> <p>Posters</p>
+      </div>
+      <div class="icon" data-window="photoWindow">
+        <img src="folder.png" alt="Photos Icon"/> <p>Photos</p>
+      </div>
+      <div class="icon" data-window="paintWindow">
+        <img src="paint.png" alt="Paint Icon"/> <p>Paint</p>
+      </div>
+      <div class="icon" data-window="minesweeperWindow">
+        <img src="minesweeper-icon.png" alt="Minesweeper Icon"/> <p>Minesweeper</p>
+      </div>
 
-  <!-- Row 3 -->
-  <div class="icon" style="top: 40%; left: 5%;" data-window="brandingWindow">
-    <img src="folder.png" alt="Branding Icon"/> <p>Branding</p>
-  </div>
-  <div class="icon" style="top: 40%; left: 15%;" data-window="videoWindow">
-    <img src="folder.png" alt="Videos Icon"/> <p>Videos</p>
-  </div>
-  <div class="icon" style="top: 40%; left: 25%;" data-window="wmpWindow">
-    <img src="folder.png" alt="Media Player Icon"/> <p>Media Player</p>
-  </div>
+      <!-- Row 3 -->
+      <div class="icon" data-window="brandingWindow">
+        <img src="folder.png" alt="Branding Icon"/> <p>Branding</p>
+      </div>
+      <div class="icon" data-window="videoWindow">
+        <img src="folder.png" alt="Video Edits Icon"/> <p>Video Edits</p>
+      </div>
+      <div class="icon" data-window="wmpWindow">
+        <img src="folder.png" alt="Media Player Icon"/> <p>Media Player</p>
+      </div>
+  </div> <!-- End #desktop-icons-container -->
 
-  <!-- Windows -->
-  <div class="window" id="aboutWindow" style="width: 350px; height: 250px; top: 100px; left: 100px;">
-    <div class="title-bar">Notepad - About Me.txt</div>
+
+  <!-- Windows (content unchanged from previous full version) -->
+  <div class="window" id="aboutWindow" style="width: 350px; height: auto; top: 100px; left: 100px;">
+    <div class="title-bar">Notepad - About_Rugved.txt</div>
     <div class="window-content">
-      <p>Hey, I'm [Your Name]! I'm a designer who loves posters, branding, and visuals that make you look twice.</p>
-      <p>This portfolio is a tribute to the classic Windows XP interface.</p>
-      <img src="your-photo.jpg" alt="Me" width="100" style="margin-top:10px; border: 1px solid #ccc;"/>
+      <p>Hey, I'm <strong>Rugved Shinde</strong>! A 19-year-old graphic designer diving deep into posters, branding, and visuals that make you look twice (and maybe even a third time!).</p>
+      <p>This portfolio is my creative playground, styled as a tribute to the classic Windows XP interface.</p>
+      <p>Feel free to explore!</p>
     </div>
   </div>
-  <div class="window" id="posterWindow" style="width: 400px; height: 300px; top: 120px; left: 150px;">
-    <div class="title-bar">C:\Posters</div>
-    <div class="window-content"><p>Content for Posters goes here. Maybe a gallery or links.</p></div>
+  <div class="window" id="posterWindow" style="width: 600px; height: 450px; top: 120px; left: 150px;">
+    <div class="title-bar">C:\My_Work\Posters</div>
+    <div class="window-content"><h2>My Posters</h2><p><em>Showcase your best poster designs here!</em></p></div>
   </div>
-  <div class="window" id="brandingWindow" style="width: 400px; height: 300px; top: 140px; left: 200px;">
-    <div class="title-bar">C:\Branding</div>
-    <div class="window-content"><p>Content for Branding projects goes here.</p></div>
+  <div class="window" id="brandingWindow" style="width: 550px; height: 400px; top: 140px; left: 200px;">
+    <div class="title-bar">C:\My_Work\Branding</div>
+    <div class="window-content"><h2>Branding Projects</h2><p><em>Detail your branding projects here.</em></p></div>
   </div>
-  <div class="window" id="photoWindow" style="width: 450px; height: 350px; top: 160px; left: 250px;">
-    <div class="title-bar">D:\Photos</div>
-    <div class="window-content"><p>Photo gallery content here.</p></div>
+  <div class="window" id="photoWindow" style="width: 650px; height: 500px; top: 160px; left: 250px;">
+    <div class="title-bar">D:\Photography</div>
+    <div class="window-content"><h2>Photography</h2><p><em>Your photography showcase.</em></p></div>
   </div>
-  <div class="window" id="videoWindow" style="width: 400px; height: 300px; top: 180px; left: 300px;">
-    <div class="title-bar">E:\Videos</div>
-    <div class="window-content"><p>Video showcase content here.</p></div>
+  <div class="window" id="videoWindow" style="width: 500px; height: 350px; top: 180px; left: 300px;">
+    <div class="title-bar">E:\Video_Edits</div>
+    <div class="window-content"><h2>Video Edits</h2><p><em>Embed your video edits here.</em></p></div>
   </div>
    <div class="window" id="resumeWindow" style="width: 500px; height: 600px; top: 90px; left: 120px;">
-    <div class="title-bar">My Documents - Resume.pdf</div>
+    <div class="title-bar">My Documents - Resume_Rugved_Shinde.pdf</div>
     <div class="window-content">
-        <p>Embed your resume or link to it here. Example: <a href="YOUR_RESUME_LINK_OR_FILE.pdf" target="_blank">View Resume</a></p>
+        <p>You can view or download my resume: <a href="YOUR_RESUME_LINK_OR_FILE.pdf" target="_blank">Rugved_Shinde_Resume.pdf</a></p>
         <iframe src="YOUR_RESUME_LINK_OR_FILE.pdf" width="100%" height="calc(100% - 40px)" style="border:none; margin-top:10px;"></iframe>
     </div>
   </div>
-  <div class="window" id="computerWindow" style="width: 350px; height: 280px; top: 200px; left: 50px;">
+  <div class="window" id="computerWindow" style="width: 380px; height: 300px; top: 200px; left: 50px;">
     <div class="title-bar">My Computer</div>
     <div class="window-content">
-      <p><strong>Local Disk (C:)</strong></p>
-      <div class="drive" data-window="posterWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\Posters</div>
-      <div class="drive" data-window="brandingWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\Branding</div>
-      <hr style="margin: 10px 0;"><p><strong>Removable Disk (D:)</strong></p>
-      <div class="drive" data-window="photoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> D:\Photos</div>
-      <p><strong>CD Drive (E:)</strong></p>
-      <div class="drive" data-window="videoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> E:\Videos</div>
+      <p><strong>File System:</strong></p>
+      <div class="drive" data-window="posterWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Posters</div>
+      <div class="drive" data-window="brandingWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Branding</div>
+      <div class="drive" data-window="videoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> E:\Video_Edits</div>
+      <hr style="margin: 10px 0;"><p><strong>Other Locations:</strong></p>
+      <div class="drive" data-window="photoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> D:\Photography</div>
+      <div class="drive" data-window="resumeWindow"><img src="notepad.png" alt="document icon" class="drive-icon"/> My Documents (Resume)</div>
     </div>
   </div>
   <div class="window" id="paintWindow" style="width: 340px; height: 300px; top: 220px; left: 80px;">
@@ -119,7 +122,7 @@
   <div class="window" id="wmpWindow" style="width: 320px; height: 150px; top: 240px; left: 110px;">
     <div class="title-bar">Windows Media Player</div>
     <div class="window-content">
-      <p style="margin-bottom:10px;">Now Playing: intro.mp3</p>
+      <p style="margin-bottom:10px;">Now Playing: retro_vibe.mp3</p>
       <audio controls autoplay loop style="width: 100%;"><source src="intro.mp3" type="audio/mpeg" />Your browser does not support the audio element.</audio>
     </div>
   </div>
@@ -130,17 +133,19 @@
       <div id="mine-grid"></div>
     </div>
   </div>
-  <div class="window" id="contactWindow" style="width: 300px; height: 200px; top: 130px; left: 180px;">
-    <div class="title-bar">Contact Me</div>
+  <div class="window" id="contactWindow" style="width: 320px; height: auto; top: 130px; left: 180px;">
+    <div class="title-bar">Contact Rugved</div>
     <div class="window-content">
-      <p>You can reach me at:</p><p><strong>Email:</strong> your.email@example.com</p><p><strong>LinkedIn:</strong> linkedin.com/in/yourprofile</p>
-      <!-- <img src="contact.png" alt="Contact Info" style="max-width: 100%; margin-top:10px;"/> -->
+      <p>Let's connect!</p>
+      <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/yourprofile" target="_blank">@yourprofile</a></p>
     </div>
   </div>
 
   <!-- Sticky Note -->
   <div id="sticky-note" class="draggable-desktop-element">
-    <div class="sticky-note-header">My Go-To Software:</div>
+    <div class="sticky-note-header">My Creative Arsenal:</div>
     <ul>
       <li>Adobe After Effects (AE)</li>
       <li>Adobe Photoshop (PS)</li>
