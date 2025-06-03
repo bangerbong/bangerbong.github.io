@@ -1,112 +1,239 @@
-body {
+/* Reset */
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body, html {
   margin: 0;
-  font-family: "Tahoma", sans-serif;
-  overflow: hidden;
-  color: white;
-}
-
-.wallpaper {
-  background-image: url('bliss-wallpaper.jpg');
-  background-size: cover;
-  background-position: center;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
+  padding: 0;
   height: 100vh;
-  z-index: -1;
+  overflow: hidden;
+  font-family: 'MS Sans Serif', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('bliss-wallpaper.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: black;
 }
 
-.title {
+#desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Welcome text in center top */
+#welcome-text {
   position: absolute;
-  top: 30px;
+  top: 10px;
   width: 100%;
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  color: white;
-  text-shadow: 1px 1px 2px black;
+  color: black;
+  font-family: 'Press Start 2P', cursive, 'MS Sans Serif', monospace;
+  text-transform: lowercase;
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px white;
 }
 
-.desktop {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 20px;
-  position: absolute;
-  top: 100px;
-  left: 40px;
-}
-
+/* Icons */
 .icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: absolute;
+  width: 96px;
+  height: 96px;
   cursor: pointer;
-  animation: bounceIn 0.6s ease;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'MS Sans Serif', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  user-select: none;
+  transition: transform 0.2s ease;
 }
 
 .icon img {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 4px;
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin: 0 auto;
 }
 
-.icon span {
-  color: white;
-  text-shadow: 1px 1px black;
-  font-size: 14px;
+.icon div {
+  margin-top: 4px;
+  text-shadow: 1px 1px white;
 }
 
+/* Icon hover effect */
 .icon:hover {
+  filter: drop-shadow(0 0 4px #00aaff);
   transform: scale(1.1);
-  transition: 0.2s;
 }
 
+/* Windows */
 .window {
-  background: white;
-  color: black;
-  border: 2px solid #000080;
-  width: 400px;
   position: absolute;
-  top: 150px;
-  left: 150px;
-  z-index: 10;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
-  animation: slideIn 0.4s ease-out;
+  width: 320px;
+  background: #c0c0c0;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  font-family: 'MS Sans Serif', monospace, Arial, sans-serif;
+  user-select: text;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Window header */
 .window-header {
-  background: #000080;
+  background: linear-gradient(to bottom, #0a64ad, #005499);
   color: white;
   padding: 5px 10px;
   font-weight: bold;
+  font-size: 14px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  border-bottom: 2px solid #002e6f;
 }
 
+/* Title text */
+.title-text {
+  user-select: none;
+}
+
+/* Close button */
+.window-header button {
+  background: #ff5555;
+  border: 1px solid #990000;
+  color: white;
+  font-weight: bold;
+  width: 24px;
+  height: 20px;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.window-header button:hover {
+  background: #ff2222;
+}
+
+/* Window content */
 .window-content {
+  background: #e0e0e0;
   padding: 10px;
-  max-height: 300px;
+  flex-grow: 1;
   overflow: auto;
+  font-size: 14px;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Minesweeper grid */
+.minesweeper-grid {
+  border: 2px inset #fff;
+  background: #c0c0c0;
+  border-collapse: collapse;
+  margin: 0 auto;
 }
 
-@keyframes bounceIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.minesweeper-grid td {
+  width: 28px;
+  height: 28px;
+  border: 2px outset #fff;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'MS Sans Serif', monospace;
+  user-select: none;
+  background: #c0c0c0;
+  color: black;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+
+.minesweeper-grid td.revealed {
+  border: 2px inset #fff;
+  background: #e0e0e0;
+  cursor: default;
+  color: black;
+}
+
+.minesweeper-grid td.flagged {
+  color: red;
+}
+
+.minesweeper-grid td.mine {
+  background: #f00;
+  color: black;
+}
+
+.minesweeper-grid td:hover:not(.revealed) {
+  filter: brightness(90%);
+}
+
+/* Taskbar */
+#taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(to bottom, #c0c0c0, #808080);
+  border-top: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  font-family: 'MS Sans Serif', monospace;
+  font-weight: bold;
+  font-size: 14px;
+  user-select: none;
+  color: black;
+  box-shadow: inset 0 1px 0 #fff;
+  z-index: 2000;
+  padding: 0 10px;
+}
+
+/* Start button */
+#start-button {
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(to bottom, #0a64ad, #005499);
+  border: 2px solid #003366;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-shadow: 1px 1px 2px black;
+  user-select: none;
+  font-family: 'MS Sans Serif', monospace;
+}
+
+/* Clock */
+#clock {
+  margin-left: auto;
+  font-family: 'MS Sans Serif', monospace;
+  font-weight: bold;
+  color: black;
+  text-shadow: 1px 1px white;
+}
+
+/* Contact window content */
+#contact-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Scrollbar style */
+.window-content::-webkit-scrollbar {
+  width: 8px;
+}
+.window-content::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+.window-content::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
 }
