@@ -4,9 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>XP Portfolio - Rugved Shinde</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -15,9 +12,7 @@
   <div id="taskbar">
     <div id="start-button">Start</div>
     <div id="taskbar-items"></div>
-    <div id="clock-container">
-      <div id="clock">00:00:00</div>
-    </div>
+    <div id="clock-container"><div id="clock">00:00</div></div>
   </div>
 
   <div id="desktop-title-container">
@@ -25,157 +20,94 @@
     <div class="desktop-title-line2">portfolio.</div>
   </div>
 
-  <!-- Desktop Icons Container -->
   <div id="desktop-icons-container">
-      <!-- Row 1 -->
-      <div class="icon" data-window="aboutWindow">
-        <img src="notepad.png" alt="About Me Icon"/> <p>About Me</p>
-      </div>
-      <div class="icon" data-window="resumeWindow">
-        <img src="folder.png" alt="Resume Icon"/> <p>Resume</p>
-      </div>
-      <div class="icon" data-window="computerWindow">
-        <img src="mycomp.png" alt="My Computer Icon"/> <p>My Computer</p>
-      </div>
-      <div class="icon" data-window="contactWindow">
-        <img src="folder.png" alt="Contact Icon"/> <p>Contact</p>
-      </div>
+    <div class="icon" data-window="aboutWindow"><img src="notepad.png"/><p>About Me</p></div>
+    <div class="icon" data-window="resumeWindow"><img src="folder.png"/><p>Resume</p></div>
+    <div class="icon" data-window="computerWindow"><img src="my comp.png"/><p>My Computer</p></div>
+    <div class="icon" data-window="contactWindow"><img src="folder.png"/><p>Contact</p></div>
+    <div class="icon" data-window="posterWindow"><img src="folder.png"/><p>Posters</p></div>
+    <div class="icon" data-window="photoWindow"><img src="folder.png"/><p>Photos</p></div>
+    <div class="icon" data-window="paintWindow"><img src="paint.png"/><p>Paint</p></div>
+    <div class="icon" data-window="minesweeperWindow"><img src="minesweeper-icon.png"/><p>Minesweeper</p></div>
+    <div class="icon" data-window="brandingWindow"><img src="folder.png"/><p>Branding</p></div>
+    <div class="icon" data-window="videoWindow"><img src="folder.png"/><p>Video Edits</p></div>
+    <div class="icon" data-window="wmpWindow"><img src="folder.png"/><p>Media Player</p></div>
+  </div>
 
-      <!-- Row 2 -->
-      <div class="icon" data-window="posterWindow">
-        <img src="folder.png" alt="Posters Icon"/> <p>Posters</p>
-      </div>
-      <div class="icon" data-window="photoWindow">
-        <img src="folder.png" alt="Photos Icon"/> <p>Photos</p>
-      </div>
-      <div class="icon" data-window="paintWindow">
-        <img src="paint.png" alt="Paint Icon"/> <p>Paint</p>
-      </div>
-      <div class="icon" data-window="minesweeperWindow">
-        <img src="minesweeper-icon.png" alt="Minesweeper Icon"/> <p>Minesweeper</p>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="icon" data-window="brandingWindow">
-        <img src="folder.png" alt="Branding Icon"/> <p>Branding</p>
-      </div>
-      <div class="icon" data-window="videoWindow">
-        <img src="folder.png" alt="Video Edits Icon"/> <p>Video Edits</p>
-      </div>
-      <div class="icon" data-window="wmpWindow">
-        <img src="folder.png" alt="Media Player Icon"/> <p>Media Player</p>
-      </div>
-  </div> <!-- End #desktop-icons-container -->
-
-
-  <!-- Windows -->
-  <div class="window" id="aboutWindow" style="width: 350px; height: auto; top: 100px; left: 100px;">
+  <div class="window" id="aboutWindow">
     <div class="title-bar">Notepad - About_Rugved.txt</div>
     <div class="window-content">
-      <p>Hey, I'm <strong>Rugved Shinde</strong>! A 19-year-old graphic designer diving deep into posters, branding, and visuals that make you look twice (and maybe even a third time!).</p>
-      <p>This portfolio is my creative playground, styled as a tribute to the classic Windows XP interface.</p>
-      <p>Feel free to explore!</p>
+      <p>Hey, I'm <strong>Rugved Shinde</strong>! A 19-year-old graphic designer diving into posters, branding, and visuals that make you look twice.</p>
+      <p>This portfolio is styled like Windows XP — my creative playground!</p>
     </div>
   </div>
 
-  <div class="window" id="posterWindow" style="width: 600px; height: 450px; top: 120px; left: 150px;">
+  <div class="window" id="posterWindow">
     <div class="title-bar">C:\My_Work\Posters</div>
     <div class="window-content">
-        <h2>My Posters</h2>
-        <p>A collection of some of my poster designs.</p>
-        <hr>
-        <div class="portfolio-item"><img src="images/poster-1.jpg" alt="Poster Design 1" class="portfolio-image"><p class="portfolio-description">ASAP Rocky - Pretty Flacko concept.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-2.jpg" alt="Poster Design 2" class="portfolio-image"><p class="portfolio-description">Don Toliver - Hardstone Psycho concept.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-3.jpg" alt="Poster Design 3" class="portfolio-image"><p class="portfolio-description">Dharavi - Beyond The Slums.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-4.jpg" alt="Poster Design 4" class="portfolio-image"><p class="portfolio-description">"I'm A Star How Could I Not Shine" - Lyrical concept.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-5.jpg" alt="Poster Design 5" class="portfolio-image"><p class="portfolio-description">Kendrick Lamar tribute.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-6.jpg" alt="Poster Design 6" class="portfolio-image"><p class="portfolio-description">Lana Del Rey vintage style.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-7.jpg" alt="Poster Design 7" class="portfolio-image"><p class="portfolio-description">Destroy Lonely - "I'm Really Like That".</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-8.jpg" alt="Poster Design 8" class="portfolio-image"><p class="portfolio-description">"Love Is Around Us" - Conceptual design.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-9.jpg" alt="Poster Design 9" class="portfolio-image"><p class="portfolio-description">"Angel" - Inspired by Natalie Karpushenko shot.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-10.jpg" alt="Poster Design 10" class="portfolio-image"><p class="portfolio-description">Blue Mangoes Media Club - Karaoke 2024 Event.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-11.jpg" alt="Poster Design 11" class="portfolio-image"><p class="portfolio-description">"Gonna Sh*t On Everything You Love" - Pigeon design.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-12.jpg" alt="Poster Design 12" class="portfolio-image"><p class="portfolio-description">Frank Ocean "Blond" alternative cover.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-13.jpg" alt="Poster Design 13" class="portfolio-image"><p class="portfolio-description">Spokenfest - Ritviz Main Stage.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-14.jpg" alt="Poster Design 14" class="portfolio-image"><p class="portfolio-description">Tyler, The Creator - "Call Me If You Get Lost".</p></div>
+      <h2>My Posters</h2><hr>
+      <div class="portfolio-item"><img src="images/poster-1.jpg" class="portfolio-image"><p>ASAP Rocky – Pretty Flacko</p></div>
+      <div class="portfolio-item"><img src="images/poster-2.jpg" class="portfolio-image"><p>Don Toliver – Hardstone Psycho</p></div>
+      <div class="portfolio-item"><img src="images/poster-3.jpg" class="portfolio-image"><p>Dharavi – Beyond the Slums</p></div>
     </div>
   </div>
 
-  <div class="window" id="brandingWindow" style="width: 550px; height: 400px; top: 140px; left: 200px;">
-    <div class="title-bar">C:\My_Work\Branding</div>
-    <div class="window-content"><h2>Branding Projects</h2><p><em>Detail your branding projects here.</em></p></div>
-  </div>
-  <div class="window" id="photoWindow" style="width: 650px; height: 500px; top: 160px; left: 250px;">
-    <div class="title-bar">D:\Photography</div>
-    <div class="window-content">
-        <h2>Photography</h2>
-        <p><em>Your photography showcase. Example: <img src="images/photo1.jpg"></em></p>
-    </div>
-  </div>
-  <div class="window" id="videoWindow" style="width: 500px; height: 350px; top: 180px; left: 300px;">
-    <div class="title-bar">E:\Video_Edits</div>
-    <div class="window-content"><h2>Video Edits</h2><p><em>Embed your video edits here.</em></p></div>
-  </div>
-   <div class="window" id="resumeWindow" style="width: 500px; height: 600px; top: 90px; left: 120px;">
-    <div class="title-bar">My Documents - Resume_Rugved_Shinde.pdf</div>
-    <div class="window-content">
-        <p>You can view or download my resume: <a href="YOUR_RESUME_LINK_OR_FILE.pdf" target="_blank">Rugved_Shinde_Resume.pdf</a></p>
-        <iframe src="YOUR_RESUME_LINK_OR_FILE.pdf" width="100%" height="calc(100% - 40px)" style="border:none; margin-top:10px;"></iframe>
-    </div>
-  </div>
-  <div class="window" id="computerWindow" style="width: 380px; height: 300px; top: 200px; left: 50px;">
-    <div class="title-bar">My Computer</div>
-    <div class="window-content">
-      <p><strong>File System:</strong></p>
-      <div class="drive" data-window="posterWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Posters</div>
-      <div class="drive" data-window="brandingWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Branding</div>
-      <div class="drive" data-window="videoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> E:\Video_Edits</div>
-      <hr style="margin: 10px 0;"><p><strong>Other Locations:</strong></p>
-      <div class="drive" data-window="photoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> D:\Photography</div>
-      <div class="drive" data-window="resumeWindow"><img src="notepad.png" alt="document icon" class="drive-icon"/> My Documents (Resume)</div>
-    </div>
-  </div>
-  <div class="window" id="paintWindow" style="width: 340px; height: 300px; top: 220px; left: 80px;">
+  <div class="window" id="paintWindow">
     <div class="title-bar">untitled - Paint</div>
     <div class="window-content">
-      <canvas id="paintCanvas" width="300" height="200" style="border: 1px solid #000; background: white;"></canvas>
-      <p style="font-size:11px; color: #555; margin-top: 5px;">Simple paint. Click and drag to draw.</p>
+      <canvas id="paintCanvas" width="300" height="200"></canvas>
     </div>
   </div>
-  <div class="window" id="wmpWindow" style="width: 320px; height: 150px; top: 240px; left: 110px;">
+
+  <div class="window" id="resumeWindow">
+    <div class="title-bar">My Documents - Resume</div>
+    <div class="window-content">
+      <p><a href="Rugved_Shinde_Resume.pdf" target="_blank">Download Resume (PDF)</a></p>
+    </div>
+  </div>
+
+  <div class="window" id="wmpWindow">
     <div class="title-bar">Windows Media Player</div>
     <div class="window-content">
-      <p style="margin-bottom:10px;">Now Playing: retro_vibe.mp3</p>
-      <audio controls autoplay loop style="width: 100%;"><source src="intro.mp3" type="audio/mpeg" />Your browser does not support the audio element.</audio>
+      <p>Now Playing: retro_vibe.mp3</p>
+      <audio controls autoplay loop><source src="intro.mp3" type="audio/mpeg"></audio>
     </div>
   </div>
-  <div class="window window-auto-height" id="minesweeperWindow" style="top: 150px; left: 400px;">
+
+  <div class="window" id="minesweeperWindow">
     <div class="title-bar">Minesweeper</div>
     <div class="window-content">
       <div id="mine-controls"><button id="minesweeperResetButton">😊</button></div>
       <div id="mine-grid"></div>
     </div>
   </div>
-  <div class="window" id="contactWindow" style="width: 320px; height: auto; top: 130px; left: 180px;">
-    <div class="title-bar">Contact Rugved</div>
+
+  <div class="window" id="computerWindow">
+    <div class="title-bar">My Computer</div>
     <div class="window-content">
-      <p>Let's connect!</p>
-      <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-      <p><strong>Instagram:</strong> <a href="https://instagram.com/yourprofile" target="_blank">@yourprofile</a></p>
+      <div class="drive" data-window="posterWindow"><img src="folder.png" class="drive-icon">C:\My_Work\Posters</div>
+      <div class="drive" data-window="brandingWindow"><img src="folder.png" class="drive-icon">C:\My_Work\Branding</div>
+      <div class="drive" data-window="videoWindow"><img src="folder.png" class="drive-icon">E:\Video_Edits</div>
     </div>
   </div>
 
-  <!-- Sticky Note - Content Updated -->
-  <div id="sticky-note" class="draggable-desktop-element"> <!-- Initial position by CSS for desktop, JS for drag -->
+  <div class="window" id="contactWindow">
+    <div class="title-bar">Contact Rugved</div>
+    <div class="window-content">
+      <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/yourprofile">@yourprofile</a></p>
+    </div>
+  </div>
+
+  <div id="sticky-note" class="draggable-desktop-element">
     <div class="sticky-note-header">Software I Use:</div>
     <ul>
-      <li>Adobe After Effects</li>
-      <li>Adobe Photoshop</li>
-      <li>Adobe Premiere Pro</li>
+      <li>Photoshop</li>
+      <li>Illustrator</li>
+      <li>After Effects</li>
+      <li>Premiere Pro</li>
       <li>Procreate</li>
       <li>TouchDesigner</li>
-      <li>DaVinci Resolve</li>
     </ul>
   </div>
 
