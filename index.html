@@ -10,7 +10,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="wallpaper-enhancement"></div> <!-- For subtle grid -->
+  <!-- Boot Screen -->
+  <div id="boot-screen">
+    <div class="boot-logo">
+        <span class="boot-logo-win">Windows</span><span class="boot-logo-xp">XP</span>
+        <span class="boot-logo-edition">Portfolio Edition</span>
+    </div>
+    <div class="boot-loader-container">
+        <div class="boot-loader"></div>
+    </div>
+    <div class="boot-text">Starting up...</div>
+  </div>
+
+  <div id="wallpaper-enhancement"></div>
   <img src="bliss-wallpaper.jpg" alt="XP Wallpaper" id="wallpaper"/>
 
   <div id="taskbar">
@@ -18,7 +30,7 @@
         <div id="start-button">Start</div>
         <div id="start-menu">
             <div class="start-menu-header">
-                <img src="your-photo.jpg" alt="User" class="start-menu-user-pic"> <!-- Optional: Add a small user pic here -->
+                <img src="images/default_user.png" alt="User" class="start-menu-user-pic">
                 <span class="start-menu-user-name">Rugved Shinde</span>
             </div>
             <div class="start-menu-body">
@@ -38,7 +50,7 @@
                         <li data-window="resumeWindow"><img src="folder.png" alt=""> Resume</li>
                         <li data-window="contactWindow"><img src="contact.png" alt=""> Contact</li>
                         <hr class="start-menu-separator">
-                        <li id="shutdown-button-startmenu"><img src="icons/shutdown_icon.png" alt=""> Turn Off Computer...</li> <!-- You'll need a shutdown icon -->
+                        <li id="shutdown-button-startmenu"><img src="images/shutdown_icon.png" alt=""> Turn Off Computer...</li>
                     </ul>
                 </div>
             </div>
@@ -55,116 +67,66 @@
     <div class="desktop-title-line2">portfolio.</div>
   </div>
 
-  <!-- Desktop File Visual Fillers -->
-  <div class="desktop-file-item" style="top: 380px; left: 400px;">
-    <img src="icons/file_icon_generic.png" alt="File"> <!-- You'll need a generic file icon -->
+  <div class="desktop-file-item" id="fileitem1">
+    <img src="images/file_icon_generic.png" alt="File">
     <span>ideas_draft.txt</span>
   </div>
-  <div class="desktop-file-item" style="top: 450px; left: 180px; transform: rotate(-5deg);">
-    <img src="icons/image_file_icon.png" alt="Image File"> <!-- You'll need an image file icon -->
+  <div class="desktop-file-item" id="fileitem2">
+    <img src="images/image_file_icon.png" alt="Image File">
     <span>moodboard.jpg</span>
   </div>
 
-
-  <!-- Desktop Icons Container -->
   <div id="desktop-icons-container">
-      <!-- Row 1 -->
-      <div class="icon" data-window="aboutWindow" style="top: 60px !important; left: 60px !important;">
-        <img src="notepad.png" alt="About Me Icon"/> <p>About Me</p>
-      </div>
-      <div class="icon" data-window="resumeWindow" style="top: 60px !important; left: 170px !important;">
-        <img src="folder.png" alt="Resume Icon"/> <p>Resume</p>
-      </div>
-      <div class="icon" data-window="computerWindow" style="top: 60px !important; left: 280px !important;">
-        <img src="mycomp.png" alt="My Computer Icon"/> <p>My Computer</p>
-      </div>
-      <div class="icon" data-window="contactWindow" style="top: 60px !important; left: 390px !important;">
-        <img src="contact.png" alt="Contact Icon"/> <p>Contact</p>
-      </div>
+      <div class="icon" data-window="aboutWindow"> <img src="notepad.png" alt="About Me Icon"/> <p>About Me</p> </div>
+      <div class="icon" data-window="resumeWindow"> <img src="folder.png" alt="Resume Icon"/> <p>Resume</p> </div>
+      <div class="icon" data-window="computerWindow"> <img src="mycomp.png" alt="My Computer Icon"/> <p>My Computer</p> </div>
+      <div class="icon" data-window="contactWindow"> <img src="contact.png" alt="Contact Icon"/> <p>Contact</p> </div>
+      <div class="icon" data-window="posterWindow"> <img src="folder.png" alt="Posters Icon"/> <p>Posters</p> </div>
+      <div class="icon" data-window="photoWindow"> <img src="folder.png" alt="Photos Icon"/> <p>Photos</p> </div>
+      <div class="icon" data-window="paintWindow"> <img src="paint.png" alt="Paint Icon"/> <p>Paint</p> </div>
+      <div class="icon" data-window="minesweeperWindow"> <img src="minesweeper-icon.png" alt="Minesweeper Icon"/> <p>Minesweeper</p> </div>
+      <div class="icon" data-window="logoBrandingWindow"> <img src="folder.png" alt="Logo/Branding Icon"/> <p>Logo/Branding</p> </div>
+      <div class="icon" data-window="videoWindow"> <img src="folder.png" alt="Video Edits Icon"/> <p>Video Edits</p> </div>
+      <div class="icon" data-window="interactiveDesignWindow"> <img src="folder.png" alt="Interactive Design Icon"/> <p>Interactive</p> </div>
+      <div class="icon" data-window="recycleBinWindow"> <img src="recycle_bin.png" alt="Recycle Bin Icon"/> <p>Recycle Bin</p> </div>
+      <div class="icon" id="ieIcon"> <img src="ie_icon.png" alt="Internet Explorer Icon"/> <p>Internet</p> </div>
+  </div>
 
-      <!-- Row 2 -->
-      <div class="icon" data-window="posterWindow" style="top: 170px !important; left: 60px !important;">
-        <img src="folder.png" alt="Posters Icon"/> <p>Posters</p>
-      </div>
-      <div class="icon" data-window="photoWindow" style="top: 170px !important; left: 170px !important;">
-        <img src="folder.png" alt="Photos Icon"/> <p>Photos</p>
-      </div>
-      <div class="icon" data-window="paintWindow" style="top: 170px !important; left: 280px !important;">
-        <img src="paint.png" alt="Paint Icon"/> <p>Paint</p>
-      </div>
-      <div class="icon" data-window="minesweeperWindow" style="top: 170px !important; left: 390px !important;">
-        <img src="minesweeper-icon.png" alt="Minesweeper Icon"/> <p>Minesweeper</p>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="icon" data-window="logoBrandingWindow" style="top: 280px !important; left: 60px !important;">
-        <img src="folder.png" alt="Logo/Branding Icon"/> <p>Logo/Branding</p>
-      </div>
-      <div class="icon" data-window="videoWindow" style="top: 280px !important; left: 170px !important;">
-        <img src="folder.png" alt="Video Edits Icon"/> <p>Video Edits</p>
-      </div>
-      <div class="icon" data-window="interactiveDesignWindow" style="top: 280px !important; left: 280px !important;">
-        <img src="folder.png" alt="Interactive Design Icon"/> <p>Interactive</p>
-      </div>
-      <div class="icon" data-window="recycleBinWindow" style="top: 280px !important; left: 390px !important;">
-        <img src="recycle_bin.png" alt="Recycle Bin Icon"/> <p>Recycle Bin</p>
-      </div>
-      
-      <!-- Internet Explorer Icon -->
-       <div class="icon" id="ieIcon" style="top: 400px !important; left: 60px !important;">
-        <img src="ie_icon.png" alt="Internet Explorer Icon"/> <p>Internet</p>
-      </div>
-  </div> <!-- End #desktop-icons-container -->
-
-
-  <!-- Windows -->
+  <!-- Windows (Content for posters, logos, photos, videos, interactive, recycle bin needs your files) -->
   <div class="window" id="aboutWindow" style="width: 350px; height: auto; top: 100px; left: 100px;">
     <div class="title-bar">Notepad - About_Rugved.txt</div>
-    <div class="window-content">
-      <p>Hey, I'm <strong>Rugved Shinde</strong>! A 19-year-old graphic designer diving deep into posters, branding, and visuals that make you look twice (and maybe even a third time!).</p>
-      <p>This portfolio is my creative playground, styled as a tribute to the classic Windows XP interface.</p>
-      <p>Feel free to explore!</p>
-    </div>
+    <div class="window-content"> <p>Hey, I'm <strong>Rugved Shinde</strong>! A 19-year-old graphic designer diving deep into posters, branding, and visuals that make you look twice (and maybe even a third time!).</p> <p>This portfolio is my creative playground, styled as a tribute to the classic Windows XP interface.</p> <p>Feel free to explore!</p> </div>
   </div>
-
-  <div class="window" id="posterWindow" style="width: 600px; height: 450px; top: 120px; left: 150px;">
+  <div class="window" id="posterWindow" style="width: 700px; height: 550px; top: 120px; left: 150px;"> <!-- Increased Size -->
     <div class="title-bar">C:\My_Work\Posters</div>
-    <div class="window-content">
-        <h2>My Posters</h2>
-        <p>A collection of some of my poster designs.</p> <hr>
-        <div class="portfolio-item"><img src="images/poster-1.jpg" alt="ASAP Rocky Poster" class="portfolio-image"><p class="portfolio-description">ASAP Rocky - Pretty Flacko concept.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-2.jpg" alt="Don Toliver Poster" class="portfolio-image"><p class="portfolio-description">Don Toliver - Hardstone Psycho concept.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-3.jpg" alt="Dharavi Poster" class="portfolio-image"><p class="portfolio-description">Dharavi - Beyond The Slums.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-4.jpg" alt="Star Shine Poster" class="portfolio-image"><p class="portfolio-description">"I'm A Star How Could I Not Shine" - Lyrical concept.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-5.jpg" alt="Kendrick Lamar Poster" class="portfolio-image"><p class="portfolio-description">Kendrick Lamar tribute.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-6.jpg" alt="Lana Del Rey Poster" class="portfolio-image"><p class="portfolio-description">Lana Del Rey vintage style.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-7.jpg" alt="Destroy Lonely Poster" class="portfolio-image"><p class="portfolio-description">Destroy Lonely - "I'm Really Like That".</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-8.jpg" alt="Love Is Around Us Poster" class="portfolio-image"><p class="portfolio-description">"Love Is Around Us" - Conceptual design.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-9.jpg" alt="Angel Poster" class="portfolio-image"><p class="portfolio-description">"Angel" - Inspired by Natalie Karpushenko shot.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-10.jpg" alt="Karaoke 2024 Poster" class="portfolio-image"><p class="portfolio-description">Blue Mangoes Media Club - Karaoke 2024 Event.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-11.jpg" alt="Pigeon Poster" class="portfolio-image"><p class="portfolio-description">"Gonna Sh*t On Everything You Love" - Pigeon design.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-12.jpg" alt="Frank Ocean Blond Poster" class="portfolio-image"><p class="portfolio-description">Frank Ocean "Blond" alternative cover.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-13.jpg" alt="Spokenfest Ritviz Poster" class="portfolio-image"><p class="portfolio-description">Spokenfest - Ritviz Main Stage.</p></div> <hr>
-        <div class="portfolio-item"><img src="images/poster-14.jpg" alt="Tyler CMIYGL Poster" class="portfolio-image"><p class="portfolio-description">Tyler, The Creator - "Call Me If You Get Lost".</p></div>
+    <div class="window-content"> <h2>My Posters</h2> <p>A collection of some of my poster designs.</p> <hr>
+        <div class="portfolio-item"><img src="images/poster-1.jpg" alt="Poster Design 1" class="portfolio-image"><p class="portfolio-description">ASAP Rocky - Pretty Flacko concept.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-2.jpg" alt="Poster Design 2" class="portfolio-image"><p class="portfolio-description">Don Toliver - Hardstone Psycho concept.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-3.jpg" alt="Poster Design 3" class="portfolio-image"><p class="portfolio-description">Dharavi - Beyond The Slums.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-4.jpg" alt="Poster Design 4" class="portfolio-image"><p class="portfolio-description">"I'm A Star How Could I Not Shine" - Lyrical concept.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-5.jpg" alt="Poster Design 5" class="portfolio-image"><p class="portfolio-description">Kendrick Lamar tribute.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-6.jpg" alt="Poster Design 6" class="portfolio-image"><p class="portfolio-description">Lana Del Rey vintage style.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-7.jpg" alt="Poster Design 7" class="portfolio-image"><p class="portfolio-description">Destroy Lonely - "I'm Really Like That".</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-8.jpg" alt="Poster Design 8" class="portfolio-image"><p class="portfolio-description">"Love Is Around Us" - Conceptual design.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-9.jpg" alt="Poster Design 9" class="portfolio-image"><p class="portfolio-description">"Angel" - Inspired by Natalie Karpushenko shot.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-10.jpg" alt="Poster Design 10" class="portfolio-image"><p class="portfolio-description">Blue Mangoes Media Club - Karaoke 2024 Event.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-11.jpg" alt="Poster Design 11" class="portfolio-image"><p class="portfolio-description">"Gonna Sh*t On Everything You Love" - Pigeon design.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-12.jpg" alt="Poster Design 12" class="portfolio-image"><p class="portfolio-description">Frank Ocean "Blond" alternative cover.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-13.jpg" alt="Poster Design 13" class="portfolio-image"><p class="portfolio-description">Spokenfest - Ritviz Main Stage.</p></div> <hr>
+        <div class="portfolio-item"><img src="images/poster-14.jpg" alt="Poster Design 14" class="portfolio-image"><p class="portfolio-description">Tyler, The Creator - "Call Me If You Get Lost".</p></div>
     </div>
   </div>
-
   <div class="window" id="logoBrandingWindow" style="width: 550px; height: 400px; top: 140px; left: 200px;">
     <div class="title-bar">C:\My_Work\Logo_Branding</div>
-    <div class="window-content">
-        <h2>Logo & Branding Projects</h2>
-        <p>Selected logo designs and branding work.</p><hr>
+    <div class="window-content"> <h2>Logo & Branding Projects</h2> <p>Selected logo designs and branding work.</p><hr>
         <div class="portfolio-item"><img src="logo/logo-1.jpg" alt="Logo Design 1" class="portfolio-image"><p class="portfolio-description">Description for Logo 1.</p></div> <hr>
         <div class="portfolio-item"><img src="logo/logo-2.jpg" alt="Logo Design 2" class="portfolio-image"><p class="portfolio-description">Description for Logo 2.</p></div> <hr>
         <div class="portfolio-item"><img src="logo/logo-3.jpg" alt="Logo Design 3" class="portfolio-image"><p class="portfolio-description">Description for Logo 3.</p></div>
     </div>
   </div>
-
   <div class="window" id="photoWindow" style="width: 650px; height: 500px; top: 160px; left: 250px;">
     <div class="title-bar">D:\Photography_Rugved</div>
-    <div class="window-content">
-        <h2>Photography</h2>
-        <p>A glimpse into my photography.</p><hr>
+    <div class="window-content"> <h2>Photography</h2> <p>A glimpse into my photography.</p><hr>
         <div class="portfolio-item"><img src="photo/rugved-1.jpg" alt="Photograph 1 by Rugved" class="portfolio-image"></div> <hr>
         <div class="portfolio-item"><img src="photo/rugved-2.jpg" alt="Photograph 2 by Rugved" class="portfolio-image"></div> <hr>
         <div class="portfolio-item"><img src="photo/rugved-3.jpg" alt="Photograph 3 by Rugved" class="portfolio-image"></div> <hr>
@@ -173,40 +135,26 @@
         <div class="portfolio-item"><img src="photo/rugved-6.jpg" alt="Photograph 6 by Rugved" class="portfolio-image"></div>
     </div>
   </div>
-
   <div class="window" id="videoWindow" style="width: 520px; height: 400px; top: 180px; left: 300px;">
     <div class="title-bar">E:\Video_Edits</div>
-    <div class="window-content">
-        <h2>Video Edits</h2>
-        <p>Some of my video editing work.</p><hr>
+    <div class="window-content"> <h2>Video Edits</h2> <p>Some of my video editing work.</p><hr>
         <div class="portfolio-item video-item"><h3>Video Edit 1</h3><video controls width="100%"><source src="video/vid1.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
         <div class="portfolio-item video-item"><h3>Video Edit 2</h3><video controls width="100%"><source src="video/vid2.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
         <div class="portfolio-item video-item"><h3>Video Edit 3</h3><video controls width="100%"><source src="video/vid3.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
         <div class="portfolio-item video-item"><h3>Video Edit 4</h3><video controls width="100%"><source src="video/vid4.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
     </div>
   </div>
-
-   <div class="window" id="interactiveDesignWindow" style="width: 520px; height: 420px; top: 200px; left: 320px;">
+  <div class="window" id="interactiveDesignWindow" style="width: 520px; height: 420px; top: 200px; left: 320px;">
     <div class="title-bar">F:\Interactive_Experiments</div>
-    <div class="window-content">
-        <h2>Interactive Design</h2>
-        <p>An interactive piece.</p><hr>
-        <div class="portfolio-item video-item">
-            <h3>Interactive Demo</h3>
-            <video controls width="100%" height="300">
-                <source src="inter/inter.mov" type="video/quicktime"> <!-- MOV might not work in all browsers -->
-                <source src="inter/inter.mp4" type="video/mp4"> <!-- Add MP4 fallback if you convert it -->
-                Your browser does not support the video tag. Consider converting .mov to .mp4 for better compatibility.
-            </video>
+    <div class="window-content"> <h2>Interactive Design</h2> <p>An interactive piece.</p><hr>
+        <div class="portfolio-item video-item"> <h3>Interactive Demo</h3>
+            <video controls width="100%" height="300"> <source src="inter/inter.mov" type="video/quicktime"> <source src="inter/inter.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
         </div>
     </div>
   </div>
-
-   <div class="window" id="recycleBinWindow" style="width: 500px; height: 400px; top: 220px; left: 350px;">
+  <div class="window" id="recycleBinWindow" style="width: 500px; height: 400px; top: 220px; left: 350px;">
     <div class="title-bar">Recycle Bin</div>
-    <div class="window-content">
-        <h2>Recycle Bin</h2>
-        <p>Some "recovered" items and concepts...</p><hr>
+    <div class="window-content"> <h2>Recycle Bin - Recovered Ideas</h2> <p>Some past concepts and explorations...</p><hr>
         <div class="portfolio-item"><img src="recycle/1.jpg" alt="Recycled Item 1" class="portfolio-image"></div> <hr>
         <div class="portfolio-item"><img src="recycle/2.jpg" alt="Recycled Item 2" class="portfolio-image"></div> <hr>
         <div class="portfolio-item"><img src="recycle/3.jpg" alt="Recycled Item 3" class="portfolio-image"></div> <hr>
@@ -219,72 +167,33 @@
         <div class="portfolio-item"><img src="recycle/10.jpg" alt="Recycled Item 10" class="portfolio-image"></div>
     </div>
   </div>
-
-   <div class="window" id="resumeWindow" style="width: 500px; height: 600px; top: 90px; left: 120px;">
+  <div class="window" id="resumeWindow" style="width: 500px; height: 600px; top: 90px; left: 120px;">
     <div class="title-bar">My Documents - Resume_Rugved_Shinde.pdf</div>
-    <div class="window-content">
-        <p>You can view or download my resume: <a href="resume.pdf" target="_blank">Rugved_Shinde_Resume.pdf</a></p>
-        <iframe src="resume.pdf" width="100%" height="calc(100% - 40px)" style="border:none; margin-top:10px;"></iframe>
-    </div>
+    <div class="window-content"> <p>You can view or download my resume: <a href="resume.pdf" target="_blank">Rugved_Shinde_Resume.pdf</a></p> <iframe src="resume.pdf" width="100%" height="calc(100% - 40px)" style="border:none; margin-top:10px;"></iframe> </div>
   </div>
   <div class="window" id="computerWindow" style="width: 380px; height: 300px; top: 200px; left: 50px;">
     <div class="title-bar">My Computer</div>
-    <div class="window-content">
-      <p><strong>File System:</strong></p>
-      <div class="drive" data-window="posterWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Posters</div>
-      <div class="drive" data-window="logoBrandingWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Logo_Branding</div>
-      <div class="drive" data-window="videoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> E:\Video_Edits</div>
-      <div class="drive" data-window="interactiveDesignWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> F:\Interactive_Experiments</div>
-      <hr style="margin: 10px 0;"><p><strong>Other Locations:</strong></p>
-      <div class="drive" data-window="photoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> D:\Photography_Rugved</div>
-      <div class="drive" data-window="resumeWindow"><img src="notepad.png" alt="document icon" class="drive-icon"/> My Documents (Resume)</div>
-    </div>
+    <div class="window-content"> <p><strong>File System:</strong></p> <div class="drive" data-window="posterWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Posters</div> <div class="drive" data-window="logoBrandingWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Logo_Branding</div> <div class="drive" data-window="videoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> E:\Video_Edits</div> <div class="drive" data-window="interactiveDesignWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> F:\Interactive_Experiments</div> <hr style="margin: 10px 0;"><p><strong>Other Locations:</strong></p> <div class="drive" data-window="photoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> D:\Photography_Rugved</div> <div class="drive" data-window="resumeWindow"><img src="notepad.png" alt="document icon" class="drive-icon"/> My Documents (Resume)</div> </div>
   </div>
   <div class="window" id="paintWindow" style="width: 340px; height: 300px; top: 220px; left: 80px;">
     <div class="title-bar">untitled - Paint</div>
-    <div class="window-content">
-      <canvas id="paintCanvas" width="300" height="200" style="border: 1px solid #000; background: white;"></canvas>
-      <p style="font-size:11px; color: #555; margin-top: 5px;">Simple paint. Click and drag to draw.</p>
-    </div>
+    <div class="window-content"> <canvas id="paintCanvas" width="300" height="200" style="border: 1px solid #000; background: white;"></canvas> <p style="font-size:11px; color: #555; margin-top: 5px;">Simple paint. Click and drag to draw.</p> </div>
   </div>
   <div class="window window-auto-height" id="minesweeperWindow" style="top: 150px; left: 400px;">
     <div class="title-bar">Minesweeper</div>
-    <div class="window-content">
-      <div id="mine-controls"><button id="minesweeperResetButton">😊</button></div>
-      <div id="mine-grid"></div>
-    </div>
+    <div class="window-content"> <div id="mine-controls"><button id="minesweeperResetButton">😊</button></div> <div id="mine-grid"></div> </div>
   </div>
   <div class="window" id="contactWindow" style="width: 320px; height: auto; top: 130px; left: 180px;">
     <div class="title-bar">Contact Rugved</div>
-    <div class="window-content">
-      <p>Let's connect!</p>
-      <p><strong>Email:</strong> <a href="mailto:19rugvedshinde@gmail.com">19rugvedshinde@gmail.com</a></p>
-      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/bangerb0ng/" target="_blank">@bangerb0ng</a></p>
-      <p><strong>LinkedIn:</strong> <a href="YOUR_LINKEDIN_URL_HERE" target="_blank">Your LinkedIn Profile</a></p> <!-- Add your LinkedIn URL -->
-    </div>
+    <div class="window-content"> <p>Let's connect!</p> <p><strong>Email:</strong> <a href="mailto:19rugvedshinde@gmail.com">19rugvedshinde@gmail.com</a></p> <p><strong>Instagram:</strong> <a href="https://www.instagram.com/bangerb0ng/" target="_blank">@bangerb0ng</a></p> <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/" target="_blank">Your LinkedIn Profile</a></p> </div>
   </div>
-
-  <!-- Sticky Note - Content Updated -->
   <div id="sticky-note" class="draggable-desktop-element">
     <div class="sticky-note-header">Software I Use:</div>
-    <ul>
-      <li>Adobe After Effects</li>
-      <li>Adobe Photoshop</li>
-      <li>Adobe Premiere Pro</li>
-      <li>Procreate</li>
-      <li>TouchDesigner</li>
-      <li>DaVinci Resolve</li>
-    </ul>
+    <ul> <li>Adobe After Effects</li> <li>Adobe Photoshop</li> <li>Adobe Premiere Pro</li> <li>Procreate</li> <li>TouchDesigner</li> <li>DaVinci Resolve</li> </ul>
   </div>
-
   <div id="shutdown-overlay">
-    <div id="shutdown-message">
-        <p>It is now safe to turn off <br> your imagination.</p>
-        <button id="restart-button">Restart</button>
-    </div>
+    <div id="shutdown-message"> <p>It is now safe to turn off <br> your imagination.</p> <button id="restart-button">Restart Portfolio</button> </div>
   </div>
-
-
   <script src="script.js"></script>
 </body>
 </html>
