@@ -5,14 +5,7 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 #wallpaper-enhancement { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -9; background-image: linear-gradient(rgba(120, 120, 120, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 120, 120, 0.03) 1px, transparent 1px); background-size: 20px 20px; pointer-events: none; }
 
 /* --- Boot Screen --- */
-#boot-screen {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: #000000; color: #A0A0A0;
-    z-index: 50000; /* Highest */
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    font-family: 'Lucida Console', monospace;
-}
+#boot-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; color: #A0A0A0; z-index: 50000; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Lucida Console', monospace; opacity: 1; transition: opacity 1s ease-in-out; }
 .boot-logo { text-align: center; margin-bottom: 30px; }
 .boot-logo-win { font-size: 28px; color: #fff; }
 .boot-logo-xp { font-size: 32px; color: #E2710D; font-weight: bold; margin-left:2px; position: relative; top: 2px; }
@@ -22,7 +15,6 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 @keyframes bootLoad { 0% { width: 0%; } 100% { width: 100%; } }
 .boot-text { font-size: 14px; }
 
-
 /* --- Desktop Title --- */
 #desktop-title-container { position: absolute; top: 15vh; left: 50%; transform: translateX(-50%); text-align: center; z-index: 5; width: 90%; pointer-events: none; }
 .desktop-title-line1 { font-family: 'Press Start 2P', 'Courier New', monospace; font-size: 28px; color: white; text-shadow: 2px 2px 0px #000000, 0 0 8px rgba(0,0,0,0.5); margin-bottom: 18px; letter-spacing: 1.5px; line-height: 1.2; }
@@ -30,13 +22,7 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 
 /* --- Desktop Icons & Visual Fillers --- */
 #desktop-icons-container { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 30px); overflow: hidden; z-index: 8; }
-.icon {
-  text-align: center; width: 90px; color: white; text-shadow: 1px 1px 1px black;
-  padding: 5px; border-radius: 3px; z-index: 10; cursor: default; box-sizing: border-box;
-  position: absolute; /* JS will set top/left for desktop */
-  opacity: 0; /* Initially hidden, JS will make them visible after positioning */
-  transition: opacity 0.3s ease-in-out;
-}
+.icon { text-align: center; width: 90px; color: white; text-shadow: 1px 1px 1px black; padding: 5px; border-radius: 3px; z-index: 10; cursor: default; box-sizing: border-box; position: absolute; opacity: 0; transition: opacity 0.3s ease-in-out; }
 .icon.positioned { opacity: 1; }
 .icon:hover { background: rgba(80, 120, 220, 0.4); }
 .icon:active { background: rgba(60, 100, 200, 0.5); }
@@ -45,24 +31,13 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 .icon p { margin: 4px 0 0 0; font-size: 12px; word-wrap: break-word; word-break: break-all; pointer-events: none; }
 .is-dragging { opacity: 0.8 !important; cursor: move !important; }
 
-.desktop-file-item {
-  position: absolute; width: 80px; text-align: center; color: white;
-  text-shadow: 1px 1px 1px black; z-index: 9; cursor: default;
-  opacity: 0; transition: opacity 0.5s 0.5s ease-in-out; /* Fade in after icons */
-}
+.desktop-file-item { position: absolute; width: 80px; text-align: center; color: white; text-shadow: 1px 1px 1px black; z-index: 9; cursor: default; opacity: 0; transition: opacity 0.5s 0.5s ease-in-out; }
 .desktop-file-item.positioned { opacity: 1; }
 .desktop-file-item img { width: 40px; height: 40px; opacity: 0.7; }
 .desktop-file-item span { display: block; font-size: 11px; margin-top: 2px; }
 
 /* --- Sticky Note --- */
-#sticky-note {
-  position: absolute; width: 260px; min-height: 200px; background: #FFFFA0;
-  padding: 15px 20px 20px 20px; box-shadow: 6px 6px 10px rgba(33,33,33,.7);
-  transform: rotate(1.5deg); font-family: 'Kalam', 'Comic Sans MS', cursive;
-  z-index: 11; border: 1px solid #E6E68A;
-  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out; cursor: default;
-  opacity: 0;
-}
+#sticky-note { position: absolute; width: 260px; min-height: 200px; background: #FFFFA0; padding: 15px 20px 20px 20px; box-shadow: 6px 6px 10px rgba(33,33,33,.7); transform: rotate(1.5deg); font-family: 'Kalam', 'Comic Sans MS', cursive; z-index: 11; border: 1px solid #E6E68A; transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out; cursor: default; opacity: 0; }
 #sticky-note.positioned { opacity: 1; transition: opacity 0.5s 0.2s ease-in-out; }
 #sticky-note:hover:not(.is-dragging) { transform: rotate(0deg) scale(1.03); z-index: 12; box-shadow: 8px 8px 12px rgba(33,33,33,.7); }
 .sticky-note-header { font-size: 18px; font-weight: 700; color: #4a4a4a; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px dashed #C0C060; text-align: center; }
@@ -87,7 +62,7 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 .window-content { padding: 10px; background: white; height: calc(100% - 28px); box-sizing: border-box; overflow: auto; border: 1px solid #808080; border-top-color: #404040; border-left-color: #404040; border-bottom-color: #FFFFFF; border-right-color: #FFFFFF; }
 .window.window-auto-height { width: auto; height: auto; }
 .window.window-auto-height > .window-content { height: auto; }
-.portfolio-item.video-item video { margin-bottom: 10px; max-width: 100%; } /* Ensure videos are responsive */
+.portfolio-item.video-item video { margin-bottom: 10px; max-width: 100%; }
 
 /* --- Taskbar & Start Menu --- */
 #taskbar { position: fixed; bottom: 0; left: 0; width: 100%; height: 30px; background: linear-gradient(to bottom, #3b77ea 0%, #245edc 100%); border-top: 1px solid #4c87ed; color: white; display: flex; align-items: center; font-size: 12px; font-family: 'Tahoma', sans-serif; padding: 0; box-sizing: border-box; z-index: 20000; }
@@ -131,54 +106,50 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 #paintCanvas { cursor: crosshair; }
 .portfolio-item { margin-bottom: 25px; }
 .portfolio-item h3 { font-size: 16px; color: #333; margin-top: 0; margin-bottom: 8px; font-family: 'Tahoma', sans-serif;}
-.portfolio-image { max-width: 95%; /* Slightly less than 100% to prevent touching window edge */ height: auto; border: 1px solid #b0b0b0; display: block; margin-bottom: 8px; margin-left: auto; margin-right: auto; } /* Center image */
+.portfolio-image { max-width: 95%; height: auto; border: 1px solid #b0b0b0; display: block; margin-bottom: 8px; margin-left: auto; margin-right: auto; }
+.portfolio-image-small { /* For recycle bin */
+    max-width: 100px; /* Smaller images */
+    margin-left: 5px; margin-right: 5px; margin-bottom: 5px;
+    display: inline-block; /* Allow them to flow side-by-side if space */
+    border: 1px solid #ccc;
+}
+#recycleBinWindow .window-content { text-align: center; } /* Center small images in recycle bin */
 .portfolio-description { font-size: 13px; line-height: 1.5; color: #444; text-align: center; }
 .window-content hr { border: 0; height: 1px; background: #ccc; margin: 20px 0; }
-.video-item video { max-width: 100%; border: 1px solid #ccc; background: black;}
 
 /* --- Shutdown Overlay --- */
-#shutdown-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000080; z-index: 30000; color: white; text-align: center; padding-top: 20vh; font-family: 'Lucida Console', monospace; }
-#shutdown-message p { font-size: 18px; line-height: 1.6; margin-bottom: 40px; }
-#restart-button { padding: 10px 20px; font-size: 16px; background-color: #c0c0c0; border: 2px outset #fff; border-bottom-color: #404040; border-right-color: #404040; cursor: pointer; }
+#shutdown-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000080; z-index: 30000; color: white; text-align: center; padding-top: 30vh; font-family: 'Lucida Console', monospace; display: none; align-items: center; justify-content: center;}
+#shutdown-message { }
+#shutdown-message p { font-size: 20px; line-height: 1.6; margin-bottom: 40px; }
+#restart-button { padding: 10px 25px; font-size: 16px; background-color: #c0c0c0; border: 2px outset #fff; border-bottom-color: #404040; border-right-color: #404040; cursor: pointer; }
 #restart-button:active { border-style: inset; }
 
 
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media (min-width: 769px) { /* DESKTOP VIEW */
-  #desktop-icons-container {} /* JS handles individual icon top/left via their `style` attribute */
+  #desktop-icons-container { /* JS will position icons absolutely within this */ }
   .icon {
-    /* Already position:absolute from base .icon style now */
-    /* JS will set top/left for initial grid layout on desktop */
+    /* position: absolute; set by JS in layoutDesktopElements */
+    /* top, left are set by JS in layoutDesktopElements */
   }
-  #sticky-note { /* Desktop position for sticky note, JS will also help place this */
+  #sticky-note {
+    /* Positioned by JS in layoutDesktopElements for desktop */
     transform: rotate(1.5deg) !important;
     bottom: auto !important; max-height: none !important; overflow-y: visible !important;
   }
 }
 
 @media (max-width: 768px) { /* TABLET VIEW - Flexbox flow for icons */
-  #desktop-icons-container {
-    display: flex !important; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start;
-    padding: 10px; position: absolute !important;
-    top: 70px !important; left: 10px !important; right: 10px !important; bottom: 40px !important;
-    overflow-y: auto !important;
-  }
-  .icon {
-    position: relative !important; top: auto !important; left: auto !important;
-    width: 80px; margin: 10px !important; float: none !important;
-    opacity: 1 !important; /* Ensure visible in flex flow */
-  }
+  #desktop-icons-container { display: flex !important; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start; padding: 10px; position: absolute !important; top: 70px !important; left: 10px !important; right: 10px !important; bottom: 40px !important; overflow-y: auto !important; }
+  .icon { position: relative !important; top: auto !important; left: auto !important; width: 80px; margin: 10px !important; float: none !important; opacity: 1 !important; }
   .icon img { width: 40px; height: 40px; }
   .icon[data-window="minesweeperWindow"] img { width: 48px; height: 48px; }
   .icon p { font-size: 11px; }
   .desktop-file-item { display: none; }
-  #desktop-title-container { top: 8vh; }
-  .desktop-title-line1 { font-size: 22px; } .desktop-title-line2 { font-size: 48px; }
-  .title-bar { font-size: 12px; height: 22px; }
-  .title-bar-button { width: 17px; height: 15px; font-size: 9px; }
+  #desktop-title-container { top: 8vh; } .desktop-title-line1 { font-size: 22px; } .desktop-title-line2 { font-size: 48px; }
+  .title-bar { font-size: 12px; height: 22px; } .title-bar-button { width: 17px; height: 15px; font-size: 9px; }
   .window-content { padding: 8px; height: calc(100% - 26px); }
-  #taskbar-items { overflow-x: auto; }
-  .taskbar-item { max-width: 100px; flex-shrink: 0; font-size: 10px; padding: 0 8px; }
+  #taskbar-items { overflow-x: auto; } .taskbar-item { max-width: 100px; flex-shrink: 0; font-size: 10px; padding: 0 8px; }
   #sticky-note { width: 200px; font-size: 14px; left: auto !important; right: 15px !important; top: 70px !important; transform: rotate(1deg) !important; bottom: auto !important; opacity: 1 !important;}
   .sticky-note-header { font-size: 15px; } #sticky-note li { font-size: 13px; }
   #start-menu { width: 250px; }
@@ -186,16 +157,12 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 
 @media (max-width: 480px) { /* MOBILE VIEW */
   body { overflow-y: auto; }
-  #desktop-icons-container {
-    padding: 10px 5px; justify-content: space-around; height: auto;
-    position: relative !important; margin-top: 15vh !important; margin-bottom: 40px !important;
-  }
+  #desktop-icons-container { padding: 10px 5px; justify-content: space-around; height: auto; position: relative !important; margin-top: 15vh !important; margin-bottom: 40px !important; }
   .icon { width: 75px; margin: 8px !important; opacity: 1 !important; }
   .icon img { width: 38px; height: 38px; }
   .icon[data-window="minesweeperWindow"] img { width: 44px; height: 44px; }
   .icon p { font-size: 10px; margin-top: 2px; }
-  #desktop-title-container { top: 5vh; width: 95%; }
-  .desktop-title-line1 { font-size: 18px; } .desktop-title-line2 { font-size: 36px; }
+  #desktop-title-container { top: 5vh; width: 95%; } .desktop-title-line1 { font-size: 18px; } .desktop-title-line2 { font-size: 36px; }
   .window { min-width: 90vw; left: 5vw !important; top: 5vh !important; }
   .title-bar { font-size: 11px; height: 28px; padding: 2px 4px; }
   .title-bar-button { width: 22px; height: 20px; font-size: 10px; margin-left: 2px;}
