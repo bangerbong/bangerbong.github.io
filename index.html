@@ -89,16 +89,16 @@
       <div class="icon" data-window="videoWindow"> <img src="folder.png" alt="Video Edits Icon"/> <p>Video Edits</p> </div>
       <div class="icon" data-window="interactiveDesignWindow"> <img src="folder.png" alt="Interactive Design Icon"/> <p>Interactive</p> </div>
       <div class="icon" data-window="recycleBinWindow"> <img src="recycle_bin.png" alt="Recycle Bin Icon"/> <p>Recycle Bin</p> </div>
-      <div class="icon" data-window="internetWindow" id="ieIcon"> <img src="ie_icon.png" alt="Internet Explorer Icon"/> <p>Internet</p> </div>
+      <div class="icon" data-window="internetWindow"> <img src="ie_icon.png" alt="Internet Explorer Icon"/> <p>Internet</p> </div>
   </div>
 
   <!-- Windows -->
-  <div class="window" id="aboutWindow" style="width: 350px; height: auto;"> <!-- Default position by JS -->
+  <div class="window" id="aboutWindow" style="width: 350px; height: auto; top: 100px; left: 120px;">
     <div class="title-bar">Notepad - About_Rugved.txt</div>
     <div class="window-content"> <p>Hey, I'm <strong>Rugved Shinde</strong>! A 19-year-old graphic designer diving deep into posters, branding, and visuals that make you look twice (and maybe even a third time!).</p> <p>This portfolio is my creative playground, styled as a tribute to the classic Windows XP interface.</p> <p>Feel free to explore!</p> </div>
   </div>
 
-  <div class="window" id="posterWindow" style="width: 750px; height: 580px;"> <!-- Larger Poster Window -->
+  <div class="window" id="posterWindow" style="width: 70vw; height: 75vh; max-width: 750px; max-height: 550px; top: 130px; left: 160px;">
     <div class="title-bar">C:\My_Work\Posters</div>
     <div class="window-content"> <h2>My Posters</h2> <p>A collection of some of my poster designs.</p> <hr>
         <div class="portfolio-item"><img src="images/poster-1.jpg" alt="ASAP Rocky Poster" class="portfolio-image"><p class="portfolio-description">ASAP Rocky - Pretty Flacko concept.</p></div> <hr>
@@ -118,7 +118,7 @@
     </div>
   </div>
 
-  <div class="window" id="logoBrandingWindow">
+  <div class="window" id="logoBrandingWindow" style="width: 550px; height: 450px; top: 150px; left: 220px;">
     <div class="title-bar">C:\My_Work\Logo_Branding</div>
     <div class="window-content"> <h2>Logo & Branding Projects</h2> <p>Selected logo designs and branding work.</p><hr>
         <div class="portfolio-item"><img src="logo/logo-1.jpg" alt="Logo Design 1" class="portfolio-image"><p class="portfolio-description">Description for Logo 1.</p></div> <hr>
@@ -127,7 +127,7 @@
     </div>
   </div>
 
-  <div class="window" id="photoWindow">
+  <div class="window" id="photoWindow" style="width: 650px; height: 500px; top: 170px; left: 280px;">
     <div class="title-bar">D:\Photography_Rugved</div>
     <div class="window-content"> <h2>Photography</h2> <p>A glimpse into my photography.</p><hr>
         <div class="portfolio-item"><img src="photo/rugved-1.jpg" alt="Photograph 1 by Rugved" class="portfolio-image"></div> <hr>
@@ -139,69 +139,71 @@
     </div>
   </div>
 
-  <div class="window" id="videoWindow">
+  <div class="window" id="videoWindow" style="width: 520px; height: auto; max-height: 600px; top: 190px; left: 340px;">
     <div class="title-bar">E:\Video_Edits</div>
     <div class="window-content"> <h2>Video Edits</h2> <p>Some of my video editing work.</p><hr>
-        <div class="portfolio-item video-item"><h3>Video Edit 1</h3><video controls width="100%"><source src="video/vid1.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
-        <div class="portfolio-item video-item"><h3>Video Edit 2</h3><video controls width="100%"><source src="video/vid2.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
-        <div class="portfolio-item video-item"><h3>Video Edit 3</h3><video controls width="100%"><source src="video/vid3.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
-        <div class="portfolio-item video-item"><h3>Video Edit 4</h3><video controls width="100%"><source src="video/vid4.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+        <div class="portfolio-item video-item"><p>Video Edit 1 Title</p><video controls width="100%" preload="metadata"><source src="video/vid1.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
+        <div class="portfolio-item video-item"><p>Video Edit 2 Title</p><video controls width="100%" preload="metadata"><source src="video/vid2.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
+        <div class="portfolio-item video-item"><p>Video Edit 3 Title</p><video controls width="100%" preload="metadata"><source src="video/vid3.mp4" type="video/mp4">Your browser does not support the video tag.</video></div> <hr>
+        <div class="portfolio-item video-item"><p>Video Edit 4 Title</p><video controls width="100%" preload="metadata"><source src="video/vid4.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
     </div>
   </div>
 
-  <div class="window" id="interactiveDesignWindow">
+  <div class="window" id="interactiveDesignWindow" style="width: 520px; height: 450px; top: 210px; left: 380px;">
     <div class="title-bar">F:\Interactive_Experiments</div>
     <div class="window-content"> <h2>Interactive Design</h2> <p>An interactive piece.</p><hr>
-        <div class="portfolio-item video-item"> <h3>Interactive Demo</h3>
-            <video controls width="100%" height="300"> <source src="inter/inter.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
+        <div class="portfolio-item video-item"> <p>Interactive Demo</p>
+            <video controls width="100%" preload="metadata"> <source src="inter/inter.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
         </div>
     </div>
   </div>
 
-  <div class="window" id="recycleBinWindow">
+  <div class="window" id="recycleBinWindow" style="width: 550px; height: 480px; top: 230px; left: 420px;">
     <div class="title-bar">Recycle Bin</div>
-    <div class="window-content"> <h2>Recycle Bin - Recovered Ideas</h2> <p>Some past concepts and explorations...</p><hr>
-        <div class="portfolio-item"><img src="recycle/1.jpg" alt="Recycled Item 1" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/2.jpg" alt="Recycled Item 2" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/3.jpg" alt="Recycled Item 3" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/4.jpg" alt="Recycled Item 4" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/5.jpg" alt="Recycled Item 5" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/6.jpg" alt="Recycled Item 6" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/7.jpg" alt="Recycled Item 7" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/8.jpg" alt="Recycled Item 8" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/9.jpg" alt="Recycled Item 9" class="portfolio-image-small"></div>
-        <div class="portfolio-item"><img src="recycle/10.jpg" alt="Recycled Item 10" class="portfolio-image-small"></div>
+    <div class="window-content"> <h2>Recycle Bin - Recovered Ideas</h2> <p>Some past concepts and explorations...</p><hr class="portfolio-hr-grid">
+        <div class="recycle-grid">
+            <img src="recycle/1.jpg" alt="Recycled Item 1" class="portfolio-image-grid">
+            <img src="recycle/2.jpg" alt="Recycled Item 2" class="portfolio-image-grid">
+            <img src="recycle/3.jpg" alt="Recycled Item 3" class="portfolio-image-grid">
+            <img src="recycle/4.jpg" alt="Recycled Item 4" class="portfolio-image-grid">
+            <img src="recycle/5.jpg" alt="Recycled Item 5" class="portfolio-image-grid">
+            <img src="recycle/6.jpg" alt="Recycled Item 6" class="portfolio-image-grid">
+            <img src="recycle/7.jpg" alt="Recycled Item 7" class="portfolio-image-grid">
+            <img src="recycle/8.jpg" alt="Recycled Item 8" class="portfolio-image-grid">
+            <img src="recycle/9.jpg" alt="Recycled Item 9" class="portfolio-image-grid">
+            <img src="recycle/10.jpg" alt="Recycled Item 10" class="portfolio-image-grid">
+        </div>
     </div>
   </div>
 
-  <div class="window" id="internetWindow" style="width:400px; height:200px;">
-      <div class="title-bar">Internet Explorer - Placeholder</div>
-      <div class="window-content" style="text-align:center; padding-top:30px;">
-          <img src="ie_icon.png" alt="Internet" style="width:64px; height:64px; margin-bottom:15px;">
-          <p>The internet awaits your adventures!</p>
-          <p>(This link can go to your LinkedIn or other site)</p>
+  <div class="window" id="internetWindow" style="width:400px; height:220px; top: 250px; left: 100px;">
+      <div class="title-bar">Internet Explorer - My Links</div>
+      <div class="window-content" style="text-align:center; padding-top:20px;">
+          <img src="ie_icon.png" alt="Internet" style="width:56px; height:56px; margin-bottom:10px;">
+          <h4>Welcome to the Interwebs!</h4>
+          <p><a href="https://www.instagram.com/bangerb0ng/" target="_blank" class="button-link">Visit my Instagram @bangerb0ng</a></p>
       </div>
   </div>
 
-  <div class="window" id="resumeWindow">
+  <div class="window" id="resumeWindow" style="width: 500px; height: 600px; top: 90px; left: 120px;">
     <div class="title-bar">My Documents - Resume_Rugved_Shinde.pdf</div>
     <div class="window-content"> <p>You can view or download my resume: <a href="resume.pdf" target="_blank">Rugved_Shinde_Resume.pdf</a></p> <iframe src="resume.pdf" width="100%" height="calc(100% - 40px)" style="border:none; margin-top:10px;"></iframe> </div>
   </div>
-  <div class="window" id="computerWindow">
+  <div class="window" id="computerWindow" style="width: 380px; height: 300px; top: 200px; left: 50px;">
     <div class="title-bar">My Computer</div>
     <div class="window-content"> <p><strong>File System:</strong></p> <div class="drive" data-window="posterWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Posters</div> <div class="drive" data-window="logoBrandingWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> C:\My_Work\Logo_Branding</div> <div class="drive" data-window="videoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> E:\Video_Edits</div> <div class="drive" data-window="interactiveDesignWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> F:\Interactive_Experiments</div> <hr style="margin: 10px 0;"><p><strong>Other Locations:</strong></p> <div class="drive" data-window="photoWindow"><img src="folder.png" alt="folder icon" class="drive-icon"/> D:\Photography_Rugved</div> <div class="drive" data-window="resumeWindow"><img src="notepad.png" alt="document icon" class="drive-icon"/> My Documents (Resume)</div> </div>
   </div>
-  <div class="window" id="paintWindow">
+  <div class="window" id="paintWindow" style="width: 340px; height: 300px; top: 220px; left: 80px;">
     <div class="title-bar">untitled - Paint</div>
     <div class="window-content"> <canvas id="paintCanvas" width="300" height="200" style="border: 1px solid #000; background: white;"></canvas> <p style="font-size:11px; color: #555; margin-top: 5px;">Simple paint. Click and drag to draw.</p> </div>
   </div>
-  <div class="window window-auto-height" id="minesweeperWindow">
+  <div class="window window-auto-height" id="minesweeperWindow" style="top: 150px; left: 400px;">
     <div class="title-bar">Minesweeper</div>
     <div class="window-content"> <div id="mine-controls"><button id="minesweeperResetButton">😊</button></div> <div id="mine-grid"></div> </div>
   </div>
-  <div class="window" id="contactWindow">
+  <div class="window" id="contactWindow" style="width: 320px; height: auto; top: 130px; left: 180px;">
     <div class="title-bar">Contact Rugved</div>
-    <div class="window-content"> <p>Let's connect!</p> <p><strong>Email:</strong> <a href="mailto:19rugvedshinde@gmail.com">19rugvedshinde@gmail.com</a></p> <p><strong>Instagram:</strong> <a href="https://www.instagram.com/bangerb0ng/" target="_blank">@bangerb0ng</a></p> <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/" target="_blank">Your LinkedIn Profile</a></p> </div>
+    <div class="window-content"> <p>Let's connect!</p> <p><strong>Email:</strong> <a href="mailto:19rugvedshinde@gmail.com">19rugvedshinde@gmail.com</a></p> <p><strong>Instagram:</strong> <a href="https://www.instagram.com/bangerb0ng/" target="_blank">@bangerb0ng</a></p> </div>
   </div>
   <div id="sticky-note" class="draggable-desktop-element">
     <div class="sticky-note-header">Software I Use:</div>
