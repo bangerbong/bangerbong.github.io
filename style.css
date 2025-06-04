@@ -26,7 +26,7 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 #sticky-note li { font-size: 15px; color: #2c2c2c; margin-bottom: 7px; line-height: 1.5; }
 #sticky-note li::before { content: "▹ "; color: #666; }
 
-/* --- Windows (Same as previous full CSS) --- */
+/* --- Windows --- */
 .window { position: absolute; min-width: 200px; min-height: 150px; background: #ECE9D8; border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-bottom: 1px solid #000000; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); display: none; padding: 2px; box-sizing: border-box; z-index: 100; max-width: 100vw; max-height: calc(100vh - 30px); }
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.95); } }
@@ -75,13 +75,13 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 
 @media (min-width: 769px) { /* DESKTOP VIEW */
   #desktop-icons-container {
-    /* No specific layout needed here as children are absolute and have inline styles */
+    /* No specific layout needed here as children have inline styles for top/left */
   }
   .icon {
     position: absolute !important; /* Icons are absolutely positioned by their inline styles in HTML */
+    /* Top and Left are now set via inline style in HTML for desktop initial state */
     margin: 0 !important;         /* No margin for absolutely positioned items */
     float: none !important;       /* Ensure no float interference */
-    /* Top and Left are now set via inline style in HTML for desktop initial state */
   }
   #sticky-note { /* Desktop position for sticky note */
     top: 60px !important;
@@ -138,5 +138,4 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
   #clock { font-size: 10px; } #clock-container { padding: 0 3px; }
   #sticky-note { width: 85vw; top: auto !important; bottom: 35px !important; left: 50% !important; transform: translateX(-50%) rotate(0deg) !important; max-height: 120px; overflow-y: auto; font-size: 12px; padding: 8px; }
   .sticky-note-header { font-size: 13px; } #sticky-note li { font-size: 11px; margin-bottom: 4px;}
-}
 }
