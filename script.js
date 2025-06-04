@@ -124,19 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
             hasMovedSignificantly = false;
             e.preventDefault(); 
             const computedStyle = window.getComputedStyle(element);
-            // If the element isn't already 'absolute' (e.g. it's in flex flow on mobile, or static/relative from CSS for desktop before !important)
-            // capture its current visual position based on getBoundingClientRect and scroll offsets,
-            // then switch it to 'absolute'.
             if (computedStyle.position !== 'absolute') {
                 const rect = element.getBoundingClientRect();
                 element.style.left = `${rect.left + window.scrollX}px`;
                 element.style.top = `${rect.top + window.scrollY}px`;
-                element.style.position = 'absolute'; // Make it absolute for dragging
+                element.style.position = 'absolute';
             }
-            // Now that it's absolute, or was already, calculate offset from its current top/left
             offsetX = e.clientX - element.offsetLeft;
             offsetY = e.clientY - element.offsetTop;
-            
             highestDesktopZ++; 
             element.style.zIndex = highestDesktopZ;
             element.classList.add('is-dragging');
