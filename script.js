@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskbarItemsContainer = document.getElementById('taskbar-items');
     const draggableDesktopElements = document.querySelectorAll('.icon, .draggable-desktop-element');
 
-    let highestZ = 100; // For window stacking
-    let highestDesktopZ = 20; // For desktop elements like icons and sticky notes
+    let highestZ = 100; 
+    let highestDesktopZ = 20;
     const openWindowsMap = new Map();
 
-    // --- Window Management ---
     function setActiveWindow(win) {
         if (!win) return;
         highestZ++;
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function openWindowById(winId) {
         const win = document.getElementById(winId);
         if (!win) return;
-
         let windowTitle = 'Window';
         const titleBar = win.querySelector('.title-bar');
         if (titleBar) {
@@ -33,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (foundTitle) windowTitle = foundTitle;
-            else { // Fallback title extraction
+            else {
                 const tempDiv = document.createElement('div'); tempDiv.innerHTML = titleBar.innerHTML;
                 const buttons = tempDiv.querySelector('.title-bar-buttons');
                 if (buttons) buttons.remove();
@@ -43,26 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (win.classList.contains('is-closing')) {
             win.classList.remove('is-closing');
-            if (win.onanimationend) win.onanimationend = null; // Clear previous animation listener
+            if (win.onanimationend) win.onanimationend = null;
         }
-        
         if (win.style.display === 'block' && !win.classList.contains('is-opening')) {
-             setActiveWindow(win); return; // Already open, just activate
+             setActiveWindow(win); return;
         }
-
         win.classList.add('is-opening'); setActiveWindow(win);
         createTaskbarItem(win.id, windowTitle);
         win.onanimationend = (e) => {
             if (e.animationName === 'fadeIn' && win.classList.contains('is-opening')) {
                 win.classList.remove('is-opening'); win.style.display = 'block';
             }
-            win.onanimationend = null; // Clear listener after use
+            win.onanimationend = null;
         };
-        setTimeout(() => { // Fallback if animationend doesn't fire
+        setTimeout(() => {
             if (win.classList.contains('is-opening')) {
                 win.classList.remove('is-opening'); win.style.display = 'block';
             }
-        }, 250); // Animation duration + buffer
+        }, 250);
     }
 
     function closeWindow(win) {
@@ -74,17 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 win.style.display = 'none'; win.classList.remove('is-closing');
                 removeTaskbarItem(winId);
             }
-            win.onanimationend = null; // Clear listener
+            win.onanimationend = null;
         };
-        setTimeout(() => { // Fallback
+        setTimeout(() => {
             if (win.classList.contains('is-closing')) {
                 win.style.display = 'none'; win.classList.remove('is-closing');
                 removeTaskbarItem(winId);
             }
-        }, 200); // Animation duration + buffer
+        }, 200);
     }
 
-    // --- Taskbar Management ---
     function createTaskbarItem(winId, title) {
         if (openWindowsMap.has(winId)) { updateActiveTaskbarItem(winId); return; }
         const item = document.createElement('div');
@@ -107,37 +102,34 @@ document.addEventListener('DOMContentLoaded', () => {
         if (openWindowsMap.size > 0) {
             const lastOpenedWindowId = Array.from(openWindowsMap.keys()).pop();
             updateActiveTaskbarItem(lastOpenedWindowId);
-        } else updateActiveTaskbarItem(null); // No active item
+        } else updateActiveTaskbarItem(null);
     }
     function updateActiveTaskbarItem(activeWinId) {
         taskbarItemsContainer.childNodes.forEach(itemNode => {
-            if (itemNode.nodeType === Node.ELEMENT_NODE) { // Ensure it's an element
+            if (itemNode.nodeType === Node.ELEMENT_NODE) {
                 if (itemNode.dataset.windowId === activeWinId) itemNode.classList.add('active');
                 else itemNode.classList.remove('active');
             }
         });
     }
 
-    // --- Draggable Desktop Elements (Icons, Sticky Note) ---
     draggableDesktopElements.forEach(element => {
         let offsetX, offsetY, isDragging = false;
-        let hasMovedSignificantly = false; // To distinguish drag from click for dblclick
+        let hasMovedSignificantly = false;
         const dragHandle = element; 
 
         dragHandle.addEventListener('mousedown', (e) => {
-            if (e.button !== 0) return; // Only left click
+            if (e.button !== 0) return;
             isDragging = true;
-            hasMovedSignificantly = false; // Reset move tracker
+            hasMovedSignificantly = false;
             e.preventDefault(); 
-
             const computedStyle = window.getComputedStyle(element);
             if (computedStyle.position !== 'absolute') {
                 const rect = element.getBoundingClientRect();
-                element.style.left = `${rect.left + window.scrollX}px`;
-                element.style.top = `${rect.top + window.scrollY}px`;
+                element.style.left = `${rect.left + window.scrollX}px`; // Add scrollX
+                element.style.top = `${rect.top + window.scrollY}px`;   // Add scrollY
                 element.style.position = 'absolute';
             }
-            
             offsetX = e.clientX - element.offsetLeft;
             offsetY = e.clientY - element.offsetTop;
             highestDesktopZ++; 
@@ -147,20 +139,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            // Check if mouse moved more than a few pixels to qualify as a "drag" vs a "click"
-            if (Math.abs(e.clientX - (element.offsetLeft + offsetX)) > 3 || Math.abs(e.clientY - (element.offsetTop + offsetY)) > 3) {
+            if (!hasMovedSignificantly && (Math.abs(e.clientX - (element.offsetLeft + offsetX)) > 3 || Math.abs(e.clientY - (element.offsetTop + offsetY)) > 3)) {
                 hasMovedSignificantly = true;
             }
-
             let newLeft = e.clientX - offsetX;
             let newTop = e.clientY - offsetY;
-            const taskbarHeight = document.getElementById('taskbar') ? document.getElementById('taskbar').offsetHeight : 30;
+            const taskbarHeight = document.getElementById('taskbar')?.offsetHeight || 30;
             const elWidth = element.offsetWidth;
             const elHeight = element.offsetHeight;
-            
             newLeft = Math.max(0, Math.min(window.innerWidth - elWidth, newLeft));
             newTop = Math.max(0, Math.min(window.innerHeight - elHeight - taskbarHeight, newTop));
-            
             element.style.left = newLeft + 'px';
             element.style.top = newTop + 'px';
         });
@@ -174,27 +162,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (element.classList.contains('icon')) {
             element.addEventListener('dblclick', () => {
-                if (!hasMovedSignificantly && element.dataset.window) { // Only open if not a significant drag
+                if (!hasMovedSignificantly && element.dataset.window) {
                     openWindowById(element.dataset.window);
                 }
             });
         }
     });
 
-    // --- Initialize Windows (draggable title bar, close button) ---
     windows.forEach(win => {
         const bar = win.querySelector('.title-bar');
         if (!bar) return;
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('title-bar-buttons');
         const closeBtn = document.createElement('button');
-        closeBtn.classList.add('title-bar-button'); closeBtn.innerHTML = 'r'; // Marlett 'r' for close
+        closeBtn.classList.add('title-bar-button'); closeBtn.innerHTML = 'r';
         closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeWindow(win); });
         buttonContainer.appendChild(closeBtn); bar.appendChild(buttonContainer);
-
         let offsetX, offsetY, isWindowDragging = false;
         bar.addEventListener('mousedown', (e) => {
-            if (e.target.closest('.title-bar-button')) return; // Don't drag if clicking button
+            if (e.target.closest('.title-bar-button')) return;
             isWindowDragging = true;
             offsetX = e.clientX - win.offsetLeft; offsetY = e.clientY - win.offsetTop;
             setActiveWindow(win);
@@ -202,16 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mousemove', (e) => {
             if (!isWindowDragging) return;
             let newLeft = e.clientX - offsetX; let newTop = e.clientY - offsetY;
-            const taskbarHeight = document.getElementById('taskbar') ? document.getElementById('taskbar').offsetHeight : 30;
+            const taskbarHeight = document.getElementById('taskbar')?.offsetHeight || 30;
             newLeft = Math.max(0, Math.min(window.innerWidth - win.offsetWidth, newLeft));
             newTop = Math.max(0, Math.min(window.innerHeight - win.offsetHeight - taskbarHeight, newTop));
             win.style.left = newLeft + 'px'; win.style.top = newTop + 'px';
         });
         document.addEventListener('mouseup', () => { isWindowDragging = false; });
-        win.addEventListener('mousedown', () => setActiveWindow(win), true); // Bring to front on any click
+        win.addEventListener('mousedown', () => setActiveWindow(win), true);
     });
 
-    // --- Clock ---
     function updateClock() {
         if (clockElement) {
             const now = new Date();
@@ -220,32 +205,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // --- My Computer Folder Navigation ---
     document.querySelectorAll('.drive').forEach(drive => {
         drive.addEventListener('click', () => openWindowById(drive.dataset.window));
     });
 
-    // --- Paint App ---
     const canvas = document.getElementById('paintCanvas');
     if (canvas) {
         const ctx = canvas.getContext('2d'); let painting = false;
         ctx.lineWidth = 3; ctx.lineCap = 'round';
         function startPosition(e) { painting = true; draw(e); }
-        function endPosition() { painting = false; ctx.beginPath(); /* Reset path for next stroke */ }
+        function endPosition() { painting = false; ctx.beginPath(); }
         function draw(e) {
             if (!painting) return;
-            const rect = canvas.getBoundingClientRect(); // For accurate offset
+            const rect = canvas.getBoundingClientRect();
             const x = e.clientX - rect.left; const y = e.clientY - rect.top;
             ctx.strokeStyle = 'black'; ctx.lineTo(x, y); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(x, y); // Prepare for next segment
+            ctx.beginPath(); ctx.moveTo(x, y);
         }
         canvas.addEventListener('mousedown', startPosition);
         canvas.addEventListener('mouseup', endPosition);
-        canvas.addEventListener('mouseout', endPosition); // Stop if mouse leaves canvas
+        canvas.addEventListener('mouseout', endPosition);
         canvas.addEventListener('mousemove', draw);
     }
 
-    // --- Minesweeper ---
     const gridElement = document.getElementById('mine-grid');
     const resetButton = document.getElementById('minesweeperResetButton');
     const M_SIZE = 9, M_MINE_COUNT = 10, M_CELL_SIZE_PX = 24;
@@ -317,16 +299,14 @@ document.addEventListener('DOMContentLoaded', () => {
         m_gameOver = true;
         if (resetButton) resetButton.textContent = isWin ? '😎' : '😵';
         m_cells.forEach(cell => {
-            if (cell.mine && !cell.revealed) { // Only reveal unrevealed mines
+            if (cell.mine && !cell.revealed) {
                 if (!isWin && !cell.flagged) cell.el.textContent = '💣';
-                if (isWin && !cell.flagged) cell.el.textContent = '🚩'; // Auto-flag remaining on win
+                if (isWin && !cell.flagged) cell.el.textContent = '🚩';
             }
-            if (!cell.mine && cell.flagged && !isWin) { // Incorrectly flagged
+            if (!cell.mine && cell.flagged && !isWin) {
                 cell.el.textContent = '❌';
             }
         });
-        // Optional: alert for game over/win after a short delay
-        // setTimeout(() => alert(isWin ? "Congratulations! You won!" : "Game Over! You hit a mine."), 100);
     }
     function checkWinCondition() {
         if (m_gameOver) return;
