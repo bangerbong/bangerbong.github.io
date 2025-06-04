@@ -1,76 +1,16 @@
 /* style.css */
 /* --- Global & Base --- */
-body {
-  margin: 0;
-  font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif;
-  color: black;
-  overflow: hidden;
-  user-select: none;
-  background-color: #008080;
-}
-
-#wallpaper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -10;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif; color: black; overflow: hidden; user-select: none; background-color: #008080; }
+#wallpaper { position: fixed; top: 0; left: 0; z-index: -10; width: 100%; height: 100%; object-fit: cover; }
 
 /* --- Desktop Title --- */
-#desktop-title-container {
-  position: absolute;
-  top: 10vh;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  z-index: 5;
-  width: 90%;
-  pointer-events: none;
-}
-.desktop-title-line1 {
-  font-family: 'Press Start 2P', 'Courier New', monospace;
-  font-size: 24px;
-  color: white;
-  text-shadow: 2px 2px 0px #000000;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
-  line-height: 1.2;
-}
-.desktop-title-line2 {
-  font-family: 'Press Start 2P', 'Courier New', monospace;
-  font-size: 56px;
-  font-weight: normal;
-  color: white;
-  text-shadow: 3px 3px 0px #000000;
-  line-height: 1.1;
-}
+#desktop-title-container { position: absolute; top: 10vh; left: 50%; transform: translateX(-50%); text-align: center; z-index: 5; width: 90%; pointer-events: none; }
+.desktop-title-line1 { font-family: 'Press Start 2P', 'Courier New', monospace; font-size: 24px; color: white; text-shadow: 2px 2px 0px #000000; margin-bottom: 15px; letter-spacing: 1px; line-height: 1.2; }
+.desktop-title-line2 { font-family: 'Press Start 2P', 'Courier New', monospace; font-size: 56px; font-weight: normal; color: white; text-shadow: 3px 3px 0px #000000; line-height: 1.1; }
 
 /* --- Desktop Icons --- */
-#desktop-icons-container {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: calc(100% - 30px); /* Minus taskbar */
-  overflow: hidden; 
-  z-index: 8;
-}
-
-.icon {
-  text-align: center;
-  width: 90px;
-  color: white;
-  text-shadow: 1px 1px 1px black;
-  padding: 5px;
-  border-radius: 3px;
-  z-index: 10;
-  cursor: default;
-  box-sizing: border-box;
-  /* position and margin are handled by media queries */
-}
+#desktop-icons-container { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 30px); overflow: hidden; z-index: 8; }
+.icon { text-align: center; width: 90px; color: white; text-shadow: 1px 1px 1px black; padding: 5px; border-radius: 3px; z-index: 10; cursor: default; box-sizing: border-box; }
 .icon:hover { background: rgba(80, 120, 220, 0.4); }
 .icon:active { background: rgba(60, 100, 200, 0.5); }
 .icon img { width: 48px; height: 48px; pointer-events: none; }
@@ -79,13 +19,7 @@ body {
 .is-dragging { opacity: 0.8; cursor: move !important; }
 
 /* --- Sticky Note --- */
-#sticky-note {
-  position: absolute;
-  width: 230px; min-height: 180px; background: #FFFFA0; padding: 12px 18px 18px 18px;
-  box-shadow: 5px 5px 7px rgba(33,33,33,.7); transform: rotate(2deg);
-  font-family: 'Kalam', 'Comic Sans MS', cursive; z-index: 11; border: 1px solid #E6E68A;
-  transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out; cursor: default;
-}
+#sticky-note { position: absolute; width: 230px; min-height: 180px; background: #FFFFA0; padding: 12px 18px 18px 18px; box-shadow: 5px 5px 7px rgba(33,33,33,.7); transform: rotate(2deg); font-family: 'Kalam', 'Comic Sans MS', cursive; z-index: 11; border: 1px solid #E6E68A; transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out; cursor: default; }
 #sticky-note:hover:not(.is-dragging) { transform: rotate(0deg) scale(1.02); z-index: 12; box-shadow: 7px 7px 10px rgba(33,33,33,.7); }
 .sticky-note-header { font-size: 17px; font-weight: 700; color: #4a4a4a; padding-bottom: 8px; margin-bottom: 10px; border-bottom: 1px dashed #C0C060; text-align: center; }
 #sticky-note ul { list-style-type: none; padding-left: 5px; margin: 0; }
@@ -109,8 +43,6 @@ body {
 .window-content { padding: 10px; background: white; height: calc(100% - 28px); box-sizing: border-box; overflow: auto; border: 1px solid #808080; border-top-color: #404040; border-left-color: #404040; border-bottom-color: #FFFFFF; border-right-color: #FFFFFF; }
 .window.window-auto-height { width: auto; height: auto; }
 .window.window-auto-height > .window-content { height: auto; }
-
-/* --- Taskbar (Same as previous full CSS) --- */
 #taskbar { position: fixed; bottom: 0; left: 0; width: 100%; height: 30px; background: linear-gradient(to bottom, #3b77ea 0%, #245edc 100%); border-top: 1px solid #4c87ed; color: white; display: flex; align-items: center; font-size: 12px; font-family: 'Tahoma', sans-serif; padding: 0; box-sizing: border-box; z-index: 20000; }
 #start-button { background: linear-gradient(to bottom, #7bde53 0%, #58c038 40%, #38a81a 100%); border: 1px solid #3c9a1f; border-top-right-radius: 8px; border-bottom-right-radius: 8px; color: white; padding: 0 20px 0 15px; height: calc(100% - 4px); margin: 2px 0 2px 2px; display: flex; align-items: center; cursor: pointer; font-weight: bold; font-style: italic; font-size: 14px; box-shadow: 1px 1px 1px rgba(0,0,0,0.2); text-shadow: 1px 1px 1px rgba(0,0,0,0.3); }
 #start-button:hover { background: linear-gradient(to bottom, #8ff36a 0%, #6ad84a 40%, #49bd2b 100%); }
@@ -121,8 +53,6 @@ body {
 .taskbar-item:hover { filter: brightness(1.1); }
 #clock-container { padding: 0 10px; height: 100%; display: flex; align-items: center; border-left: 1px solid #1c4a8e; margin-right: 2px; background: rgba(0,0,0,0.1); }
 #clock { font-size: 11px; }
-
-/* --- Minesweeper, Drives, Portfolio Items (Same as previous full CSS) --- */
 #mine-controls { margin-bottom: 10px; text-align: center; }
 #mine-controls button { width: 30px; height: 30px; font-size: 18px; background: #c0c0c0; border-top: 2px solid #fff; border-left: 2px solid #fff; border-right: 2px solid #7b7b7b; border-bottom: 2px solid #7b7b7b; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
 #mine-controls button:active { border-top-color: #7b7b7b; border-left-color: #7b7b7b; border-right-color: #fff; border-bottom-color: #fff; }
@@ -143,39 +73,19 @@ body {
 
 /* --- RESPONSIVE ADJUSTMENTS --- */
 
-@media (min-width: 769px) { /* DESKTOP VIEW - ABSOLUTE POSITIONING FOR ICONS */
+@media (min-width: 769px) { /* DESKTOP VIEW */
   #desktop-icons-container {
-    /* Container itself does not need display:grid or flex for absolute children */
-    /* It's mainly a bounding box for JS drag constraints */
+    /* No specific layout needed here as children are absolute and have inline styles */
   }
-
-  .icon { /* This is the KEY CHANGE for desktop initial icon positions */
-    position: absolute !important;
-    margin: 0 !important; /* No margin for absolutely positioned items */
-    float: none !important; /* No float */
+  .icon {
+    position: absolute !important; /* Icons are absolutely positioned by their inline styles in HTML */
+    margin: 0 !important;         /* No margin for absolutely positioned items */
+    float: none !important;       /* Ensure no float interference */
+    /* Top and Left are now set via inline style in HTML for desktop initial state */
   }
-
-  /* POSITIONS BASED ON YOUR "DESIRED LAYOUT" IMAGE - Adjust values as needed */
-  /* Row 1 */
-  .icon[data-window="aboutWindow"]         { top: 60px; left: 60px; }
-  .icon[data-window="resumeWindow"]        { top: 60px; left: 170px; }
-  .icon[data-window="computerWindow"]      { top: 60px; left: 280px; }
-  .icon[data-window="contactWindow"]       { top: 60px; left: 390px; }
-
-  /* Row 2 */
-  .icon[data-window="posterWindow"]        { top: 170px; left: 60px; }
-  .icon[data-window="photoWindow"]         { top: 170px; left: 170px; }
-  .icon[data-window="paintWindow"]         { top: 170px; left: 280px; }
-  .icon[data-window="minesweeperWindow"]   { top: 170px; left: 390px; }
-
-  /* Row 3 */
-  .icon[data-window="brandingWindow"]      { top: 280px; left: 60px; }
-  .icon[data-window="videoWindow"]         { top: 280px; left: 170px; }
-  .icon[data-window="wmpWindow"]           { top: 280px; left: 280px; }
-
-  #sticky-note {
+  #sticky-note { /* Desktop position for sticky note */
     top: 60px !important;
-    left: calc(100% - 230px - 60px) !important; /* Approx 60px from right edge */
+    left: calc(100% - 230px - 60px) !important; /* width (230px) and right offset (60px) */
     transform: rotate(2deg) !important;
     bottom: auto !important; max-height: none !important; overflow-y: visible !important;
   }
@@ -183,39 +93,27 @@ body {
 
 @media (max-width: 768px) { /* TABLET VIEW - Flexbox flow for icons */
   #desktop-icons-container {
-    display: flex !important;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    padding: 10px;
-    position: absolute !important;
+    display: flex !important; flex-wrap: wrap; justify-content: flex-start; align-content: flex-start;
+    padding: 10px; position: absolute !important;
     top: 60px !important; left: 10px !important; right: 10px !important; bottom: 40px !important;
     overflow-y: auto !important;
   }
   .icon {
-    position: relative !important;
-    top: auto !important; left: auto !important;
-    width: 80px;
-    margin: 10px !important;
-    float: none !important;
+    position: relative !important; top: auto !important; left: auto !important; /* Override inline style for flow */
+    width: 80px; margin: 10px !important; float: none !important;
   }
   .icon img { width: 40px; height: 40px; }
   .icon[data-window="minesweeperWindow"] img { width: 48px; height: 48px; }
   .icon p { font-size: 11px; }
   #desktop-title-container { top: 5vh; }
-  .desktop-title-line1 { font-size: 20px; }
-  .desktop-title-line2 { font-size: 44px; }
+  .desktop-title-line1 { font-size: 20px; } .desktop-title-line2 { font-size: 44px; }
   .title-bar { font-size: 12px; height: 22px; }
   .title-bar-button { width: 17px; height: 15px; font-size: 9px; }
   .window-content { padding: 8px; height: calc(100% - 26px); }
   #taskbar-items { overflow-x: auto; }
   .taskbar-item { max-width: 100px; flex-shrink: 0; font-size: 10px; padding: 0 8px; }
-  #sticky-note {
-    width: 180px; font-size: 13px; left: auto !important; right: 15px !important; top: 80px !important; transform: rotate(1deg) !important;
-    bottom: auto !important;
-  }
-  .sticky-note-header { font-size: 14px; }
-  #sticky-note li { font-size: 12px; }
+  #sticky-note { width: 180px; font-size: 13px; left: auto !important; right: 15px !important; top: 80px !important; transform: rotate(1deg) !important; bottom: auto !important; }
+  .sticky-note-header { font-size: 14px; } #sticky-note li { font-size: 12px; }
 }
 
 @media (max-width: 480px) { /* MOBILE VIEW */
@@ -223,27 +121,22 @@ body {
   #desktop-icons-container {
     padding: 5px; justify-content: space-around; height: auto;
     position: relative !important; margin-top: 10vh !important; margin-bottom: 40px !important;
+     /* display: flex; is inherited from tablet styles */
   }
-  .icon { width: 75px; margin: 8px !important; }
+  .icon { width: 75px; margin: 8px !important; /* position: relative; is inherited */ }
   .icon img { width: 38px; height: 38px; }
   .icon[data-window="minesweeperWindow"] img { width: 44px; height: 44px; }
   .icon p { font-size: 10px; margin-top: 2px; }
   #desktop-title-container { top: 2vh; width: 95%; }
-  .desktop-title-line1 { font-size: 14px; }
-  .desktop-title-line2 { font-size: 28px; }
+  .desktop-title-line1 { font-size: 14px; } .desktop-title-line2 { font-size: 28px; }
   .window { min-width: 90vw; left: 5vw !important; top: 5vh !important; }
   .title-bar { font-size: 11px; height: 28px; padding: 2px 4px; }
   .title-bar-button { width: 22px; height: 20px; font-size: 10px; margin-left: 2px;}
   .window-content { padding: 8px; height: calc(100% - 32px); }
   #start-button { font-size: 12px; padding: 0 8px 0 10px; }
   .taskbar-item { font-size: 10px; padding: 0 5px; max-width: 70px;}
-  #clock { font-size: 10px; }
-  #clock-container { padding: 0 3px; }
-  #sticky-note {
-    width: 85vw; top: auto !important; bottom: 35px !important;
-    left: 50% !important; transform: translateX(-50%) rotate(0deg) !important;
-    max-height: 120px; overflow-y: auto; font-size: 12px; padding: 8px;
-  }
-  .sticky-note-header { font-size: 13px; }
-  #sticky-note li { font-size: 11px; margin-bottom: 4px;}
+  #clock { font-size: 10px; } #clock-container { padding: 0 3px; }
+  #sticky-note { width: 85vw; top: auto !important; bottom: 35px !important; left: 50% !important; transform: translateX(-50%) rotate(0deg) !important; max-height: 120px; overflow-y: auto; font-size: 12px; padding: 8px; }
+  .sticky-note-header { font-size: 13px; } #sticky-note li { font-size: 11px; margin-bottom: 4px;}
+}
 }
