@@ -124,14 +124,19 @@ document.addEventListener('DOMContentLoaded', () => {
             hasMovedSignificantly = false;
             e.preventDefault(); 
             const computedStyle = window.getComputedStyle(element);
+            // If the element isn't already 'absolute' (e.g. it's in flex flow on mobile),
+            // capture its current visual position based on getBoundingClientRect and scroll offsets,
+            // then switch it to 'absolute'.
             if (computedStyle.position !== 'absolute') {
                 const rect = element.getBoundingClientRect();
-                element.style.left = `${rect.left + window.scrollX}px`; // Add scrollX
-                element.style.top = `${rect.top + window.scrollY}px`;   // Add scrollY
-                element.style.position = 'absolute';
+                element.style.left = `${rect.left + window.scrollX}px`;
+                element.style.top = `${rect.top + window.scrollY}px`;
+                element.style.position = 'absolute'; // Make it absolute for dragging
             }
+            // Now that it's absolute, or was already, calculate offset from its current top/left
             offsetX = e.clientX - element.offsetLeft;
             offsetY = e.clientY - element.offsetTop;
+            
             highestDesktopZ++; 
             element.style.zIndex = highestDesktopZ;
             element.classList.add('is-dragging');
@@ -139,16 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
+            // Check if mouse moved more than a few pixels to qualify as a "drag" vs a "click"
+            // This check is simplified; a more robust one might compare initial mousedown coords.
             if (!hasMovedSignificantly && (Math.abs(e.clientX - (element.offsetLeft + offsetX)) > 3 || Math.abs(e.clientY - (element.offsetTop + offsetY)) > 3)) {
                 hasMovedSignificantly = true;
             }
+
             let newLeft = e.clientX - offsetX;
             let newTop = e.clientY - offsetY;
             const taskbarHeight = document.getElementById('taskbar')?.offsetHeight || 30;
             const elWidth = element.offsetWidth;
             const elHeight = element.offsetHeight;
+            
             newLeft = Math.max(0, Math.min(window.innerWidth - elWidth, newLeft));
             newTop = Math.max(0, Math.min(window.innerHeight - elHeight - taskbarHeight, newTop));
+            
             element.style.left = newLeft + 'px';
             element.style.top = newTop + 'px';
         });
