@@ -101,8 +101,7 @@ body {
 /* --- Sticky Note --- */
 #sticky-note {
   position: absolute; /* Will be absolutely positioned */
-  top: 15%; /* Initial desktop position */
-  left: 70%; /* Initial desktop position */
+  /* Initial desktop position set in @media query below */
   width: 220px;
   min-height: 180px;
   background: #FFFFA0; /* Classic sticky note yellow */
@@ -288,45 +287,92 @@ body {
 .drive-icon { width: 20px; height: 20px; margin-right: 8px;}
 #paintCanvas { cursor: crosshair; }
 
+/* --- Portfolio Item Styling (inside windows) --- */
+.portfolio-item {
+  margin-bottom: 25px;
+}
+.portfolio-item h3 {
+  font-size: 16px;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-family: 'Tahoma', sans-serif;
+}
+.portfolio-image {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #b0b0b0;
+  display: block;
+  margin-bottom: 8px;
+}
+.portfolio-description {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #444;
+}
+.window-content hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
+
 @media (min-width: 769px) { /* DESKTOP VIEW */
   #desktop-icons-container {
     overflow: hidden; /* No scroll for desktop layout */
   }
+
   .icon {
-    position: absolute; /* Icons are absolutely positioned on desktop */
-    float: none; /* No float for absolute positioning */
-    margin: 0; /* No margin for absolute positioning */
+    position: absolute !important; /* Use !important to ensure it overrides other position rules for desktop */
+    float: none !important;        /* Ensure float is off for absolute positioning */
+    margin: 0 !important;         /* No margin needed for absolute positioning */
   }
-  /* Initial positions for desktop icons (JS drag overrides these) */
-  .icon[data-window="aboutWindow"] { top: 80px; left: 50px; }
-  .icon[data-window="resumeWindow"] { top: 80px; left: 150px; }
-  .icon[data-window="computerWindow"] { top: 80px; left: 250px; }
-  .icon[data-window="contactWindow"] { top: 80px; left: 350px; }
-  .icon[data-window="posterWindow"] { top: 180px; left: 50px; }
-  .icon[data-window="photoWindow"] { top: 180px; left: 150px; }
-  .icon[data-window="paintWindow"] { top: 180px; left: 250px; }
-  .icon[data-window="minesweeperWindow"] { top: 180px; left: 350px; }
-  .icon[data-window="brandingWindow"] { top: 280px; left: 50px; }
-  .icon[data-window="videoWindow"] { top: 280px; left: 150px; }
-  .icon[data-window="wmpWindow"] { top: 280px; left: 250px; }
+
+  /* Initial positions for desktop icons - These are critical */
+  .icon[data-window="aboutWindow"]         { top: 80px; left: 50px; }
+  .icon[data-window="resumeWindow"]        { top: 80px; left: 150px; }
+  .icon[data-window="computerWindow"]      { top: 80px; left: 250px; }
+  .icon[data-window="contactWindow"]       { top: 80px; left: 350px; }
+
+  .icon[data-window="posterWindow"]        { top: 180px; left: 50px; }
+  .icon[data-window="photoWindow"]         { top: 180px; left: 150px; }
+  .icon[data-window="paintWindow"]         { top: 180px; left: 250px; }
+  .icon[data-window="minesweeperWindow"]   { top: 180px; left: 350px; }
+
+  .icon[data-window="brandingWindow"]      { top: 280px; left: 50px; }
+  .icon[data-window="videoWindow"]         { top: 280px; left: 150px; }
+  .icon[data-window="wmpWindow"]           { top: 280px; left: 250px; }
+
+  #sticky-note { /* Initial desktop position for sticky note */
+    top: 15% !important;
+    left: 70% !important;
+    transform: rotate(2deg) !important; /* Keep tilt for desktop */
+    /* Ensure mobile overrides don't affect these: */
+    bottom: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
 }
 
 @media (max-width: 768px) { /* TABLET VIEW */
   #desktop-icons-container {
-    display: flex; /* Icons flow with flexbox */
+    display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Or space-around */
+    justify-content: flex-start;
     align-content: flex-start;
     padding: 10px;
-    /* position: relative; If it should scroll with body */
   }
+
   .icon {
-    position: relative !important; /* Override JS absolute for flex flow */
-    top: auto !important; left: auto !important; /* Override JS for flex flow */
-    float: none; /* Ensure no float */
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    float: none !important;
     width: 75px;
-    margin: 8px;
+    margin: 8px !important;
   }
   .icon img { width: 40px; height: 40px; }
   .icon p { font-size: 11px; }
@@ -338,28 +384,31 @@ body {
   .title-bar { font-size: 12px; height: 22px; }
   .title-bar-button { width: 17px; height: 15px; font-size: 9px; }
   .window-content { padding: 8px; height: calc(100% - 26px); }
-  #taskbar-items { overflow-x: auto; /* Allow horizontal scroll */ }
+  #taskbar-items { overflow-x: auto; }
   .taskbar-item { max-width: 100px; flex-shrink: 0; font-size: 10px; padding: 0 8px; }
-  #sticky-note { width: 180px; font-size: 13px; left: auto; right: 10px; top: 10%; transform: rotate(1deg);}
+  #sticky-note {
+    width: 180px; font-size: 13px; left: auto !important; right: 10px !important; top: 10% !important; transform: rotate(1deg) !important;
+    bottom: auto !important; /* Ensure mobile bottom doesn't interfere */
+  }
   .sticky-note-header { font-size: 14px; }
   #sticky-note li { font-size: 12px; }
 }
 
 @media (max-width: 480px) { /* MOBILE VIEW */
   body {
-    overflow-y: auto; /* Allow body to scroll if content exceeds viewport */
+    overflow-y: auto;
   }
   #desktop-icons-container {
     padding: 5px;
-    justify-content: space-around; /* Evenly space icons */
-    height: auto; /* Let content determine height */
-    position: relative; /* Let it scroll with body */
-    margin-top: 10vh; /* Space below title */
-    margin-bottom: 40px; /* Space above taskbar */
+    justify-content: space-around;
+    height: auto;
+    position: relative;
+    margin-top: 10vh;
+    margin-bottom: 40px;
   }
   .icon {
     width: 70px;
-    margin: 5px;
+    margin: 5px !important;
   }
   .icon img { width: 36px; height: 36px; }
   .icon p { font-size: 10px; margin-top: 2px; }
@@ -369,22 +418,21 @@ body {
   .desktop-title-line2 { font-size: 28px; }
 
   .window {
-    min-width: 90vw; /* Windows take up most of screen width */
-    left: 5vw !important; /* Center roughly, !important might be needed */
-    top: 5vh !important;  /* Position from top, !important might be needed */
+    min-width: 90vw;
+    left: 5vw !important;
+    top: 5vh !important;
   }
-  .title-bar { font-size: 11px; height: 28px; padding: 2px 4px; } /* Taller for tap */
+  .title-bar { font-size: 11px; height: 28px; padding: 2px 4px; }
   .title-bar-button { width: 22px; height: 20px; font-size: 10px; margin-left: 2px;}
-  .window-content { padding: 8px; height: calc(100% - 32px); } /* Adjust for taller title bar */
+  .window-content { padding: 8px; height: calc(100% - 32px); }
 
   #start-button { font-size: 12px; padding: 0 8px 0 10px; }
-  /* #start-button > span_containing_text { display: none; } */ /* If start button has span for text */
   .taskbar-item { font-size: 10px; padding: 0 5px; max-width: 70px;}
   #clock { font-size: 10px; }
   #clock-container { padding: 0 3px; }
   #sticky-note {
-    width: 85vw; top: auto; bottom: 35px; /* Above taskbar */
-    left: 50%; transform: translateX(-50%) rotate(0deg); /* Centered */
+    width: 85vw; top: auto !important; bottom: 35px !important;
+    left: 50% !important; transform: translateX(-50%) rotate(0deg) !important;
     max-height: 120px; overflow-y: auto; font-size: 12px;
     padding: 8px;
   }
