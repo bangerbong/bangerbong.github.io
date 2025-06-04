@@ -22,7 +22,7 @@ body {
 /* --- Desktop Title --- */
 #desktop-title-container {
   position: absolute;
-  top: 10vh;
+  top: 10vh; /* Adjust as needed, or use fixed pixels */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -50,82 +50,86 @@ body {
 
 /* --- Desktop Icons --- */
 #desktop-icons-container {
-  position: absolute; /* Covers most of the screen for icon placement */
-  top: 0;
-  left: 0;
-  width: calc(100% - 20px); /* Full width with some padding */
-  height: calc(100% - 30px - 20px); /* Full height minus taskbar and padding */
+  position: absolute;
+  top: 60px; /* Start below title typically */
+  left: 30px; /* Left padding for the grid */
+  right: 30px; /* Right padding */
+  bottom: 40px; /* Space above taskbar */
   padding: 10px;
-  overflow-y: auto; /* Scroll on mobile if icons overflow */
-  overflow-x: hidden;
-  z-index: 8; /* Above title, below sticky note/windows */
+  overflow: hidden; /* Desktop usually doesn't scroll icons */
+  z-index: 8;
+  /* CSS Grid for Desktop Layout - see @media (min-width: 769px) */
 }
 
 .icon {
-  /* position: absolute; is set by JS on drag or by CSS for desktop media query */
   text-align: center;
-  width: 90px;
+  width: 90px; /* Default width */
   color: white;
   text-shadow: 1px 1px 1px black;
   padding: 5px;
   border-radius: 3px;
-  z-index: 10; /* Base z-index for icons */
-  margin: 10px; /* For mobile flow layout */
-  cursor: default; /* Changes to move on drag */
-  /* float: left; Desktop uses absolute, mobile uses flex */
+  z-index: 10;
+  cursor: default;
+  box-sizing: border-box;
+  /* position, margin, float handled by media queries or JS drag */
 }
 .icon:hover {
-  background: rgba(80, 120, 220, 0.4); /* XP selection blue */
+  background: rgba(80, 120, 220, 0.4);
 }
-.icon:active { /* For dblclick feedback */
+.icon:active {
   background: rgba(60, 100, 200, 0.5);
 }
 .icon img {
-  width: 48px;
+  width: 48px; /* Default icon image size */
   height: 48px;
-  pointer-events: none; /* So img doesn't interfere with drag */
+  pointer-events: none;
+}
+/* Specific for Minesweeper Icon to make it larger */
+.icon[data-window="minesweeperWindow"] img {
+  width: 56px; /* Slightly larger */
+  height: 56px;
 }
 .icon p {
   margin: 4px 0 0 0;
   font-size: 12px;
   word-wrap: break-word;
   word-break: break-all;
-  pointer-events: none; /* So p doesn't interfere with drag */
+  pointer-events: none;
 }
 
-.is-dragging { /* Class added by JS during drag */
+.is-dragging {
     opacity: 0.8;
-    cursor: move !important; /* Force move cursor */
+    cursor: move !important;
 }
 
 /* --- Sticky Note --- */
 #sticky-note {
-  position: absolute; /* Will be absolutely positioned */
-  /* Initial desktop position set in @media query below */
-  width: 220px;
+  position: absolute;
+  width: 230px;
   min-height: 180px;
-  background: #FFFFA0; /* Classic sticky note yellow */
-  padding: 10px 15px 15px 15px;
+  background: #FFFFA0;
+  padding: 12px 18px 18px 18px;
   box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-  transform: rotate(2deg); /* Slight tilt */
-  font-family: 'Kalam', 'Comic Sans MS', cursive; /* Handwritten font */
-  z-index: 11; /* Above icons, below active windows */
-  border: 1px solid #E6E68A; /* Subtle border */
+  transform: rotate(2deg);
+  font-family: 'Kalam', 'Comic Sans MS', cursive;
+  z-index: 11;
+  border: 1px solid #E6E68A;
   transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  cursor: default; /* Changes to move on drag */
+  cursor: default;
+  /* Initial desktop position set in @media query below */
 }
-#sticky-note:hover:not(.is-dragging) { /* Don't apply hover style if currently being dragged */
+#sticky-note:hover:not(.is-dragging) {
   transform: rotate(0deg) scale(1.02);
-  z-index: 12; /* Bring slightly forward on hover */
+  z-index: 12;
   box-shadow: 7px 7px 10px rgba(33,33,33,.7);
 }
 .sticky-note-header {
-  font-size: 16px;
-  font-weight: 700; /* Kalam font has a bold weight */
-  color: #555;
+  font-size: 17px;
+  font-weight: 700;
+  color: #4a4a4a;
   padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px dashed #D0D070;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #C0C060;
   text-align: center;
 }
 #sticky-note ul {
@@ -134,47 +138,34 @@ body {
   margin: 0;
 }
 #sticky-note li {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 6px;
-  line-height: 1.4;
+  font-size: 15px;
+  color: #2c2c2c;
+  margin-bottom: 7px;
+  line-height: 1.5;
 }
 #sticky-note li::before {
-  content: "▹ "; /* Small arrow before list items */
-  color: #777;
+  content: "▹ ";
+  color: #666;
 }
 
 /* --- Windows --- */
 .window {
-  position: absolute;
-  min-width: 200px;
-  min-height: 150px;
-  background: #ECE9D8; /* XP window background color */
-  border-top: 1px solid #FFFFFF;
-  border-left: 1px solid #FFFFFF;
-  border-right: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  display: none; /* Initially hidden */
-  padding: 2px; /* Padding to show the #ECE9D8 frame */
-  box-sizing: border-box;
-  z-index: 100; /* Base z-index for windows, active ones get higher */
-  max-width: 100vw; /* Don't exceed viewport width */
-  max-height: calc(100vh - 30px); /* Don't exceed viewport height minus taskbar */
+  position: absolute; min-width: 200px; min-height: 150px; background: #ECE9D8;
+  border-top: 1px solid #FFFFFF; border-left: 1px solid #FFFFFF; border-right: 1px solid #000000; border-bottom: 1px solid #000000;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); display: none; padding: 2px; box-sizing: border-box;
+  z-index: 100; max-width: 100vw; max-height: calc(100vh - 30px);
 }
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.95); } }
 .window.is-opening { display: block !important; animation: fadeIn 0.2s ease-out forwards; }
 .window.is-closing { animation: fadeOut 0.15s ease-in forwards; pointer-events: none; }
-
 .title-bar {
   color: white; padding: 3px 5px; font-weight: bold; font-size: 13px; cursor: move;
   display: flex; justify-content: space-between; align-items: center;
   height: 24px; box-sizing: border-box; margin-bottom: 2px;
 }
-.title-bar.active-window-title { background: linear-gradient(to right, #0A246A, #1759CE, #0A246A); } /* XP Active Blue */
-.title-bar:not(.active-window-title) { background: linear-gradient(to right, #7F9DB9, #B0C4DE, #7F9DB9); color: #DDD; } /* XP Inactive */
-
+.title-bar.active-window-title { background: linear-gradient(to right, #0A246A, #1759CE, #0A246A); }
+.title-bar:not(.active-window-title) { background: linear-gradient(to right, #7F9DB9, #B0C4DE, #7F9DB9); color: #DDD; }
 .title-bar-buttons { display: flex; }
 .title-bar-button {
   background-color: #D34328; border: 1px solid white; border-right-color: #404040; border-bottom-color: #404040;
@@ -192,24 +183,22 @@ body {
   background-color: #A0A0A0; border-color: #C0C0C0;
   border-right-color: #606060; border-bottom-color: #606060; color: #505050;
 }
-
 .window-content {
-  padding: 10px; background: white; height: calc(100% - 28px); /* Adjust based on title-bar height+padding */
-  box-sizing: border-box; overflow: auto; /* Add scrollbars if content overflows */
-  border: 1px solid #808080; /* Inset-like border */
+  padding: 10px; background: white; height: calc(100% - 28px);
+  box-sizing: border-box; overflow: auto; border: 1px solid #808080;
   border-top-color: #404040; border-left-color: #404040;
   border-bottom-color: #FFFFFF; border-right-color: #FFFFFF;
 }
-.window.window-auto-height { width: auto; height: auto; } /* For windows like Minesweeper */
+.window.window-auto-height { width: auto; height: auto; }
 .window.window-auto-height > .window-content { height: auto; }
 
 /* --- Taskbar --- */
 #taskbar {
   position: fixed; bottom: 0; left: 0; width: 100%; height: 30px;
-  background: linear-gradient(to bottom, #3b77ea 0%, #245edc 100%); /* XP Blue Gradient */
+  background: linear-gradient(to bottom, #3b77ea 0%, #245edc 100%);
   border-top: 1px solid #4c87ed; color: white; display: flex;
   align-items: center; font-size: 12px; font-family: 'Tahoma', sans-serif;
-  padding: 0; box-sizing: border-box; z-index: 20000; /* Highest z-index */
+  padding: 0; box-sizing: border-box; z-index: 20000;
 }
 #start-button {
   background: linear-gradient(to bottom, #7bde53 0%, #58c038 40%, #38a81a 100%);
@@ -221,10 +210,9 @@ body {
 }
 #start-button:hover { background: linear-gradient(to bottom, #8ff36a 0%, #6ad84a 40%, #49bd2b 100%); }
 #start-button:active { background: linear-gradient(to top, #7bde53 0%, #58c038 40%, #38a81a 100%); border-style: inset; }
-
 #taskbar-items {
   display: flex; height: 100%; align-items: center; margin-left: 5px;
-  flex-grow: 1; overflow: hidden; /* Prevent too many items breaking layout */ min-width: 0;
+  flex-grow: 1; overflow: hidden; min-width: 0;
 }
 .taskbar-item {
   background: linear-gradient(to bottom, #5c8ee9 0%, #3e72d8 100%);
@@ -235,14 +223,13 @@ body {
   cursor: pointer; font-size: 11px; color: white;
 }
 .taskbar-item.active, .taskbar-item:active {
-  background: linear-gradient(to top, #5c8ee9 0%, #3e72d8 100%); /* Pressed look */
-  border-style: inset; font-weight: bold; padding-top: 2px; /* Shift text down for pressed feel */
+  background: linear-gradient(to top, #5c8ee9 0%, #3e72d8 100%);
+  border-style: inset; font-weight: bold; padding-top: 2px;
 }
 .taskbar-item:hover { filter: brightness(1.1); }
-
 #clock-container {
   padding: 0 10px; height: 100%; display: flex; align-items: center;
-  border-left: 1px solid #1c4a8e; margin-right: 2px; background: rgba(0,0,0,0.1); /* Subtle shade */
+  border-left: 1px solid #1c4a8e; margin-right: 2px; background: rgba(0,0,0,0.1);
 }
 #clock { font-size: 11px; }
 
@@ -263,7 +250,7 @@ body {
   width: fit-content; padding: 2px; margin: 10px auto;
 }
 .cell {
-  width: 24px; height: 24px; background: #bdbdbd; /* Classic grey */
+  width: 24px; height: 24px; background: #bdbdbd;
   border-top: 2px solid #fff; border-left: 2px solid #fff;
   border-right: 2px solid #7b7b7b; border-bottom: 2px solid #7b7b7b;
   display: flex; align-items: center; justify-content: center;
@@ -288,97 +275,81 @@ body {
 #paintCanvas { cursor: crosshair; }
 
 /* --- Portfolio Item Styling (inside windows) --- */
-.portfolio-item {
-  margin-bottom: 25px;
-}
-.portfolio-item h3 {
-  font-size: 16px;
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-family: 'Tahoma', sans-serif;
-}
-.portfolio-image {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #b0b0b0;
-  display: block;
-  margin-bottom: 8px;
-}
-.portfolio-description {
-  font-size: 13px;
-  line-height: 1.5;
-  color: #444;
-}
-.window-content hr {
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    margin: 20px 0;
-}
+.portfolio-item { margin-bottom: 25px; }
+.portfolio-item h3 { font-size: 16px; color: #333; margin-top: 0; margin-bottom: 8px; font-family: 'Tahoma', sans-serif;}
+.portfolio-image { max-width: 100%; height: auto; border: 1px solid #b0b0b0; display: block; margin-bottom: 8px; }
+.portfolio-description { font-size: 13px; line-height: 1.5; color: #444; }
+.window-content hr { border: 0; height: 1px; background: #ccc; margin: 20px 0; }
 
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
+/* --- RESPONSIVE ADJUSTMENTS & DESKTOP GRID LAYOUT --- */
 
-@media (min-width: 769px) { /* DESKTOP VIEW */
+@media (min-width: 769px) { /* DESKTOP VIEW - Using CSS Grid for initial icon layout */
   #desktop-icons-container {
-    overflow: hidden; /* No scroll for desktop layout */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Icon cell width */
+    grid-auto-rows: minmax(100px, auto); /* Icon cell height */
+    gap: 15px 20px; /* Row gap, Column gap */
+    align-content: start;
+    justify-content: start;
+    padding: 20px; /* Padding around the grid area */
+    /* Ensure container itself is positioned correctly */
+    position: absolute;
+    top: 70px; /* Start below title */
+    left: 40px;
+    right: 40px;
+    bottom: 40px; /* Space above taskbar */
+    overflow: hidden; /* No scroll for desktop grid */
   }
 
   .icon {
-    position: absolute !important; /* Use !important to ensure it overrides other position rules for desktop */
-    float: none !important;        /* Ensure float is off for absolute positioning */
-    margin: 0 !important;         /* No margin needed for absolute positioning */
+    position: relative; /* Icons are relative within their grid cell initially */
+    margin: 0; /* Grid gap handles spacing */
+    width: 100%; /* Fill grid cell width */
+    height: 100%; /* Fill grid cell height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically if needed, or use padding */
+    padding-top: 10px; /* Example padding for content */
   }
 
-  /* Initial positions for desktop icons - These are critical */
-  .icon[data-window="aboutWindow"]         { top: 80px; left: 50px; }
-  .icon[data-window="resumeWindow"]        { top: 80px; left: 150px; }
-  .icon[data-window="computerWindow"]      { top: 80px; left: 250px; }
-  .icon[data-window="contactWindow"]       { top: 80px; left: 350px; }
-
-  .icon[data-window="posterWindow"]        { top: 180px; left: 50px; }
-  .icon[data-window="photoWindow"]         { top: 180px; left: 150px; }
-  .icon[data-window="paintWindow"]         { top: 180px; left: 250px; }
-  .icon[data-window="minesweeperWindow"]   { top: 180px; left: 350px; }
-
-  .icon[data-window="brandingWindow"]      { top: 280px; left: 50px; }
-  .icon[data-window="videoWindow"]         { top: 280px; left: 150px; }
-  .icon[data-window="wmpWindow"]           { top: 280px; left: 250px; }
-
-  #sticky-note { /* Initial desktop position for sticky note */
-    top: 15% !important;
-    left: 70% !important;
-    transform: rotate(2deg) !important; /* Keep tilt for desktop */
-    /* Ensure mobile overrides don't affect these: */
+  #sticky-note {
+    top: 100px !important;
+    left: calc(100% - 230px - 50px) !important; /* width (230px) and right offset (50px) */
+    transform: rotate(2deg) !important;
     bottom: auto !important;
     max-height: none !important;
     overflow-y: visible !important;
   }
 }
 
-@media (max-width: 768px) { /* TABLET VIEW */
+@media (max-width: 768px) { /* TABLET VIEW - Flexbox flow for icons */
   #desktop-icons-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
     padding: 10px;
+    position: absolute;
+    top: 60px; left: 10px; right: 10px; bottom: 40px;
+    overflow-y: auto;
   }
 
   .icon {
     position: relative !important;
-    top: auto !important;
-    left: auto !important;
+    top: auto !important; left: auto !important;
+    width: 80px;
+    margin: 10px !important;
     float: none !important;
-    width: 75px;
-    margin: 8px !important;
+    /* height: auto; /* Let content define height */
   }
   .icon img { width: 40px; height: 40px; }
+  .icon[data-window="minesweeperWindow"] img { width: 48px; height: 48px; }
   .icon p { font-size: 11px; }
 
   #desktop-title-container { top: 5vh; }
-  .desktop-title-line1 { font-size: 20px; margin-bottom: 10px; }
+  .desktop-title-line1 { font-size: 20px; }
   .desktop-title-line2 { font-size: 44px; }
 
   .title-bar { font-size: 12px; height: 22px; }
@@ -387,17 +358,15 @@ body {
   #taskbar-items { overflow-x: auto; }
   .taskbar-item { max-width: 100px; flex-shrink: 0; font-size: 10px; padding: 0 8px; }
   #sticky-note {
-    width: 180px; font-size: 13px; left: auto !important; right: 10px !important; top: 10% !important; transform: rotate(1deg) !important;
-    bottom: auto !important; /* Ensure mobile bottom doesn't interfere */
+    width: 180px; font-size: 13px; left: auto !important; right: 15px !important; top: 80px !important; transform: rotate(1deg) !important;
+    bottom: auto !important;
   }
   .sticky-note-header { font-size: 14px; }
   #sticky-note li { font-size: 12px; }
 }
 
 @media (max-width: 480px) { /* MOBILE VIEW */
-  body {
-    overflow-y: auto;
-  }
+  body { overflow-y: auto; }
   #desktop-icons-container {
     padding: 5px;
     justify-content: space-around;
@@ -407,14 +376,16 @@ body {
     margin-bottom: 40px;
   }
   .icon {
-    width: 70px;
-    margin: 5px !important;
+    width: 75px;
+    margin: 8px !important;
+     /* height: auto; /* Let content define height */
   }
-  .icon img { width: 36px; height: 36px; }
+  .icon img { width: 38px; height: 38px; }
+  .icon[data-window="minesweeperWindow"] img { width: 44px; height: 44px; }
   .icon p { font-size: 10px; margin-top: 2px; }
 
   #desktop-title-container { top: 2vh; width: 95%; }
-  .desktop-title-line1 { font-size: 14px; margin-bottom: 8px; }
+  .desktop-title-line1 { font-size: 14px; }
   .desktop-title-line2 { font-size: 28px; }
 
   .window {
