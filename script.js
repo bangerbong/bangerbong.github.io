@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hasMovedSignificantly = false;
             e.preventDefault(); 
             const computedStyle = window.getComputedStyle(element);
-            // If the element isn't already 'absolute' (e.g. it's in flex flow on mobile),
+            // If the element isn't already 'absolute' (e.g. it's in flex flow on mobile, or static/relative from CSS for desktop before !important)
             // capture its current visual position based on getBoundingClientRect and scroll offsets,
             // then switch it to 'absolute'.
             if (computedStyle.position !== 'absolute') {
@@ -144,21 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            // Check if mouse moved more than a few pixels to qualify as a "drag" vs a "click"
-            // This check is simplified; a more robust one might compare initial mousedown coords.
             if (!hasMovedSignificantly && (Math.abs(e.clientX - (element.offsetLeft + offsetX)) > 3 || Math.abs(e.clientY - (element.offsetTop + offsetY)) > 3)) {
                 hasMovedSignificantly = true;
             }
-
             let newLeft = e.clientX - offsetX;
             let newTop = e.clientY - offsetY;
             const taskbarHeight = document.getElementById('taskbar')?.offsetHeight || 30;
             const elWidth = element.offsetWidth;
             const elHeight = element.offsetHeight;
-            
             newLeft = Math.max(0, Math.min(window.innerWidth - elWidth, newLeft));
             newTop = Math.max(0, Math.min(window.innerHeight - elHeight - taskbarHeight, newTop));
-            
             element.style.left = newLeft + 'px';
             element.style.top = newTop + 'px';
         });
