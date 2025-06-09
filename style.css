@@ -107,15 +107,101 @@ body { margin: 0; font-family: 'Tahoma', 'Lucida Grande', 'Segoe UI', sans-serif
 .drive:hover { background: #e0e0e0; border-color: #999;}
 .drive-icon { width: 20px; height: 20px; margin-right: 8px;}
 #paintCanvas { cursor: crosshair; }
+/* ... (your CSS before this) ... */
+
+/* --- Portfolio Item Styling (inside windows) --- */
+/* Keep your general .portfolio-item, .portfolio-image, .portfolio-description as they are if they work for other windows */
 .portfolio-item { margin-bottom: 25px; }
 .portfolio-item h3 { font-size: 16px; color: #333; margin-top: 0; margin-bottom: 8px; font-family: 'Tahoma', sans-serif;}
-.portfolio-image { max-width: 95%; height: auto; border: 1px solid #b0b0b0; display: block; margin-bottom: 8px; margin-left: auto; margin-right: auto; }
-.portfolio-image-small { max-width: 100px; margin-left: 5px; margin-right: 5px; margin-bottom: 5px; display: inline-block; vertical-align: top; border: 1px solid #ccc;}
-#recycleBinWindow .window-content .portfolio-item { margin-bottom: 5px;} /* Tighter spacing for recycle bin */
-#recycleBinWindow .window-content { text-align: center; }
-.portfolio-description { font-size: 13px; line-height: 1.5; color: #444; text-align: center; }
-.window-content hr.portfolio-hr-grid { display: none; } /* Hide HRs if using grid for recycle bin */
-#recycleBinWindow .recycle-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.portfolio-image { /* This is your GENERAL one */
+    max-width: 95%; 
+    height: auto; 
+    border: 1px solid #b0b0b0; 
+    display: block; 
+    margin-bottom: 8px; 
+    margin-left: auto; margin-right: auto; 
+}
+.portfolio-description { /* This is your GENERAL one */
+    font-size: 13px; 
+    line-height: 1.5; 
+    color: #444; 
+    text-align: center; 
+}
+.window-content hr { border: 0; height: 1px; background: #ccc; margin: 20px 0; }
+.video-item video { max-width: 100%; border: 1px solid #ccc; background: black;}
+
+
+/* --- RECYCLE BIN SPECIFIC STYLING --- */
+/* Container for the grid inside recycle bin's window-content */
+#recycleBinWindow .recycle-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Or flex-start if you prefer left-alignment */
+    gap: 10px; /* Space between items */
+    padding-top: 10px; /* Add some padding at the top of the grid */
+}
+
+/* Individual items within the Recycle Bin grid */
+#recycleBinWindow .recycle-grid .portfolio-item {
+    /* No 'display: inline-block' needed if parent is flex */
+    width: calc(33.33% - 10px); /* Aim for 3 items per row, subtracting gap. Adjust as needed. */
+                                /* Or use a fixed width like: width: 120px; */
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Keep some bottom margin */
+    padding: 8px;
+    background-color: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    text-align: center; /* Center content within the item box */
+}
+
+/* Images within the Recycle Bin items - these are your thumbnails */
+#recycleBinWindow .recycle-grid .portfolio-image { /* Make this selector more specific */
+    max-width: 100%;
+    height: 100px;      /* <<<<<< KEY: Fixed height for thumbnails */
+    object-fit: contain; /* <<<<<< KEY: Scale image to fit, maintain aspect ratio */
+    border: 1px solid #ccc;
+    background-color: #fff; /* Background for the image area if it's smaller */
+    margin-bottom: 5px;
+    display: block; /* Or inline-block if you want text next to it and align */
+    margin-left: auto; /* Center if block */
+    margin-right: auto; /* Center if block */
+}
+
+/* Descriptions within the Recycle Bin items */
+#recycleBinWindow .recycle-grid .portfolio-description {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.3;
+    margin-top: 5px;
+    height: 2.6em; /* Approx 2 lines */
+    overflow: hidden;
+    /* text-overflow: ellipsis; (often tricky for multi-line) */
+}
+
+/* Hide HRs if you are using the recycle-grid structure */
+#recycleBinWindow .recycle-grid + hr,
+#recycleBinWindow .recycle-grid .portfolio-item + hr {
+    display: none;
+}
+
+
+/* Media query adjustments FOR RECYCLE BIN GRID specifically if needed */
+@media (max-width: 550px) {
+    #recycleBinWindow .recycle-grid .portfolio-item {
+        width: calc(50% - 10px); /* 2 items per row */
+    }
+}
+@media (max-width: 380px) {
+    #recycleBinWindow .recycle-grid .portfolio-item {
+        width: calc(100% - 10px); /* 1 item per row */
+    }
+}
+
+/* --- End of Recycle Bin Specific Styling --- */
+
+
+/* --- Shutdown Overlay --- */
+/* ... (rest of your CSS) ... */
 
 
 /* --- Shutdown Overlay --- */
